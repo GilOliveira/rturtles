@@ -17,3 +17,13 @@
     float: right;
     margin-top: 3px;
 }
+
+.menu i{
+    font-size: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
