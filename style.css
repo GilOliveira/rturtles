@@ -1,0 +1,19 @@
+#logoBar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#logo {
+    float: left;
+}
+
+#userWelcome {
+    float: right;
+    margin-right: 5px;
+    margin-top: 15px;
+}
+
+#userIcon {
+    float: right;
+    margin-top: 3px;
+}
