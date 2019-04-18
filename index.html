@@ -7,14 +7,24 @@
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="script.js"> </script>
 </head>
 <body>
+
     <div id="logoBar" class="w3-container w3-theme-l1">
-        <img src="images/logo.png" id="logo" height="50">
-        <img src="images/turtle_icon.png" id="userIcon" height="40">
-        <p id="userWelcome" class="w3-large">Hi, Guest!</p>
+        <button class=" w3-button w3-hide-medium w3-hide-large" id="hamburger">
+            ☰
+        </button>
+        <img src="images/logo.png" id="logo" alt="logo RobotTurtles" height="50">
+        <div class="w3-container" id="loginContainer">
+            <p class="w3-hide-small"> Hi, Guest! </p>
+            <button class="w3-button" id="userButton">
+                <i class="material-icons" id="userIcon">person</i>
+            </button>
+        </div>
     </div>
-    <div class="w3-bar w3-theme-l1 menu">
+
+    <div class="w3-bar w3-theme-l1 w3-hide-small menu">
         <a href="#" class="w3-bar-item w3-button">
             <i class="menuIcon material-icons">games</i> <br>
             Play
@@ -28,6 +38,23 @@
             About us
         </a>
     </div>
+
+    <div id="menuLateral" class="w3-sidebar w3-bar-block w3-theme-l1 w3-hide-medium w3-hide-large">
+        <a href="#" class="w3-bar-item w3-button">
+            <i class="material-icons">games</i>
+            Play
+        </a>
+        <a href="#" class="w3-bar-item w3-button">
+            <i class="material-icons">help</i>
+            How to
+        </a>
+        <a href="#" class="w3-bar-item w3-button">
+            <i class="material-icons">supervised_user_circle</i>
+            About us
+        </a>
+    </div>
+
+
 
     <!--
 

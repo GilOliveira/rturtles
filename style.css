@@ -5,17 +5,18 @@
 
 #logo {
     float: left;
+    margin-top: 5px;
 }
 
 #userWelcome {
-    float: right;
     margin-right: 5px;
     margin-top: 15px;
 }
 
+
 #userIcon {
-    float: right;
-    margin-top: 3px;
+    font-size: 50px;
+    text-align: right;
 }
 
 .menu i{
@@ -25,5 +26,32 @@
 .footer {
     position: fixed;
     bottom: 0;
+    width: 100%;
+}
+
+#loginContainer{
+    float: right;
+}
+
+#loginContainer p{
+    float: left;
+    padding-top: 2px;
+}
+
+#loginContainer button{
+    float: right;
+    padding: 2px;
+}
+
+
+#hamburger {
+    float: left;
+    margin-right: 10px;
+    top: 20px;
+    font-size: 30px;
+}
+
+#menuLateral {
+    display: none;
     width: 100%;
 }
