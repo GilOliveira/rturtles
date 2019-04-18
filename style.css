@@ -29,20 +29,13 @@
     width: 100%;
 }
 
-#loginContainer{
-    float: right;
-}
-
 #loginContainer p{
-    float: left;
     padding-top: 2px;
 }
 
 #loginContainer button{
-    float: right;
     padding: 2px;
 }
-
 
 #hamburger {
     float: left;
