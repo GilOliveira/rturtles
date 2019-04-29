@@ -1,3 +1,8 @@
+/*
+O código que se segue é tão lindo e eficiente que pode ferir
+a suscetibilidade que quem está a fazer SI :P
+ */
+
 function tabuleiro(n){
     let outList = [];
     let tempList;
