@@ -26,7 +26,7 @@ function User(name,birth,direction,id) {
     this.name = name;
     this.birth = birth;
     this.direction = direction;
-    this.id = id
+    this.id = id;
 
     function addTurtle(imagefile) {
         this.image = imagefile;
