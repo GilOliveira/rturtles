@@ -14,18 +14,22 @@ function board(n){
     return outList;
 }
 
-function fillBoard(board, t1, t2, t3, t4){
-    // placing players in the board
-    board[0][0] = t1;
-    board[0][board.length-1] = t2;
-    board[board.length-1][0] = t3;
-    board[board.length-1][board.length-1] = t4;
-
-    // placing jewels in the board
+function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
+    board[0][0] = t1;     // placing players in the board
     board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2)] = 'j1';
-    board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2+1)] = 'j2';
-    board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2)] = 'j3';
-    board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2+1)] = 'j4';
+    if (t2 == !false) {
+        board[0][board.length-1] = t2;
+        board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2+1)] = 'j2';
+    }
+    if (t3 == !false) {
+        board[board.length-1][0] = t3;
+        board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2)] = 'j3';
+
+    }
+    if (t4 == !false) {
+        board[board.length-1][board.length-1] = t4;
+        board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2+1)] = 'j4';
+    }
 }
 
 function determineWalls(board) {
@@ -46,7 +50,10 @@ function User(name,birth,direction,id) {
 
     // -90 ou 90
     this.rotate = function (degrees) {
-        this.direction = direction + degrees;
+        direction = this.direction + parseInt(degrees);
+        if (direction === 360) {
+            this.direction = 0;
+        }
     }
 }
 
