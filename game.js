@@ -14,6 +14,12 @@ function board(n){
     return outList;
 }
 
+function displayBoard(board){
+    for (let i = 0; i < board.length; i++) {
+        $("#board").append(''); // FALTA COMPLETAR AQUI
+    }
+}
+
 function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
     board[0][0] = t1;     // placing players in the board
     board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2)] = 'j1';
@@ -37,12 +43,19 @@ function determineWalls(board) {
     return parseInt(boardSize*0.15);
 }
 
-function User(name,birth,direction,id) {
+function Deck() {
+    this.fwd = 18;
+    this.left = 8;
+    this.right = 8;
+    this.bug = 1;
+}
 
+function User(name,birth,direction, baralho,id) {
     this.name = name;
     this.birth = birth;
     this.direction = direction;
     this.id = id;
+    this.deck = new Deck();
 
     function addTurtle(imagefile) {
         this.image = imagefile;
