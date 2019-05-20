@@ -6,6 +6,9 @@ function game(users,boardsize) {
     var currentplayes = ordusers[0];
     var bugbutton = false;
     var endturnbutton = false;
+
+
+
     }
 
 
@@ -40,5 +43,5 @@ function order(users) {
         orderesuser.push(usersdic[i])
     }
     return orderesuser
-}
+
 }
