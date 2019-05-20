@@ -23,31 +23,43 @@ function displayBoard(board){
 function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
     board[0][0] = t1;     // placing players in the board
     board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2)] = 'j1';
-    if (t2 == !false) {
+    if (t2 ==! false) {
         board[0][board.length-1] = t2;
         board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2+1)] = 'j2';
     }
-    if (t3 == !false) {
+    if (t3 ==! false) {
         board[board.length-1][0] = t3;
         board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2)] = 'j3';
 
     }
-    if (t4 == !false) {
+    if (t4 ==! false) {
         board[board.length-1][board.length-1] = t4;
         board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2+1)] = 'j4';
     }
 }
 
 function determineWalls(board) {
+    var boardSize;
     boardSize = Math.pow(board.length,2);
     return parseInt(boardSize*0.15);
 }
+
+
 
 function Deck() {
     this.fwd = 18;
     this.left = 8;
     this.right = 8;
-    this.bug = 1;
+
+    function upfwd() {
+        this.fwd -= 1
+    }
+    function left() {
+        this.fwd -= 1
+    }
+    function right() {
+        this.fwd -= 1
+    }
 }
 
 function User(name,birth,direction, baralho,id) {
@@ -56,6 +68,7 @@ function User(name,birth,direction, baralho,id) {
     this.direction = direction;
     this.id = id;
     this.deck = new Deck();
+    this.pos = pos;
 
     function addTurtle(imagefile) {
         this.image = imagefile;
@@ -67,8 +80,12 @@ function User(name,birth,direction, baralho,id) {
         if (direction === 360) {
             this.direction = 0;
         }
+    };
+    function setDeck(deck) {
+        this.deck = deck
     }
 }
+
 
 let b = board(8);
 let t1 = new User('turtle1', '1990-10-20', 0, 1);
