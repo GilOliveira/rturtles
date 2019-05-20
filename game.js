@@ -81,6 +81,12 @@ function User(name,birth,direction, baralho,id, end = false) {
         if (direction === 360) {
             this.direction = 0;
         }
+        if (direction == -90) {
+            this.direction = 270;
+        }
+        else {
+            this.direction = direction;
+        }
     };
     function setDeck(deck) {
         this.deck = deck;
