@@ -62,7 +62,7 @@ function Deck() {
     }
 }
 
-function User(name,birth,direction, baralho,id, end = false) {
+function User(name,birth,direction, id, end = false) {
     this.name = name;
     this.birth = birth;
     this.direction = direction;
