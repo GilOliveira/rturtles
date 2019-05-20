@@ -1,12 +1,25 @@
 
+// event handlers moving
+
+
 
 function game(users,boardsize) {
+
 //    Users is a array of users to play
+
     var ordusers = order(users);
     var currentplayes = ordusers[0];
     var bugbutton = false;
     var endturnbutton = false;
+    var gameend = [];
 
+    for (var i=0; i < ordusers.length; i++) {
+        gameend.push(false)
+    }
+
+    while ()
+
+    function play()
 
 
     }

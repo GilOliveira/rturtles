@@ -68,7 +68,6 @@ function User(name,birth,direction, baralho,id) {
     this.direction = direction;
     this.id = id;
     this.deck = new Deck();
-    this.pos = pos;
 
     function addTurtle(imagefile) {
         this.image = imagefile;
@@ -82,7 +81,10 @@ function User(name,birth,direction, baralho,id) {
         }
     };
     function setDeck(deck) {
-        this.deck = deck
+        this.deck = deck;
+    }
+    function setPos(pos) {
+        this.pos = pos
     }
 }
 
@@ -94,3 +96,5 @@ let t3 = new User('turtle3', '1990-10-20', 0, 3);
 let t4 = new User('turtle4', '1990-10-20', 0, 4);
 fillBoard(b, t1, t2, t3, t4);
 console.log(b);
+
+console.log(new Deck);
