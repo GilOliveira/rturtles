@@ -54,20 +54,22 @@ function Deck() {
     function upfwd() {
         this.fwd -= 1
     }
-    function left() {
-        this.fwd -= 1
+    function upleft() {
+        this.left -= 1
     }
-    function right() {
-        this.fwd -= 1
+    function upright() {
+        this.right -= 1
     }
 }
 
-function User(name,birth,direction, baralho,id) {
+function User(name,birth,direction, baralho,id, end = false) {
     this.name = name;
     this.birth = birth;
     this.direction = direction;
     this.id = id;
     this.deck = new Deck();
+    this.pos = [];
+    this.end = end;
 
     function addTurtle(imagefile) {
         this.image = imagefile;
@@ -83,9 +85,29 @@ function User(name,birth,direction, baralho,id) {
     function setDeck(deck) {
         this.deck = deck;
     }
-    function setPos(pos) {
+    function setInitialPos(pos) {
         this.pos = pos
     }
+    function movefoward() {
+        setDeck(this.deck.fwd());
+        if (self.direction == 0) {
+            this.pos = [this.pos[0],this.pos[1]+1]
+        }
+        else if (self.direction == 90) {
+            this.pos = [this.pos[0]+1,this.pos[1]]
+        }
+        else if (self.direction == 180) {
+            this.pos = [this.pos[0],this.pos[1]-1]
+        }
+        else if (self.direction == 270) {
+            this.pos = [this.pos[0]-1,this.pos[1]]
+        }
+
+    }
+    function setEnd() {
+        this.end = true;
+    }
+
 }
 
 
@@ -97,4 +119,8 @@ let t4 = new User('turtle4', '1990-10-20', 0, 4);
 fillBoard(b, t1, t2, t3, t4);
 console.log(b);
 
-console.log(new Deck);
+// let aa = new Deck;
+// console.log(aa);
+// console.log(aa.upfwd());
+// console.log(aa);
+
