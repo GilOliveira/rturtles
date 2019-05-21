@@ -82,7 +82,14 @@ function User(name,birth,direction, id, end = false) {
     }
 
     // -90 ou 90
-    this.rotate = function (degrees) {
+    function rotate(degrees) {
+        if (degrees == 90) {
+            setDeck(this.deck.upright())
+        }
+        if (degrees == -90) {
+            setDeck(this.deck.upleft())
+        }
+
         direction = this.direction + parseInt(degrees);
         if (direction === 360) {
             this.direction = 0;
