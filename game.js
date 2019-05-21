@@ -29,6 +29,8 @@ function displayBoard(){
     }
 }
 
+
+
 function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
     board[0][0] = t1;     // placing players in the board
     board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2)] = 'j1';
@@ -133,7 +135,7 @@ $(document).ready(main);
 
 // FOR DEBUGGING:
 function main() {
-    createBoard(8);
+    createBoard(10);
     displayBoard();
 }
 
@@ -143,4 +145,11 @@ function main() {
 // console.log(aa);
 // console.log(aa.upfwd());
 // console.log(aa);
+
+//USER MANAGEMENT:
+
+function register(){
+    let registerForm = $('registerForm');
+
+}
 
