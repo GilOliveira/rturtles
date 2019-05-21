@@ -1,50 +1,56 @@
 "use strict";
 let currentPlayer;
+let board;
 
-function board(n){
+function createBoard(n){
+    board = [];
     let outList = [];
     let tempList;
-    for (let i = 0; i<n; i++){
+    for (let i = 0; i<n; i++) {
         tempList = [];
-        for (let j = 0; j<n; j++){
+        for (let j = 0; j < n; j++) {
             tempList.push("");
         }
         outList.push(tempList);
     }
-    return outList;
+    board = outList;
 }
 
-function displayBoard(board){
-    for (let i = 0; i < board.length; i++) {
-        $("#board").append(''); // FALTA COMPLETAR AQUI
+
+function displayBoard(){
+    let boardTable = $('#board');
+    for (let row = 0; row < board.length; row++) {
+        boardTable.append('<tr id="' + row + '">');
+        for (let column = 0; column < board.length; column++) {
+            $('#boardContainer table:last-child').append('<td class="boardCell" id="' +
+                row.toString() + "-" + column.toString() + '"></td>');
+        }
+        boardTable.append('</tr>');
     }
 }
 
 function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
     board[0][0] = t1;     // placing players in the board
     board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2)] = 'j1';
-    if (t2 ==! false) {
+    if (t2 == !false) {
         board[0][board.length-1] = t2;
         board[parseInt((board.length-1)/2)][parseInt((board.length-1)/2+1)] = 'j2';
     }
-    if (t3 ==! false) {
+    if (t3 == !false) {
         board[board.length-1][0] = t3;
         board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2)] = 'j3';
 
     }
-    if (t4 ==! false) {
+    if (t4 == !false) {
         board[board.length-1][board.length-1] = t4;
         board[parseInt((board.length-1)/2+1)][parseInt((board.length-1)/2+1)] = 'j4';
     }
 }
 
 function determineWalls(board) {
-    var boardSize;
-    boardSize = Math.pow(board.length,2);
+    let boardSize = Math.pow(board.length,2);
     return parseInt(boardSize*0.15);
 }
-
-
 
 function Deck() {
     this.fwd = 18;
@@ -116,14 +122,15 @@ function User(name,birth,direction, id, end = false) {
 
 }
 
+$(document).ready(main);
 
-let b = board(8);
-let t1 = new User('turtle1', '1990-10-20', 0, 1);
-let t2 = new User('turtle2', '1990-10-20', 0, 2);
-let t3 = new User('turtle3', '1990-10-20', 0, 3);
-let t4 = new User('turtle4', '1990-10-20', 0, 4);
-fillBoard(b, t1, t2, t3, t4);
-console.log(b);
+// FOR DEBUGGING:
+function main() {
+    createBoard(8);
+    displayBoard();
+}
+
+
 
 // let aa = new Deck;
 // console.log(aa);

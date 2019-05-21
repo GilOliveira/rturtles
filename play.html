@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="script.js"></script>
+        <script src="game.js"></script>
     </head>
 
     <body class="w3-animate-opacity">
@@ -78,16 +79,22 @@
             O conteúdo do site vai aqui
 
         -->
-        <input id="foward" type="image" src="images/game/cards/forwards.jpg" />
-        <input id="left" value ="-90" type="image" src="images/game/cards/left.jpg" />
-        <input id="right" value ="90" type="image" src="images/game/cards/right.jpg" />
+        <div id="gameContainer" class="w3-container">
 
-        <button id="bug">BUG</button>
-        <button id="endplay">ACABAR JOGADA</button>
+            <div id="boardContainer" class="w3-container">
+                <table id="board">
+                </table>
+            </div>
 
 
-        <table id="board">
-       </table>
+            <input id="foward" type="image" src="images/game/cards/forwards.jpg" />
+            <input id="left" value ="-90" type="image" src="images/game/cards/left.jpg" />
+            <input id="right" value ="90" type="image" src="images/game/cards/right.jpg" />
+
+            <button id="bug">BUG</button>
+            <button id="endplay">ACABAR JOGADA</button>
+        </div>
+
 
         <!-- FOOTER: -->
 

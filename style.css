@@ -48,3 +48,9 @@
     display: none;
     width: 100%;
 }
+
+.boardCell {
+    background-image: url("images/game/board/grass.jpg");
+    height: 50px;
+    width: 50px;
+}
