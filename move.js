@@ -1,28 +1,54 @@
 
 // event handlers moving
+// $("endplay").on("click",endplay());
+// $("bug").on("click",restartplay());
 
+
+function endplay() {
+    return endturnbutton = true
+}
+
+function restartplay() {
+//    board inicial antes de clicar em cartas
+
+}
+
+function endGame() {
+    for (var user in ordusers) {
+        if (user.end() == false) {
+            return false
+        }
+    }
+    return true
+}
 
 
 function game(users,boardsize) {
 
 //    Users is a array of users to play
 
-    var ordusers = order(users);
-    var currentplayes = ordusers[0];
-    var bugbutton = false;
-    var endturnbutton = false;
-    var gameend = [];
+    let ordusers = order(users);
+    let indplayer = 0;
+    let currentplayer = ordusers[0];
+    let endturnbutton = false;
 
-    for (var i=0; i < ordusers.length; i++) {
-        gameend.push(false)
+    while (endGame() == false) {
+
+
+        while (endturnbutton == false) {
+            //     pode fazer as suas jogadas
+        }
+        // depois da jogada update board
+
+        if (indplayer == ordusers.length) {
+            indplayer = 0;
+            currentplayer = ordusers[0]
+        } else {
+            indplayer += 1;
+            currentplayer = ordusers[1]
+        }
     }
-
-    while ()
-
-    function play()
-
-
-    }
+}
 
 
 function insertion_sort(lst) {
@@ -58,3 +84,5 @@ function order(users) {
     return orderesuser
 
 }
+// $(document).ready;
+

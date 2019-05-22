@@ -29,13 +29,6 @@
     width: 100%;
 }
 
-#loginContainer p{
-    padding-top: 2px;
-}
-
-#loginContainer button{
-    padding: 2px;
-}
 
 #hamburger {
     float: left;
