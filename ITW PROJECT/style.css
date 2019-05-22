@@ -1,0 +1,50 @@
+#logoBar {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#logo {
+    float: left;
+    margin-top: 5px;
+}
+
+#userWelcome {
+    margin-right: 5px;
+    margin-top: 15px;
+}
+
+
+#userIcon {
+    font-size: 50px;
+    text-align: right;
+}
+
+.menu i{
+    font-size: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#loginContainer p{
+    padding-top: 2px;
+}
+
+#loginContainer button{
+    padding: 2px;
+}
+
+#hamburger {
+    float: left;
+    margin-right: 10px;
+    top: 20px;
+    font-size: 30px;
+}
+
+#menuLateral {
+    display: none;
+    width: 100%;
+}
