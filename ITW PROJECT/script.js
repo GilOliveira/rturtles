@@ -8,10 +8,14 @@ let player4 = new Player("player4", "5years", "up", 7, 7);
 let births = [player1.birth, player2.birth, player3.birth, player4.birth];
 let board = (generateBoard(8));
 let currentPlayer = player1;
+let currentPlayerIndex = 0;
 let boardCopy;
 let rowIndexCopy = currentPlayer.rowIndex;
 let columnIndexCopy = currentPlayer.columnIndex;
 let directionCopy = currentPlayer.direction;
+// Assume que a lista já está ordenada consoante a vez de jogar.
+let playersStillPlaying = [true, true, true, true];
+// let playersStillPlayingRepresentation = ["player1", "player2", "player3", "player4"];
 
 function play(){
   let rotateLeftButton = document.getElementById("rotateLeft");
@@ -22,6 +26,7 @@ function play(){
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
   appendStoneWallsToBoard(board);
+  displayBoard();
   console.log(board);
 
   rotateLeftButton.addEventListener("click", function(){ rotateLeft(currentPlayer);});
@@ -33,8 +38,8 @@ function play(){
   bugButton.addEventListener("click", bug);
 }
 
+// Função que faz deepcopy de um array.
 function copy(o){
-  // Função que faz deepcopy de um array.
   var output, v, key;
   output = Array.isArray(o) ? [] : o;
 
@@ -44,6 +49,18 @@ function copy(o){
   }
 
    return output;
+}
+
+function displayBoard(){
+    let boardTable = $('#board');
+    for (let row = 0; row < board.length; row++) {
+        boardTable.append('<tr id="' + row + '">');
+        for (let column = 0; column < board.length; column++) {
+            $('#boardContainer table:last-child').append('<td class="grass" id="' +
+                row.toString() + "-" + column.toString() + '"></td>');
+        }
+        boardTable.append('</tr>');
+    }
 }
 
 function Player(name, birth, direction, rowIndex, columnIndex){
@@ -104,31 +121,143 @@ function updateTurn(){
   // document.getElementById("bug").style.display = "inline";
 
   if(currentPlayer === player1){
-    currentPlayer = player2;
+    if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
   }
   else if(currentPlayer === player2){
-    currentPlayer = player3;
+    if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
   }
   else if(currentPlayer === player3){
-    currentPlayer = player4;
+    if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
   }
   else{
-    currentPlayer = player1;
+    if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
   }
 }
 
 function bug(){
   if(currentPlayer === player2){
-    currentPlayer = player1;
+    if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
   }
   else if(currentPlayer === player3){
-    currentPlayer = player2;
+    if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
   }
   else if(currentPlayer === player4){
-    currentPlayer = player3;
+    if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[0] === true){
+      currentPlayer = player1;
+      currentPlayerIndex = 0;
+      console.log(currentPlayerIndex);
+    }
   }
   else{
-    currentPlayer = player4;
+    if(playersStillPlaying[3] === true){
+      currentPlayer = player4;
+      currentPlayerIndex = 3;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[2] === true){
+      currentPlayer = player3;
+      currentPlayerIndex = 2;
+      console.log(currentPlayerIndex);
+    }
+    else if(playersStillPlaying[1] === true){
+      currentPlayer = player2;
+      currentPlayerIndex = 1;
+      console.log(currentPlayerIndex);
+    }
   }
 
   board = copy(boardCopy);
@@ -137,7 +266,6 @@ function bug(){
   currentPlayer.direction = directionCopy;
   console.log(board);
 }
-
 
 function rotateLeft(currentPlayer){
   let currentDirection = currentPlayer.direction;
@@ -225,6 +353,8 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              playersStillPlaying[currentPlayerIndex] = false;
+              console.log(playersStillPlaying);
               alert("CONGRATULATIONS! YOU WON!");
               console.log(board);
     }
@@ -256,6 +386,8 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              playersStillPlaying[currentPlayerIndex] = false;
+              console.log(playersStillPlaying);
               alert("CONGRATULATIONS! YOU WON!");
               console.log(board);
     }
@@ -287,6 +419,8 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              playersStillPlaying[currentPlayerIndex] = false;
+              console.log(playersStillPlaying);
               alert("CONGRATULATIONS! YOU WON!");
               console.log(board);
     }
@@ -318,6 +452,8 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              playersStillPlaying[currentPlayerIndex] = false;
+              console.log(playersStillPlaying);
               alert("CONGRATULATIONS! YOU WON!");
               console.log(board);
     }
