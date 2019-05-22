@@ -27,8 +27,39 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 30px;
 }
 
+
+video {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.title_text {
+    text-align: center;
+}
+
+.titleh2 {
+    padding-left: 5%;
+
+}
+.downl {
+    font-size: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.danbio {
+}
+
+.danphoto {
+    width: 100%;
+}
+.foto_collection {
+    padding-bottom: 60px;
+}
 
 #hamburger {
     float: left;
