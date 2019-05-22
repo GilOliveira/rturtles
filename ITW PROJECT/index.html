@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Robot Turtles</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
+
+    <body class="w3-animate-opacity">
+
+        <div id="logoBar" class="w3-container w3-theme-l1">
+            <button class="w3-button w3-hide-medium w3-hide-large" id="hamburger">
+                ☰
+            </button>
+            <img src="images/logo.png" id="logo" alt="logo RobotTurtles" height="50px">
+            <div class="w3-container w3-right" id="loginContainer">
+                <p class="w3-hide-small w3-left">Hi, Guilherme!</p>
+                <div class="w3-dropdown-hover">
+                    <button class="w3-button" id="userButton">
+                        <i class="material-icons w3-hide-small" id="userIcon">person</i>
+                    </button>
+                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                <button id="openLogin" class="w3-button w3-bar-item">Login</button>
+                                <button id="openRegister" class="w3-button w3-bar-item">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-bar w3-theme-l1 w3-hide-small menu">
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="menuIcon material-icons">games</i> <br>
+                Play
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="material-icons menuIcon">help</i> <br>
+                How to
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="material-icons menuIcon">supervised_user_circle</i> <br>
+                About us
+            </a>
+        </div>
+
+
+        <!-- MENU FOR MOBILE DEVICES -->
+
+        <div id="menuLateral" class="w3-sidebar w3-bar-block w3-theme-l1 w3-hide-medium w3-hide-large">
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="material-icons">games</i>
+                Play
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="material-icons">help</i>
+                How to
+            </a>
+            <a href="#" class="w3-bar-item w3-button">
+                <i class="material-icons">supervised_user_circle</i>
+                About us
+            </a>
+            <hr>
+            <button id="openLoginMobile" class="w3-bar-item w3-button">
+                <i class="material-icons">lock_open</i>
+                Login
+            </button>
+            <button id="openRegisterMobile" class="w3-bar-item w3-button">
+                <i class="material-icons">person_add</i>
+                Register
+            </button>
+        </div>
+
+        <br>
+        <button id="rotateLeft">Rotate Left</button>
+        <button id="rotateRight">Rotate Right</button>
+        <button id="forward">Forward</button>
+        <button id="bug">Bug</button>
+
+
+        <!-- FOOTER: -->
+
+        <div class="w3-container w3-theme-l1 footer">
+            © 2019 - Robot Turtles
+        </div>
+
+
+
+        <!-- LOGIN MODAL -->
+        <div id="loginModal" class="w3-modal">
+            <div class="w3-modal-content">
+                <header class="w3-container w3-theme-l1">
+                    <span class="w3-button w3-display-topright" id="closeLogin">×</span>
+                    <h2>Login</h2>
+                </header>
+
+                <div class="w3-container">
+                    <form>
+                        <div class="w3-section">
+                            <label>Username</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Email or Username">
+                            <label>Password</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Password">
+                            <button class="w3-theme-l1 w3-btn-block w3-section w3-padding">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER MODAL -->
+        <div id="registerModal" class="w3-modal">
+            <div class="w3-modal-content">
+                <header class="w3-container w3-theme-l1">
+                    <span id="closeRegister" class="w3-button w3-display-topright">×s</span>
+                    <h2>Register</h2>
+                </header>
+
+                <div class="w3-container">
+                    <form>
+                        <div class="w3-section">
+                            <label>Name</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name">
+                            <label>Username</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username">
+                            <label>Password</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
+                            <label>Confirm Password</label>
+                            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
+                            <button class="w3-theme-l1 w3-btn-block w3-section w3-padding">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- function updateTurn(){
+          // document.getElementById("bug").style.display = "inline";
+
+          if(currentPlayer === player1){
+            currentPlayer = player2;
+          }
+          else if(currentPlayer === player2){
+            currentPlayer = player3;
+          }
+          else if(currentPlayer === player3){
+            currentPlayer = player4;
+          }
+          else{
+            currentPlayer = player1;
+          }
+
+          board = copy(boardCopy);
+        } -->
+
+        <!-- function updateTurn(){
+          // document.getElementById("bug").style.display = "inline";
+
+          if(currentPlayer === player1){
+            if(playersStillPlaying.includes("player2")){
+              currentPlayer = player2;
+              currentPlayerIndex = 1;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player3")){
+              currentPlayer = player3;
+              currentPlayerIndex = 2;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player4")){
+              currentPlayer = player4;
+              currentPlayerIndex = 3;
+              console.log(currentPlayerIndex);
+            }
+          }
+          else if(currentPlayer === player2){
+            if(playersStillPlaying.includes("player3")){
+              currentPlayer = player3;
+              currentPlayerIndex = 2;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player4")){
+              currentPlayer = player4;
+              currentPlayerIndex = 3;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player1")){
+              currentPlayer = player1;
+              currentPlayerIndex = 0;
+              console.log(currentPlayerIndex);
+            }
+          }
+          else if(currentPlayer === player3){
+            if(playersStillPlaying.includes("player4")){
+              currentPlayer = player4;
+              currentPlayerIndex = 3;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player1")){
+              currentPlayer = player1;
+              currentPlayerIndex = 0;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player2")){
+              currentPlayer = player2;
+              currentPlayerIndex = 1;
+              console.log(currentPlayerIndex);
+            }
+          }
+          else{
+            if(playersStillPlaying.includes("player1")){
+              currentPlayer = player1;
+              currentPlayerIndex = 0;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player2")){
+              currentPlayer = player2;
+              currentPlayerIndex = 1;
+              console.log(currentPlayerIndex);
+            }
+            else if(playersStillPlaying.includes("player3")){
+              currentPlayer = player3;
+              currentPlayerIndex = 2;
+              console.log(currentPlayerIndex);
+            }
+          }
+
+          board = copy(boardCopy);
+        } -->
+
+    </body>
+</html>
