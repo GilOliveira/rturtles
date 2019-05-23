@@ -39,15 +39,14 @@
         <i class="material-icons menuIcon">share</i> <br>
         Community
     </a>
-    <div class=" w3-bar-item w3-button dropdown w3-right" id="loginContainer">
-        <p id="welcomeMessage" class="w3-hide-small w3-left">Hi, Guest!</p>
-        <div class="w3-dropdown-hover">
+        <div class="w3-dropdown-hover w3-right">
             <button class="w3-button" id="userButton">
-<!--                <a href="Profile.html" class="w3-bar-item w3-button"></a>-->
                 <i class="material-icons w3-hide-small" id="userIcon">person</i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <button id="openLogin" class="w3-button w3-bar-item">Login</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4" id="dropdownContent">
+                <p class="w3-hide-small welcomeMessage">You're not logged in.</p>
+                <button id="openLogin" class="w3-button w3-bar-item">Log in</button>
+                <button id="logoutButton" class="w3-button w3-bar-item w3-hide">Log out</button>
                 <button id="openRegister" class="w3-button w3-bar-item">Register</button>
             </div>
         </div>
@@ -71,9 +70,14 @@
         About us
     </a>
     <hr>
+    <p class="welcomeMessage">You are not logged in.</p>
     <button id="openLoginMobile" class="w3-bar-item w3-button">
         <i class="material-icons">lock_open</i>
-        Login
+        Log in
+    </button>
+    <button id="logoutButtonMobile" class="w3-bar-item w3-button w3-hide">
+        <i class="material-icons">lock</i>
+        Log out
     </button>
     <button id="openRegisterMobile" class="w3-bar-item w3-button">
         <i class="material-icons">person_add</i>
@@ -85,6 +89,10 @@
     O conteúdo do site vai aqui
 
 -->
+<div id="boardContainer" class="w3-container">
+    <table id="board">
+    </table>
+</div>
 
 <!-- FOOTER: -->
 

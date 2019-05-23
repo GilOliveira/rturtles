@@ -11,8 +11,6 @@ function main() {
     let closeLoginButton = document.getElementById("closeLogin");
     let mobileLoginButton = document.getElementById("openLoginMobile");
     let mobileRegisterButton = document.getElementById("openRegisterMobile");
-    let turtlePickerModal = document.getElementById("turtlePicker");
-    let closeTurtlePickerButton = document.getElementById('closeTurtlePicker');
     // let loginBeepButton = document.getElementById('loginBeep');
     // let loginDotButton = document.getElementById('loginDot');
     // let loginPangleButton = document.getElementById('loginPangle');
@@ -24,7 +22,7 @@ function main() {
     registerButton.addEventListener("click", openRegister);
     closeLoginButton.addEventListener("click", closeLogin);
     mobileLoginButton.addEventListener("click", openLogin);
-    mobileRegisterButton.addEventListener("click", closeLogin);
+    mobileRegisterButton.addEventListener("click", openRegister);
 
 
     function openLogin() {

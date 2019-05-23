@@ -35,7 +35,15 @@ function displayBoard(){
     }
 }
 
-
+function updateBoard(){
+    for (let i=0; i < board.length; i++){
+        for (let j=0; j < board.length; j++){
+            if (board[i][j] == 'j1') {
+                $('#'+i+'-'+j).prop('class', '');
+            }
+        }
+    }
+}
 
 function fillBoard(board, t1, t2 = false, t3 = false, t4 = false){
     board[0][0] = t1;     // placing players in the board
@@ -241,7 +249,10 @@ function login(){
 
     if (localStorage.getItem(username) === password) {
         sessionStorage.setItem('activeUser', username);
-        $('#welcomeMessage').text('Hi, ' + username);
+        $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
+        $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
+        $('#logoutButton').prop('class','w3-button w3-bar-item');
+        $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
         console.log('Login successful as ' + username);
 
     }
@@ -250,8 +261,31 @@ function login(){
     }
 }
 
+function logout(){
+    sessionStorage.removeItem('activeUser');
+    $('.welcomeMessage').text("You're not logged in.");
+    $('#openLogin').prop('class','w3-button w3-bar-item');
+    $('#openLoginMobile').prop('class','w3-button w3-bar-item');
+    $('#openRegister').prop('class','w3-button w3-bar-item');
+    $('#openRegisterMobile').prop('class','w3-button w3-bar-item');
+    $('#logoutButton').prop('class','w3-button w3-bar-item w3-hide');
+    $('#logoutButtonMobile').prop('class','w3-button w3-bar-item w3-hide');
+}
+
 // EVENT HANDLERS:
 function main () {
+    $('#logoutButton').click(logout);
+    $('#logoutButtonMobile').click(logout);
     $('#registerButton').click(register);
     $('#loginButton').click(login);
+    let activeUser = sessionStorage.getItem('activeUser');
+    if (activeUser !== null) {
+        $('.welcomeMessage').text('Hi, ' + activeUser + '!');
+        $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
+        $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
+        $('#openRegister').prop('class','w3-button w3-bar-item w3-hide');
+        $('#openRegisterMobile').prop('class','w3-button w3-bar-item w3-hide');
+        $('#logoutButton').prop('class','w3-button w3-bar-item');
+        $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
+    }
 }
