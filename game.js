@@ -253,7 +253,12 @@ function login(){
         $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
         $('#logoutButton').prop('class','w3-button w3-bar-item');
         $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
-        console.log('Login successful as ' + username);
+
+        let currentPlayers = localStorage.getItem(username + '_names');
+        let currentBirthdays = localStorage.getItem(username + '_birthdates');
+
+        sessionStorage.setItem('playerNames', currentPlayers);
+        sessionStorage.setItem('playerBirthdays', currentBirthdays);
 
     }
     else {
@@ -262,7 +267,7 @@ function login(){
 }
 
 function logout(){
-    sessionStorage.removeItem('activeUser');
+    sessionStorage.clear();
     $('.welcomeMessage').text("You're not logged in.");
     $('#openLogin').prop('class','w3-button w3-bar-item');
     $('#openLoginMobile').prop('class','w3-button w3-bar-item');
