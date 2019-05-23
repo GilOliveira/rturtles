@@ -27,6 +27,7 @@ function play(){
   appendJewelsToBoard(board);
   appendStoneWallsToBoard(board);
   displayBoard();
+  updateBoard();
   console.log(board);
 
   rotateLeftButton.addEventListener("click", function(){ rotateLeft(currentPlayer);});
@@ -61,6 +62,84 @@ function displayBoard(){
         }
         boardTable.append('</tr>');
     }
+}
+
+function updateBoard(){
+  for(let i = 0; i < board.length; i++){
+    for(let j = 0; j < board.length; j++){
+      if(board[i][j] === "stoneWall"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/stone-wall.png'>");
+      }
+      else if(board[i][j] === "jewel1"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel1.png'>");
+      }
+      else if(board[i][j] === "jewel2"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel2.png'>");
+      }
+      else if(board[i][j] === "jewel3"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel3.png'>");
+      }
+      else if(board[i][j] === "jewel4"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel4.png'>");
+      }
+      else if(board[i][j] === player1 && player1.direction === "up"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-up.png'>");
+      }
+      else if(board[i][j] === player1 && player1.direction === "down"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-down.png'>");
+      }
+      else if(board[i][j] === player1 && player1.direction === "right"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-right.png'>");
+      }
+      else if(board[i][j] === player1 && player1.direction === "left"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-left.png'>");
+      }
+      else if(board[i][j] === player2 && player2.direction === "up"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-up.png'>");
+      }
+      else if(board[i][j] === player2 && player2.direction === "down"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-down.png'>");
+      }
+      else if(board[i][j] === player2 && player2.direction === "right"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-right.png'>");
+      }
+      else if(board[i][j] === player2 && player2.direction === "left"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-left.png'>");
+      }
+      else if(board[i][j] === player3 && player3.direction === "up"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-up.png'>");
+      }
+      else if(board[i][j] === player3 && player3.direction === "down"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-down.png'>");
+      }
+      else if(board[i][j] === player3 && player3.direction === "right"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-right.png'>");
+      }
+      else if(board[i][j] === player3 && player3.direction === "left"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-left.png'>");
+      }
+      else if(board[i][j] === player4 && player4.direction === "up"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-up.png'>");
+      }
+      else if(board[i][j] === player4 && player4.direction === "down"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-down.png'>");
+      }
+      else if(board[i][j] === player4 && player4.direction === "right"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-right.png'>");
+      }
+      else if(board[i][j] === player4 && player4.direction === "left"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-left.png'>");
+      }
+    }
+  }
+}
+
+function eraseBoard(){
+  for (let i = 0; i < board.length; i++){
+    for (let j = 0; j < board.length; j++){
+      $('#' + i + '-' + j).html("");
+    }
+  }
 }
 
 function Player(name, birth, direction, rowIndex, columnIndex){
@@ -293,6 +372,8 @@ function rotateLeft(currentPlayer){
 
   currentPlayer.direction = newDirection;
   console.log(board);
+  eraseBoard();
+  updateBoard();
 }
 
 function rotateRight(currentPlayer){
@@ -321,6 +402,8 @@ function rotateRight(currentPlayer){
 
   currentPlayer.direction = newDirection;
   console.log(board);
+  eraseBoard();
+  updateBoard();
 }
 
 function forward(currentPlayer){
@@ -359,12 +442,13 @@ function forward(currentPlayer){
               console.log(board);
     }
     else{
-
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
       console.log(board);
+      eraseBoard();
+      updateBoard();
     }
   }
   else if(currentDirection === "down"){
@@ -392,12 +476,13 @@ function forward(currentPlayer){
               console.log(board);
     }
     else{
-
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
       console.log(board);
+      eraseBoard();
+      updateBoard();
     }
   }
   else if(currentDirection === "right"){
@@ -425,12 +510,13 @@ function forward(currentPlayer){
               console.log(board);
     }
     else{
-
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
       console.log(board);
+      eraseBoard();
+      updateBoard();
     }
   }
   else{
@@ -458,12 +544,13 @@ function forward(currentPlayer){
               console.log(board);
     }
     else{
-
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
       console.log(board);
+      eraseBoard();
+      updateBoard();
     }
   }
 }

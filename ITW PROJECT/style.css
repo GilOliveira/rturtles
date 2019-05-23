@@ -49,133 +49,133 @@
 }
 
 .grass {
-  background-image: url("images/game/tiles/grass.jpg");
+  background-image: url("images/game/tiles/grass.png");
   height: 50px;
   width: 50px;
 }
 
 .stoneWall {
-  background-image: url("images/game/tiles/stone-wall.jpg");
+  background-image: url("images/game/tiles/stone-wall.png");
   height: 50px;
   width: 50px;
 }
 
 .jewel1 {
-  background-image: url("images/game/jewels/jewel1.jpg");
+  background-image: url("images/game/jewels/jewel1.png");
   height: 50px;
   width: 50px;
 }
 
 .jewel2 {
-  background-image: url("images/game/jewels/jewel2.jpg");
+  background-image: url("images/game/jewels/jewel2.png");
   height: 50px;
   width: 50px;
 }
 
 .jewel3 {
-  background-image: url("images/game/jewels/jewel3.jpg");
+  background-image: url("images/game/jewels/jewel3.png");
   height: 50px;
   width: 50px;
 }
 
 .jewel4 {
-  background-image: url("images/game/jewels/jewel4.jpg");
+  background-image: url("images/game/jewels/jewel4.png");
   height: 50px;
   width: 50px;
 }
 
 .beepUp {
-  background-image: url("images/game/characters/beep-up.jpg");
+  background-image: url("images/game/characters/beep-up.png");
   height: 50px;
   width: 50px;
 }
 
 .beepDown {
-  background-image: url("images/game/characters/beep-down.jpg");
+  background-image: url("images/game/characters/beep-down.png");
   height: 50px;
   width: 50px;
 }
 
 .beepRight {
-  background-image: url("images/game/characters/beep-right.jpg");
+  background-image: url("images/game/characters/beep-right.png");
   height: 50px;
   width: 50px;
 }
 
 .beepLeft {
-  background-image: url("images/game/characters/beep-left.jpg");
+  background-image: url("images/game/characters/beep-left.png");
   height: 50px;
   width: 50px;
 }
 
 .dotUp {
-  background-image: url("images/game/characters/dot-up.jpg");
+  background-image: url("images/game/characters/dot-up.png");
   height: 50px;
   width: 50px;
 }
 
 .dotDown {
-  background-image: url("images/game/characters/dot-down.jpg");
+  background-image: url("images/game/characters/dot-down.png");
   height: 50px;
   width: 50px;
 }
 
 .dotRight {
-  background-image: url("images/game/characters/dot-right.jpg");
+  background-image: url("images/game/characters/dot-right.png");
   height: 50px;
   width: 50px;
 }
 
 .dotLeft {
-  background-image: url("images/game/characters/dot-left.jpg");
+  background-image: url("images/game/characters/dot-left.png");
   height: 50px;
   width: 50px;
 }
 
 .pangleUp {
-  background-image: url("images/game/characters/pangle-up.jpg");
+  background-image: url("images/game/characters/pangle-up.png");
   height: 50px;
   width: 50px;
 }
 
 .pangleDown {
-  background-image: url("images/game/characters/pangle-down.jpg");
+  background-image: url("images/game/characters/pangle-down.png");
   height: 50px;
   width: 50px;
 }
 
 .pangleRight {
-  background-image: url("images/game/characters/pangle-right.jpg");
+  background-image: url("images/game/characters/pangle-right.png");
   height: 50px;
   width: 50px;
 }
 
 .pangleLeft {
-  background-image: url("images/game/characters/pangle-left.jpg");
+  background-image: url("images/game/characters/pangle-left.png");
   height: 50px;
   width: 50px;
 }
 
 .piUp {
-  background-image: url("images/game/characters/pi-up.jpg");
+  background-image: url("images/game/characters/pi-up.png");
   height: 50px;
   width: 50px;
 }
 
 .piDown {
-  background-image: url("images/game/characters/pi-down.jpg");
+  background-image: url("images/game/characters/pi-down.png");
   height: 50px;
   width: 50px;
 }
 
 .piRight {
-  background-image: url("images/game/characters/pi-right.jpg");
+  background-image: url("images/game/characters/pi-right.png");
   height: 50px;
   width: 50px;
 }
 
 .piLeft {
-  background-image: url("images/game/characters/pi-left.jpg");
+  background-image: url("images/game/characters/pi-left.png");
   height: 50px;
   width: 50px;
 }
