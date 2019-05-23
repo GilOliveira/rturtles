@@ -11,6 +11,12 @@ function main() {
     let closeLoginButton = document.getElementById("closeLogin");
     let mobileLoginButton = document.getElementById("openLoginMobile");
     let mobileRegisterButton = document.getElementById("openRegisterMobile");
+    let turtlePickerModal = document.getElementById("turtlePicker");
+    let closeTurtlePickerButton = document.getElementById('closeTurtlePicker');
+    // let loginBeepButton = document.getElementById('loginBeep');
+    // let loginDotButton = document.getElementById('loginDot');
+    // let loginPangleButton = document.getElementById('loginPangle');
+    // let loginPiButton = document.getElementById('loginPi');
 
     botaoHamburguer.addEventListener("click", openMenu);
     closeRegisterButton.addEventListener("click", closeRegister);
@@ -19,6 +25,7 @@ function main() {
     closeLoginButton.addEventListener("click", closeLogin);
     mobileLoginButton.addEventListener("click", openLogin);
     mobileRegisterButton.addEventListener("click", closeLogin);
+
 
     function openLogin() {
         loginModal.style.display = 'block';
@@ -45,7 +52,9 @@ function main() {
             document.getElementById("menuLateral").style.display = "block";
         }
     }
-    console.log('Estou aqui');
+
+
+
 }
 
 window.onload = main;

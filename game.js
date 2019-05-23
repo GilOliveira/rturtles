@@ -1,6 +1,12 @@
 "use strict";
 let currentPlayer;
 let board;
+let userLibrary;
+let currentLogin;
+let beepUser;
+let DotUser;
+let pangleUser;
+let piUser;
 
 function createBoard(n){
     board = [];
@@ -70,10 +76,12 @@ function Deck() {
     }
 }
 
-function User(name,birth,direction, id, end = false) {
+function User(name, password, score, birth,direction, id, end = false) {
     this.name = name;
+    this.password = password;
     this.birth = birth;
     this.direction = direction;
+    this.score = score;
     this.id = id;
     this.deck = new Deck();
     this.pos = [];
@@ -133,14 +141,6 @@ function User(name,birth,direction, id, end = false) {
 
 $(document).ready(main);
 
-// FOR DEBUGGING:
-function main() {
-    createBoard(10);
-    displayBoard();
-}
-
-
-
 // let aa = new Deck;
 // console.log(aa);
 // console.log(aa.upfwd());
@@ -148,8 +148,110 @@ function main() {
 
 //USER MANAGEMENT:
 
-function register(){
-    let registerForm = $('registerForm');
+function saveUser(user) {
+    let currentUsers = localStorage.getItem('userNames');
+    currentUsers += (',' + user.name);
+    localStorage.setItem('userNames', currentUsers);
 
+    let currentPasswords = localStorage.getItem('userPasswords');
+    currentPasswords += (',' + user.password);
+    localStorage.setItem('userPasswords', currentPasswords);
+
+    let currentBirthdays = localStorage.getItem('userBirthdays');
+    currentBirthdays += (',' + user.birth);
+    localStorage.setItem('userBirthdays', currentBirthdays);
 }
 
+// function getLocalStorageUsers(){
+//     /*
+//     This function updates the userLibrary variable with the localStorage users.
+//      */
+//     let usernames = localStorage.getItem('userNames').split(',');
+//     let passwords = localStorage.getItem('userPasswords').split(',');
+//     let birthdays = localStorage.getItem('userBirthdays').split(',');
+//     let scores = localStorage.getItem('userScores').split(',');
+//     userLibrary = [];
+//     for (let i = 0; i < usernames.length; i++){
+//         let currentUser = new User(usernames[i], passwords[i], scores[i], birthdays[i], 0, 0, false);
+//         userLibrary.push(currentUser);
+//     }
+// }
+
+// function setLocalStorageUsers(){
+//     //  This function updates the localStorage with the users in the userLibrary variable.
+//     let usernames = [];
+//     let passwords = [];
+//     let birthdays = [];
+//     let scores = [];
+//     for (let i = 0; i < userLibrary.length; i++) {
+//         usernames.push(userLibrary[i].name);
+//         passwords.push(userLibrary[i].password);
+//         birthdays.push(userLibrary[i].birth);
+//         scores.push(userLibrary[i].score);
+//     }
+//     localStorage.setItem('userNames', usernames.toString());
+//     localStorage.setItem('userPasswords', passwords.toString());
+//     localStorage.setItem('userBirthdays', birthdays.toString());
+//     localStorage.setItem('userScores', scores.toString());
+// }
+
+function uniqueUsername(userName) {
+    // Checks if userName is unique and returns true if it is, false otherwise
+    let unique = true;
+    for (let key in localStorage) {
+        if (key === userName) {
+            unique = false;
+        }
+    }
+    return unique
+}
+
+function register() {
+    let userName = $('#userName').val();
+    let password = $('#password').val();
+    let confirmPassword = $('#confirmPassword').val();
+    let player1Name = $('#player1Name').val();
+    let player2Name = $('#player2Name').val();
+    let player3Name = $('#player3Name').val();
+    let player4Name = $('#player4Name').val();
+    let player1Birth = $('#player1Birth').val();
+    let player2Birth = $('#player2Birth').val();
+    let player3Birth = $('#player3Birth').val();
+    let player4Birth = $('#player4Birth').val();
+
+    let familyElements = [player1Name, player2Name, player3Name, player4Name].toString();
+    let familyBirthdates = [player1Birth, player2Birth, player3Birth, player4Birth].toString();
+
+    if ((password === confirmPassword) && (uniqueUsername(userName))) {
+        localStorage.setItem(userName,password);
+        localStorage.setItem(userName + '_names', familyElements);
+        localStorage.setItem(userName + '_birthdates', familyBirthdates);
+    }
+    else if (password !== confirmPassword) {
+        alert("Oops! The passwords you've entered do not match, please try again");
+    }
+    else {
+        alert("Oops! That username already exists! Please try a different one.")
+    }
+}
+
+function login(){
+    let username = $('#loginUser').val();
+    let password = $('#loginPassword').val();
+
+    if (localStorage.getItem(username) === password) {
+        sessionStorage.setItem('activeUser', username);
+        $('#welcomeMessage').text('Hi, ' + username);
+        console.log('Login successful as ' + username);
+
+    }
+    else {
+        alert('Wrong username/password. Please try again.')
+    }
+}
+
+// EVENT HANDLERS:
+function main () {
+    $('#registerButton').click(register);
+    $('#loginButton').click(login);
+}
