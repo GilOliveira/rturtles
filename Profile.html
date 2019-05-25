@@ -10,6 +10,7 @@
     <script src="jquery-3.4.1.min.js"></script>
     <script src="script.js"></script>
     <script src="login.js"></script>
+    <script src="profile.js"></script>
 </head>
 
 <body class="w3-animate-opacity">
@@ -48,6 +49,7 @@
             <div class="w3-dropdown-content w3-bar-block w3-card-4" id="dropdownContent">
                 <p class="w3-hide-small welcomeMessage">You're not logged in.</p>
                 <button id="openLogin" class="w3-button w3-bar-item">Log in</button>
+                <button id="openProfile" class="w3-button w3-bar-item">Profile</button>
                 <button id="logoutButton" class="w3-button w3-bar-item w3-hide">Log out</button>
                 <button id="openRegister" class="w3-button w3-bar-item">Register</button>
             </div>
@@ -77,6 +79,10 @@
         <i class="material-icons">lock_open</i>
         Log in
     </button>
+    <button id="openProfileMobile" class="w3-bar-item w3-button">
+        <i class="material-icons">person</i>
+        Profile
+    </button>
     <button id="logoutButtonMobile" class="w3-bar-item w3-button w3-hide">
         <i class="material-icons">lock</i>
         Log out
@@ -92,13 +98,13 @@
 <div class="w3-card-4">
 
     <header class="w3-container w3-light-grey">
-        <h3 id="player1name">Player 1</h3>
+        <h3 id="user1name">Player 1</h3>
     </header>
 
     <div class="w3-container">
         <p>Playing as Beep</p>
         <hr>
-        <img src="images/game/characters/beep.png" alt="Beep" height="100" class="w3-left w3-circle">
+        <img src="images/game/characters/beep.png" alt="Beep" height="130" class="w3-left w3-circle">
         <h4>Birthday:</h4>
         <p id="user1Birthday"></p>
         <h4>Score:</h4>
@@ -109,13 +115,13 @@
 <div class="w3-card-4">
 
     <header class="w3-container w3-light-grey">
-        <h3 id="player2name">Player 2</h3>
+        <h3 id="user2name">Player 2</h3>
     </header>
 
     <div class="w3-container">
         <p>Playing as Dot</p>
         <hr>
-        <img src="images/game/characters/dot.png" alt="Dot" height="100" class="w3-left w3-circle">
+        <img src="images/game/characters/dot.png" alt="Dot" height="130" class="w3-left w3-circle">
         <h4>Birthday:</h4>
         <p id="user2Birthday"></p>
         <h4>Score:</h4>
@@ -125,13 +131,13 @@
 <div class="w3-card-4">
 
     <header class="w3-container w3-light-grey">
-        <h3 id="player3name">Player 3</h3>
+        <h3 id="user3name">Player 3</h3>
     </header>
 
     <div class="w3-container">
         <p>Playing as Pangle</p>
         <hr>
-        <img src="images/game/characters/pangle.png" alt="Pangle" height="100" class="w3-left w3-circle">
+        <img src="images/game/characters/pangle.png" alt="Pangle" height="130" class="w3-left w3-circle">
         <h4>Birthday:</h4>
         <p id="user3Birthday"></p>
         <h4>Score:</h4>
@@ -141,13 +147,13 @@
 <div class="w3-card-4">
 
     <header class="w3-container w3-light-grey">
-        <h3 id="player4name">Player 4</h3>
+        <h3 id="user4name">Player 4</h3>
     </header>
 
     <div class="w3-container">
         <p>Playing as Pi</p>
         <hr>
-        <img src="images/game/characters/Pi.png" alt="Pi" height="100" class="w3-left w3-circle">
+        <img src="images/game/characters/Pi.png" alt="Pi" height="130" class="w3-left w3-circle">
         <h4>Birthday:</h4>
         <p id="user4Birthday"></p>
         <h4>Score:</h4>
@@ -161,7 +167,7 @@
 
 <!-- FOOTER: -->
 
-<div class="w3-container w3-theme-l1 footer">
+<div class="w3-container w3-theme-l1 w3-display-bottom">
     © 2019 - Robot Turtles
 </div>
 

@@ -15,6 +15,8 @@ function main() {
         $('#openRegisterMobile').prop('class','w3-button w3-bar-item w3-hide');
         $('#logoutButton').prop('class','w3-button w3-bar-item');
         $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
+        $('#openProfile').prop('class','w3-bar-item w3-button');
+        $('#openProfileMobile').prop('class','w3-bar-item w3-button');
     }
 }
 
@@ -97,6 +99,8 @@ function logout(){
     $('#openRegisterMobile').prop('class','w3-button w3-bar-item');
     $('#logoutButton').prop('class','w3-button w3-bar-item w3-hide');
     $('#logoutButtonMobile').prop('class','w3-button w3-bar-item w3-hide');
+    $('#openProfile').prop('class','w3-bar-item w3-button w3-hide');
+    $('#openProfileMobile').prop('class','w3-bar-item w3-button w3-hide');
 }
 
 // Window loading function
