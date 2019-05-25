@@ -71,6 +71,7 @@ let columnIndexCopy = currentPlayer.columnIndex;
 let directionCopy = currentPlayer.direction;
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
+let playersScores = [0,0,0,0];
 
 
 
@@ -508,6 +509,8 @@ function rotateRight(currentPlayer){
 }
 
 function forward(currentPlayer){
+  let playerswon = 0;
+
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -579,10 +582,22 @@ function forward(currentPlayer){
               eraseBoard();
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
+              playerswon++;
+
+              if (playerswon == 1) {
+                playersScores[currentPlayerIndex] = 10
+              } else if (playerswon == 2) {
+                playersScores[currentPlayerIndex] = 5
+                } else if (playerswon == 3) {
+                 playersScores[currentPlayerIndex] = 3
+                  } else if (playerswon == 4) {
+                playersScores[currentPlayerIndex] = 1
+              }
+
               console.log(playersStillPlaying);
 
               if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
                 rotateLeftButton.disabled = true;
                 rotateRightButton.disabled = true;
                 forwardButton.disabled = true;
