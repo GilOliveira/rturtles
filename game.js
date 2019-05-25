@@ -947,6 +947,8 @@ function register() {
   else {
       alert("Oops! That username already exists! Please try a different one.")
   }
+
+  startUserSession(userName);
 }
 
 function login(){
@@ -954,24 +956,27 @@ function login(){
   let password = $('#loginPassword').val();
 
   if (localStorage.getItem(username) === password) {
-      sessionStorage.setItem('activeUser', username);
-      $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
-      $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
-      $('#logoutButton').prop('class','w3-button w3-bar-item');
-      $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
-
-      let currentPlayers = localStorage.getItem(username + '_names');
-      let currentBirthdays = localStorage.getItem(username + '_birthdates');
-      let currentScores = localStorage.getItem(username + '_scores');
-
-      sessionStorage.setItem('playerNames', currentPlayers);
-      sessionStorage.setItem('playerBirthdays', currentBirthdays);
-      sessionStorage.setItem('playerScores', currentScores);
-
+      startUserSession(username);
   }
   else {
       alert('Wrong username/password. Please try again.')
   }
+}
+
+function startUserSession(username){
+  sessionStorage.setItem('activeUser', username);
+  $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
+  $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
+  $('#logoutButton').prop('class','w3-button w3-bar-item');
+  $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
+
+  let currentPlayers = localStorage.getItem(username + '_names');
+  let currentBirthdays = localStorage.getItem(username + '_birthdates');
+  let currentScores = localStorage.getItem(username + '_scores');
+
+  sessionStorage.setItem('playerNames', currentPlayers);
+  sessionStorage.setItem('playerBirthdays', currentBirthdays);
+  sessionStorage.setItem('playerScores', currentScores);
 }
 
 function logout(){
