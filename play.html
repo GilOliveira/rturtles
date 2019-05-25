@@ -89,14 +89,13 @@
 </div>
 
 <!-- PAGE CONTENT STARTS HERE -->
-<br>
-<div id="boardContainer" class="w3-container">
-  <button id="playStoneWalls" class="w3-button w3-theme">Play Stone Walls Mode</button>
-  <button id="playIceWalls" class="w3-button w3-theme">Play Ice Walls Mode</button>
+<!-- BOARD-->
 
-  <table id="board">
-  </table>
+<div id="boardContainer" class="w3-container">
+    <table id="board">
+    </table>
 </div>
+
 <br>
 <button id="rotateLeft" class="w3-btn w3-amber">Rotate Left</button>
 <button id="rotateRight" class="w3-btn w3-deep-purple">Rotate Right</button>
@@ -107,6 +106,10 @@
 
 <!-- PAGE CONTENT ENDS HERE -->
 
+
+
+
+<!-- PLAY MODAL -->
 <div id="playModal" class="w3-modal">
     <div class="w3-modal-content">
         <header class="w3-container w3-theme-l1">
@@ -117,13 +120,13 @@
             <form>
                 <div class="w3-section">
                     <label>Username 1</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" required>
+                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
                     <label>Username 2</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User2" required>
+                    <input type="text" name="user2" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
                     <label>Username 3</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User3" required>
+                    <input type="text" name="user3" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
                     <label>Username 4</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" required>
+                    <input type="text" name="user4" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
 
                     <input type="submit" class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="closePlayModal" value="Play!">
                 </div>
@@ -144,6 +147,27 @@
     </div>
 </div>
 
+<!-- PLAY MODE MODAL-->
+<div id="playModeModal" class="w3-modal">
+    <div class="w3-modal-content">
+        <header class="w3-container w3-theme-l1">
+            <h2>Choose your play mode!</h2>
+        </header>
+            <div class="w3-row">
+                <div class="w3-container w3-half">
+                    <img id="playIceWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
+                    <p>Stone walls mode!</p>
+
+                </div>
+                <div class="w3-container w3-half">
+                    <img id="playStoneWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
+
+                    <p>Ice walls mode!</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!-- FOOTER: -->
 

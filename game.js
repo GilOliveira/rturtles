@@ -1,5 +1,61 @@
 "use strict";
 
+function main() {
+
+  let botaoHamburguer = document.getElementById("hamburger");
+  let closeRegisterButton = document.getElementById("closeRegister");
+  let registerModal = document.getElementById("registerModal");
+  let loginModal = document.getElementById("loginModal");
+  let loginButton = document.getElementById('openLogin');
+  let registerButton = document.getElementById("openRegister");
+  let closeLoginButton = document.getElementById("closeLogin");
+  let mobileLoginButton = document.getElementById("openLoginMobile");
+  let mobileRegisterButton = document.getElementById("openRegisterMobile");
+  // let loginBeepButton = document.getElementById('loginBeep');
+  // let loginDotButton = document.getElementById('loginDot');
+  // let loginPangleButton = document.getElementById('loginPangle');
+  // let loginPiButton = document.getElementById('loginPi');
+
+  botaoHamburguer.addEventListener("click", openMenu);
+  closeRegisterButton.addEventListener("click", closeRegister);
+  loginButton.addEventListener("click", openLogin);
+  registerButton.addEventListener("click", openRegister);
+  closeLoginButton.addEventListener("click", closeLogin);
+  mobileLoginButton.addEventListener("click", openLogin);
+  mobileRegisterButton.addEventListener("click", openRegister);
+
+
+  function openLogin() {
+    loginModal.style.display = 'block';
+  }
+
+  function closeLogin() {
+    loginModal.style.display = 'none';
+  }
+
+
+  function openRegister() {
+    registerModal.style.display = 'block';
+  }
+
+  function closeRegister() {
+    registerModal.style.display = 'none';
+  }
+
+  function openMenu() {
+    if (document.getElementById("menuLateral").style.display == "block") {
+      document.getElementById("menuLateral").style.display = "none";
+    }
+    else {
+      document.getElementById("menuLateral").style.display = "block";
+    }
+  }
+
+
+
+}
+
+window.onload = main;
 
 let player1 = new Player("player1", "9years", "down", 0, 0);
 let player2 = new Player("player2", "6years", "left", 0, 7);
@@ -48,14 +104,13 @@ function events(){
 }
 
 function playStoneWalls(){
+  closePlayModeModal();
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
   appendStoneWallsToBoard(board);
   displayBoard();
   updateBoard();
   console.log(board);
-  document.getElementById("playStoneWalls").style.display="none";
-  document.getElementById("playIceWalls").style.display="none";
   document.getElementById("rotateLeft").style.display="inline";
   document.getElementById("rotateRight").style.display="inline";
   document.getElementById("forward").style.display="inline";
@@ -64,14 +119,13 @@ function playStoneWalls(){
 }
 
 function playIceWalls(){
+  closePlayModeModal();
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
   appendIceWallsToBoard(board);
   displayBoard();
   updateBoard();
   console.log(board);
-  document.getElementById("playStoneWalls").style.display="none";
-  document.getElementById("playIceWalls").style.display="none";
   document.getElementById("rotateLeft").style.display="inline";
   document.getElementById("rotateRight").style.display="inline";
   document.getElementById("forward").style.display="inline";
@@ -902,7 +956,8 @@ function flowModalPlay() {
   }
   else {
     playModal.style.display = "none";
-    //    segundo modal aqui com o modo de jogo etc.
+    $("#playModeModal").css("display","block");
+
   }
 }
 
@@ -928,13 +983,17 @@ function closeRegister() {
 }
 
 function openRegisterPlay() {
-  closePlayModal();
   openRegister();
+  closePlayModal();
 }
 
 function openLoginPlay() {
-  closePlayModal();
   openLogin();
+  closePlayModal();
+}
+
+function closePlayModeModal() {
+  $("#playModeModal").css("display","none");
 }
 
 function goHome() {
