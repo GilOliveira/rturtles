@@ -16,9 +16,12 @@ let directionCopy = currentPlayer.direction;
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
 
+
+
+
 function events(){
   let playStoneWallsButton = document.getElementById("playStoneWalls");
-  let playIceWallsButton = document.getElementById("playIceWalls")
+  let playIceWallsButton = document.getElementById("playIceWalls");
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -34,6 +37,14 @@ function events(){
   laserButton.addEventListener("click", function(){ laser(currentPlayer);});
   bugButton.addEventListener("click", bug);
   endTurnButton.addEventListener("click", updateTurn);
+
+  $('#closePlayModal').click(closePlayModal);
+  $('#openPlayLogin').click(openLoginPlay);
+  $('#openPlayRegister').click(openRegisterPlay);
+  $('#goHome').click(goHome);
+
+  flowModalPlay();
+
 }
 
 function playStoneWalls(){
@@ -882,6 +893,35 @@ function laser(currentPlayer){
   laserButton.disabled = true;
   bugButton.disabled = false;
   endTurnButton.disabled = false;
+}
+
+function flowModalPlay() {
+  console.log("estou aqui");
+  if (sessionStorage.length == 0) {
+    $('#playModal').css('display', 'block');
+  }
+  else {
+    playModal.style.display = "none";
+    //    segundo modal aqui com o modo de jogo etc.
+  }
+}
+
+function closePlayModal() {
+  playModal.style.display = "none";
+}
+
+function openRegisterPlay() {
+  closePlayModal();
+  openRegister();
+}
+
+function openLoginPlay() {
+  closePlayModal();
+  openLogin();
+}
+
+function goHome() {
+  window.open('index.html');
 }
 
 // Window loading function
