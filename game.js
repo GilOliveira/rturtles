@@ -19,14 +19,24 @@ let userLibrary;
 let currentLogin;
 
 function events(){
+
+  let playModal = document.getElementById("playmodal");
+  let closePlayModalbtn = document.getElementById("closePlayModal");
+  let openPlayLogin = document.getElementById("openPlayLogin");
+  let openPlayRegister = document.getElementById("openPlayRegister");
+
   let playStoneWallsButton = document.getElementById("playStoneWalls");
-  let playIceWallsButton = document.getElementById("playIceWalls")
+  let playIceWallsButton = document.getElementById("playIceWalls");
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
   let laserButton = document.getElementById("laser");
   let bugButton = document.getElementById("bug");
   let endTurnButton = document.getElementById("endTurn");
+
+  closePlayModalbtn.addEventListener("click",closePlayModal);
+  openPlayLogin.addEventListener("click",openLoginPlay);
+  openPlayRegister.addEventListener("click",openRegisterPlay);
 
   playStoneWallsButton.addEventListener("click", playStoneWalls);
   playIceWallsButton.addEventListener("click", playIceWalls);
@@ -52,6 +62,32 @@ function events(){
       $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
   }
 
+  flowModalPlay()
+
+
+}
+function flowModalPlay() {
+  if (sessionStorage.length == 0) {
+    playModal.style.display = "block";
+  }
+  else {
+    playModal.style.display = "none";
+    //    segundo modal aqui com o modo de jogo etc.
+  }
+
+function closePlayModal() {
+  playModal.style.display = "none";
+
+}
+
+function openRegisterPlay() {
+  closePlayModal();
+  openRegister()
+}
+
+function openLoginPlay() {
+  closePlayModal();
+  openLogin()
 }
 
 function playStoneWalls(){
