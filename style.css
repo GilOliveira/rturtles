@@ -88,3 +88,54 @@ video {
     padding-left: 10px;
     font-weight: bold;
 }
+
+
+#loginContainer p {
+    padding-top: 2px;
+}
+
+#loginContainer button {
+    padding: 2px;
+}
+
+#hamburger {
+    float: left;
+    margin-right: 10px;
+    top: 20px;
+    font-size: 30px;
+}
+
+#menuLateral {
+    display: none;
+    width: 100%;
+}
+
+.grass {
+  background-image: url("images/game/tiles/grass.png");
+  height: 50px;
+  width: 50px;
+}
+
+#rotateLeft {
+  display: none;
+}
+
+#rotateRight {
+  display: none;
+}
+
+#forward {
+  display: none;
+}
+
+#laser {
+  display: none;
+}
+
+#bug {
+  display: none;
+}
+
+#endTurn {
+  display: none;
+}
