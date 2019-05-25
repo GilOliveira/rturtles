@@ -234,6 +234,7 @@ function register() {
         localStorage.setItem(userName,password);
         localStorage.setItem(userName + '_names', familyElements);
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
+        localStorage.setItem(userName + '_score', [0, 0, 0, 0]);
     }
     else if (password !== confirmPassword) {
         alert("Oops! The passwords you've entered do not match, please try again");
@@ -256,9 +257,11 @@ function login(){
 
         let currentPlayers = localStorage.getItem(username + '_names');
         let currentBirthdays = localStorage.getItem(username + '_birthdates');
+        let currentScores = localStorage.getItem(username + '_scores');
 
         sessionStorage.setItem('playerNames', currentPlayers);
         sessionStorage.setItem('playerBirthdays', currentBirthdays);
+        sessionStorage.setItem('playerScores', currentScores);
 
     }
     else {

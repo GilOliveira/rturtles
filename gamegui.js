@@ -15,28 +15,58 @@ let columnIndexCopy = currentPlayer.columnIndex;
 let directionCopy = currentPlayer.direction;
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
-// let playersStillPlayingRepresentation = ["player1", "player2", "player3", "player4"];
 
-function play(){
+function events(){
+  let playStoneWallsButton = document.getElementById("playStoneWalls");
+  let playIceWallsButton = document.getElementById("playIceWalls")
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
   let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
 
+  playStoneWallsButton.addEventListener("click", playStoneWalls);
+  playIceWallsButton.addEventListener("click", playIceWalls);
+  rotateLeftButton.addEventListener("click", function(){ rotateLeft(currentPlayer);});
+  rotateRightButton.addEventListener("click", function(){ rotateRight(currentPlayer);});
+  forwardButton.addEventListener("click", function(){ forward(currentPlayer);});
+  laserButton.addEventListener("click", function(){ laser(currentPlayer);});
+  bugButton.addEventListener("click", bug);
+  endTurnButton.addEventListener("click", updateTurn);
+}
+
+function playStoneWalls(){
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
   appendStoneWallsToBoard(board);
   displayBoard();
   updateBoard();
   console.log(board);
+  document.getElementById("playStoneWalls").style.display="none";
+  document.getElementById("playIceWalls").style.display="none";
+  document.getElementById("rotateLeft").style.display="inline";
+  document.getElementById("rotateRight").style.display="inline";
+  document.getElementById("forward").style.display="inline";
+  document.getElementById("bug").style.display="inline";
+  document.getElementById("endTurn").style.display="inline";
+}
 
-  rotateLeftButton.addEventListener("click", function(){ rotateLeft(currentPlayer);});
-  rotateLeftButton.addEventListener("click", updateTurn);
-  rotateRightButton.addEventListener("click", function(){ rotateRight(currentPlayer);});
-  rotateRightButton.addEventListener("click", updateTurn);
-  forwardButton.addEventListener("click", function(){ forward(currentPlayer);});
-  forwardButton.addEventListener("click", updateTurn);
-  bugButton.addEventListener("click", bug);
+function playIceWalls(){
+  appendPlayersToBoard(board, player1, player2, player3, player4);
+  appendJewelsToBoard(board);
+  appendIceWallsToBoard(board);
+  displayBoard();
+  updateBoard();
+  console.log(board);
+  document.getElementById("playStoneWalls").style.display="none";
+  document.getElementById("playIceWalls").style.display="none";
+  document.getElementById("rotateLeft").style.display="inline";
+  document.getElementById("rotateRight").style.display="inline";
+  document.getElementById("forward").style.display="inline";
+  document.getElementById("laser").style.display="inline";
+  document.getElementById("bug").style.display="inline";
+  document.getElementById("endTurn").style.display="inline";
 }
 
 // Função que faz deepcopy de um array.
@@ -69,6 +99,12 @@ function updateBoard(){
     for(let j = 0; j < board.length; j++){
       if(board[i][j] === "stoneWall"){
         $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/tiles/stone-wall.png'>");
+      }
+      else if(board[i][j] === "iceWall"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/ice-wall.png'>");
+      }
+      else if(board[i][j] === "water"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/water.png'>");
       }
       else if(board[i][j] === "jewel1"){
         $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/jewels/jewel1.png'>");
@@ -196,8 +232,28 @@ function appendStoneWallsToBoard(board){
   }
 }
 
+function appendIceWallsToBoard(board){
+  let numIceWalls = Math.floor(Math.random() * 8) + 2;
+
+  while(numIceWalls > 0){
+    let rowIndex = Math.floor(Math.random() * board.length);
+    let columnIndex = Math.floor(Math.random() * board.length);
+
+    if(board[rowIndex][columnIndex] === ""){
+      board[rowIndex][columnIndex] = "iceWall";
+    }
+
+    numIceWalls--;
+  }
+}
+
 function updateTurn(){
-  // document.getElementById("bug").style.display = "inline";
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
 
   if(currentPlayer === player1){
     if(playersStillPlaying[1] === true){
@@ -267,86 +323,45 @@ function updateTurn(){
       console.log(currentPlayerIndex);
     }
   }
+  rotateLeftButton.disabled = false;
+  rotateRightButton.disabled = false;
+  forwardButton.disabled = false;
+  laserButton.disabled = false;
+  bugButton.disabled = true;
+  endTurnButton.disabled = true;
 }
 
 function bug(){
-  if(currentPlayer === player2){
-    if(playersStillPlaying[0] === true){
-      currentPlayer = player1;
-      currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[3] === true){
-      currentPlayer = player4;
-      currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[2] === true){
-      currentPlayer = player3;
-      currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
-    }
-  }
-  else if(currentPlayer === player3){
-    if(playersStillPlaying[1] === true){
-      currentPlayer = player2;
-      currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[0] === true){
-      currentPlayer = player1;
-      currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[3] === true){
-      currentPlayer = player4;
-      currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
-    }
-  }
-  else if(currentPlayer === player4){
-    if(playersStillPlaying[2] === true){
-      currentPlayer = player3;
-      currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[1] === true){
-      currentPlayer = player2;
-      currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[0] === true){
-      currentPlayer = player1;
-      currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
-    }
-  }
-  else{
-    if(playersStillPlaying[3] === true){
-      currentPlayer = player4;
-      currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[2] === true){
-      currentPlayer = player3;
-      currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
-    }
-    else if(playersStillPlaying[1] === true){
-      currentPlayer = player2;
-      currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
-    }
-  }
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
 
   board = copy(boardCopy);
   currentPlayer.rowIndex = rowIndexCopy;
   currentPlayer.columnIndex = columnIndexCopy;
   currentPlayer.direction = directionCopy;
   console.log(board);
+  eraseBoard();
+  updateBoard();
+  rotateLeftButton.disabled = false;
+  rotateRightButton.disabled = false;
+  forwardButton.disabled = false;
+  laserButton.disabled = false;
+  bugButton.disabled = true;
+  endTurnButton.disabled = true;
 }
 
 function rotateLeft(currentPlayer){
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
+
   let currentDirection = currentPlayer.direction;
   let currentRow = currentPlayer.rowIndex;
   let currentColumn = currentPlayer.columnIndex;
@@ -374,9 +389,22 @@ function rotateLeft(currentPlayer){
   console.log(board);
   eraseBoard();
   updateBoard();
+  rotateLeftButton.disabled = true;
+  rotateRightButton.disabled = true;
+  forwardButton.disabled = true;
+  laserButton.disabled = true;
+  bugButton.disabled = false;
+  endTurnButton.disabled = false;
 }
 
 function rotateRight(currentPlayer){
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
+
   let currentDirection = currentPlayer.direction;
   let currentRow = currentPlayer.rowIndex;
   let currentColumn = currentPlayer.columnIndex;
@@ -404,9 +432,22 @@ function rotateRight(currentPlayer){
   console.log(board);
   eraseBoard();
   updateBoard();
+  rotateLeftButton.disabled = true;
+  rotateRightButton.disabled = true;
+  forwardButton.disabled = true;
+  laserButton.disabled = true;
+  bugButton.disabled = false;
+  endTurnButton.disabled = false;
 }
 
 function forward(currentPlayer){
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
+
   let currentDirection = currentPlayer.direction;
   let currentRow = currentPlayer.rowIndex;
   let currentColumn = currentPlayer.columnIndex;
@@ -424,22 +465,69 @@ function forward(currentPlayer){
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "iceWall"){
+      alert("Oops! Seems like your turtle bumped against a Ice Wall!");
+      console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
+              rotateLeftButton.disabled = true;
+              rotateRightButton.disabled = true;
+              forwardButton.disabled = true;
+              laserButton.disabled = true;
+              bugButton.disabled = false;
+              endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              currentPlayer.rowIndex = newRow;
+              currentPlayer.columnIndex = newColumn;
+              board[currentRow][currentColumn] = "";
+              board[newRow][newColumn] = currentPlayer;
+              eraseBoard();
+              updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               console.log(playersStillPlaying);
-              alert("CONGRATULATIONS! YOU WON!");
-              console.log(board);
+
+              if(!(playersStillPlaying.includes(true))){
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                rotateLeftButton.disabled = true;
+                rotateRightButton.disabled = true;
+                forwardButton.disabled = true;
+                laserButton.disabled = true;
+                bugButton.disabled = true;
+                endTurnButton.disabled = true;
+              }
+              else{
+                alert("CONGRATULATIONS! YOU WON!");
+                updateTurn();
+                console.log(board);
+              }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -449,6 +537,12 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
   }
   else if(currentDirection === "down"){
@@ -458,22 +552,69 @@ function forward(currentPlayer){
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "iceWall"){
+      alert("Oops! Seems like your turtle bumped against a Ice Wall!");
+      console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
+              rotateLeftButton.disabled = true;
+              rotateRightButton.disabled = true;
+              forwardButton.disabled = true;
+              laserButton.disabled = true;
+              bugButton.disabled = false;
+              endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              currentPlayer.rowIndex = newRow;
+              currentPlayer.columnIndex = newColumn;
+              board[currentRow][currentColumn] = "";
+              board[newRow][newColumn] = currentPlayer;
+              eraseBoard();
+              updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               console.log(playersStillPlaying);
-              alert("CONGRATULATIONS! YOU WON!");
-              console.log(board);
+
+              if(!(playersStillPlaying.includes(true))){
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                rotateLeftButton.disabled = true;
+                rotateRightButton.disabled = true;
+                forwardButton.disabled = true;
+                laserButton.disabled = true;
+                bugButton.disabled = true;
+                endTurnButton.disabled = true;
+              }
+              else{
+                alert("CONGRATULATIONS! YOU WON!");
+                updateTurn();
+                console.log(board);
+              }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -483,6 +624,12 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
   }
   else if(currentDirection === "right"){
@@ -492,22 +639,68 @@ function forward(currentPlayer){
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "iceWall"){
+      alert("Oops! Seems like your turtle bumped against a Ice Wall!");
+      console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
+              rotateLeftButton.disabled = true;
+              rotateRightButton.disabled = true;
+              forwardButton.disabled = true;
+              laserButton.disabled = true;
+              bugButton.disabled = false;
+              endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              currentPlayer.rowIndex = newRow;
+              currentPlayer.columnIndex = newColumn;
+              board[currentRow][currentColumn] = "";
+              board[newRow][newColumn] = currentPlayer;
+              eraseBoard();
+              updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               console.log(playersStillPlaying);
-              alert("CONGRATULATIONS! YOU WON!");
-              console.log(board);
+
+              if(!(playersStillPlaying.includes(true))){
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                rotateLeftButton.disabled = true;
+                rotateRightButton.disabled = true;
+                forwardButton.disabled = true;
+                laserButton.disabled = true;
+                bugButton.disabled = true;
+                endTurnButton.disabled = true;
+              }
+              else{
+                alert("CONGRATULATIONS! YOU WON!");
+                updateTurn();
+                console.log(board);
+              }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -517,6 +710,12 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
   }
   else{
@@ -526,22 +725,69 @@ function forward(currentPlayer){
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "iceWall"){
+      alert("Oops! Seems like your turtle bumped against a Ice Wall!");
+      console.log(board);
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
+              rotateLeftButton.disabled = true;
+              rotateRightButton.disabled = true;
+              forwardButton.disabled = true;
+              laserButton.disabled = true;
+              bugButton.disabled = false;
+              endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+              currentPlayer.rowIndex = newRow;
+              currentPlayer.columnIndex = newColumn;
+              board[currentRow][currentColumn] = "";
+              board[newRow][newColumn] = currentPlayer;
+              eraseBoard();
+              updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               console.log(playersStillPlaying);
-              alert("CONGRATULATIONS! YOU WON!");
-              console.log(board);
+
+              if(!(playersStillPlaying.includes(true))){
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                rotateLeftButton.disabled = true;
+                rotateRightButton.disabled = true;
+                forwardButton.disabled = true;
+                laserButton.disabled = true;
+                bugButton.disabled = true;
+                endTurnButton.disabled = true;
+              }
+              else{
+                alert("CONGRATULATIONS! YOU WON!");
+                updateTurn();
+                console.log(board);
+              }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -551,11 +797,94 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
   }
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {play()});
+function laser(currentPlayer){
+  let rotateLeftButton = document.getElementById("rotateLeft");
+  let rotateRightButton = document.getElementById("rotateRight");
+  let forwardButton = document.getElementById("forward");
+  let laserButton = document.getElementById("laser");
+  let bugButton = document.getElementById("bug");
+  let endTurnButton = document.getElementById("endTurn");
+
+  let currentDirection = currentPlayer.direction;
+  let currentRow = currentPlayer.rowIndex;
+  let currentColumn = currentPlayer.columnIndex;
+  let newRow;
+  let newColumn;
+  boardCopy = copy(board);
+  rowIndexCopy = currentRow;
+  columnIndexCopy = currentColumn;
+  directionCopy = currentDirection;
+
+  if(currentDirection === "up"){
+    newRow = currentRow - 1;
+    newColumn = currentColumn;
+
+    if(board[newRow][newColumn] === "iceWall"){
+      alert("Detected Ice Wall!")
+      board[newRow][newColumn] = "water";
+    }
+    else{
+      alert("Oops! Seems like there is no Ice Wall in front of your turtle!")
+    }
+  }
+  else if(currentDirection === "down"){
+    newRow = currentRow + 1;
+    newColumn = currentColumn;
+
+    if(board[newRow][newColumn] === "iceWall"){
+      alert("Detected Ice Wall!")
+      board[newRow][newColumn] = "water";
+    }
+    else{
+      alert("Oops! Seems like there is no Ice Wall in front of your turtle!")
+    }
+  }
+  else if(currentDirection === "right"){
+    newRow = currentRow;
+    newColumn = currentColumn + 1;
+
+    if(board[newRow][newColumn] === "iceWall"){
+      alert("Detected Ice Wall!")
+      board[newRow][newColumn] = "water";
+    }
+    else{
+      alert("Oops! Seems like there is no Ice Wall in front of your turtle!")
+    }
+  }
+  else{
+    newRow = currentRow;
+    newColumn = currentColumn - 1;
+
+    if(board[newRow][newColumn] === "iceWall"){
+      alert("Detected Ice Wall!")
+      board[newRow][newColumn] = "water";
+    }
+    else{
+      alert("Oops! Seems like there is no Ice Wall in front of your turtle!")
+    }
+  }
+  console.log(board);
+  eraseBoard();
+  updateBoard();
+  rotateLeftButton.disabled = true;
+  rotateRightButton.disabled = true;
+  forwardButton.disabled = true;
+  laserButton.disabled = true;
+  bugButton.disabled = false;
+  endTurnButton.disabled = false;
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {events()});
 
 
 // Just blank space
