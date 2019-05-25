@@ -77,8 +77,8 @@ let playersScores = [0,0,0,0];
 
 
 function events(){
-  let playStoneWallsButton = document.getElementById("playStoneWalls");
-  let playIceWallsButton = document.getElementById("playIceWalls");
+  let playStoneWallsButton = document.getElementById("playIceWalls");
+  let playIceWallsButton = document.getElementById("playStoneWalls");
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
