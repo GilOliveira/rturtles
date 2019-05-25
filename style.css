@@ -13,13 +13,12 @@
     margin-top: 15px;
 }
 
-
 #userIcon {
     font-size: 50px;
     text-align: right;
 }
 
-.menu i{
+.menu i {
     font-size: 50px;
 }
 
@@ -27,38 +26,14 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 30px;
 }
 
-
-video {
-    display: block;
-    margin: 0 auto;
-    width: 90%;
+#loginContainer p {
+    padding-top: 2px;
 }
 
-.title_text {
-    text-align: center;
-}
-
-.titleh2 {
-    padding-left: 5%;
-
-}
-.downl {
-    font-size: 20px;
-    margin-bottom: 30px;
-    margin-top: 20px;
-}
-
-.danbio {
-}
-
-.danphoto {
-    width: 100%;
-}
-.foto_collection {
-    padding-bottom: 60px;
+#loginContainer button {
+    padding: 2px;
 }
 
 #hamburger {
@@ -73,18 +48,135 @@ video {
     width: 100%;
 }
 
-.boardCell {
-    background-image: url("images/game/board/grass.jpg");
+.grass {
+    background-image: url("images/imagesboard/game/tiles/grass.png");
     height: 50px;
     width: 50px;
 }
 
-#dropdownContent {
-    right: 0;
+.stoneWall {
+    background-image: url("images/imagesboard/game/tiles/stone-wall.png");
+    height: 50px;
+    width: 50px;
 }
 
-.welcomeMessage {
-    padding-right: 20px;
-    padding-left: 10px;
-    font-weight: bold;
+.jewel1 {
+    background-image: url("images/imagesboard/game/jewels/jewel1.png");
+    height: 50px;
+    width: 50px;
 }
+
+.jewel2 {
+    background-image: url("images/imagesboard/game/jewels/jewel2.png");
+    height: 50px;
+    width: 50px;
+}
+
+.jewel3 {
+    background-image: url("images/imagesboard/game/jewels/jewel3.png");
+    height: 50px;
+    width: 50px;
+}
+
+.jewel4 {
+    background-image: url("images/imagesboard/game/jewels/jewel4.png");
+    height: 50px;
+    width: 50px;
+}
+
+.beepUp {
+    background-image: url("images/imagesboard/game/characters/beep-up.png");
+    height: 50px;
+    width: 50px;
+}
+
+.beepDown {
+    background-image: url("images/imagesboard/game/characters/beep-down.png");
+    height: 50px;
+    width: 50px;
+}
+
+.beepRight {
+    background-image: url("images/imagesboard/game/characters/beep-right.png");
+    height: 50px;
+    width: 50px;
+}
+
+.beepLeft {
+    background-image: url("images/imagesboard/game/characters/beep-left.png");
+    height: 50px;
+    width: 50px;
+}
+
+.dotUp {
+    background-image: url("images/imagesboard/game/characters/dot-up.png");
+    height: 50px;
+    width: 50px;
+}
+
+.dotDown {
+    background-image: url("images/imagesboard/game/characters/dot-down.png");
+    height: 50px;
+    width: 50px;
+}
+
+.dotRight {
+    background-image: url("images/imagesboard/game/characters/dot-right.png");
+    height: 50px;
+    width: 50px;
+}
+
+.dotLeft {
+    background-image: url("images/imagesboard/game/characters/dot-left.png");
+    height: 50px;
+    width: 50px;
+}
+
+.pangleUp {
+    background-image: url("images/imagesboard/game/characters/pangle-up.png");
+    height: 50px;
+    width: 50px;
+}
+
+.pangleDown {
+    background-image: url("images/imagesboard/game/characters/pangle-down.png");
+    height: 50px;
+    width: 50px;
+}
+
+.pangleRight {
+    background-image: url("images/imagesboard/game/characters/pangle-right.png");
+    height: 50px;
+    width: 50px;
+}
+
+.pangleLeft {
+    background-image: url("images/imagesboard/game/characters/pangle-left.png");
+    height: 50px;
+    width: 50px;
+}
+
+.piUp {
+    background-image: url("images/imagesboard/game/characters/pi-up.png");
+    height: 50px;
+    width: 50px;
+}
+
+.piDown {
+    background-image: url("images/imagesboard/game/characters/pi-down.png");
+    height: 50px;
+    width: 50px;
+}
+
+.piRight {
+    background-image: url("images/imagesboard/game/characters/pi-right.png");
+    height: 50px;
+    width: 50px;
+}
+
+.piLeft {
+    background-image: url("images/imagesboard/game/characters/pi-left.png");
+    height: 50px;
+    width: 50px;
+}
+

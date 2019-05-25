@@ -68,67 +68,67 @@ function updateBoard(){
   for(let i = 0; i < board.length; i++){
     for(let j = 0; j < board.length; j++){
       if(board[i][j] === "stoneWall"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/stone-wall.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/tiles/stone-wall.png'>");
       }
       else if(board[i][j] === "jewel1"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel1.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/jewels/jewel1.png'>");
       }
       else if(board[i][j] === "jewel2"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel2.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/jewels/jewel2.png'>");
       }
       else if(board[i][j] === "jewel3"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel3.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/jewels/jewel3.png'>");
       }
       else if(board[i][j] === "jewel4"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/jewels/jewel4.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/jewels/jewel4.png'>");
       }
       else if(board[i][j] === player1 && player1.direction === "up"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-up.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/beep-up.png'>");
       }
       else if(board[i][j] === player1 && player1.direction === "down"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-down.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/beep-down.png'>");
       }
       else if(board[i][j] === player1 && player1.direction === "right"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-right.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/beep-right.png'>");
       }
       else if(board[i][j] === player1 && player1.direction === "left"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/beep-left.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/beep-left.png'>");
       }
       else if(board[i][j] === player2 && player2.direction === "up"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-up.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/dot-up.png'>");
       }
       else if(board[i][j] === player2 && player2.direction === "down"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-down.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/dot-down.png'>");
       }
       else if(board[i][j] === player2 && player2.direction === "right"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-right.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/dot-right.png'>");
       }
       else if(board[i][j] === player2 && player2.direction === "left"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/dot-left.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/dot-left.png'>");
       }
       else if(board[i][j] === player3 && player3.direction === "up"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-up.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pangle-up.png'>");
       }
       else if(board[i][j] === player3 && player3.direction === "down"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-down.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pangle-down.png'>");
       }
       else if(board[i][j] === player3 && player3.direction === "right"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-right.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pangle-right.png'>");
       }
       else if(board[i][j] === player3 && player3.direction === "left"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pangle-left.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pangle-left.png'>");
       }
       else if(board[i][j] === player4 && player4.direction === "up"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-up.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pi-up.png'>");
       }
       else if(board[i][j] === player4 && player4.direction === "down"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-down.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pi-down.png'>");
       }
       else if(board[i][j] === player4 && player4.direction === "right"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-right.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pi-right.png'>");
       }
       else if(board[i][j] === player4 && player4.direction === "left"){
-        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/characters/pi-left.png'>");
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/imagesboard/game/characters/pi-left.png'>");
       }
     }
   }

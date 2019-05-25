@@ -170,38 +170,38 @@ function saveUser(user) {
     localStorage.setItem('userBirthdays', currentBirthdays);
 }
 
-// function getLocalStorageUsers(){
-//     /*
-//     This function updates the userLibrary variable with the localStorage users.
-//      */
-//     let usernames = localStorage.getItem('userNames').split(',');
-//     let passwords = localStorage.getItem('userPasswords').split(',');
-//     let birthdays = localStorage.getItem('userBirthdays').split(',');
-//     let scores = localStorage.getItem('userScores').split(',');
-//     userLibrary = [];
-//     for (let i = 0; i < usernames.length; i++){
-//         let currentUser = new User(usernames[i], passwords[i], scores[i], birthdays[i], 0, 0, false);
-//         userLibrary.push(currentUser);
-//     }
-// }
+function getLocalStorageUsers(){
+    /*
+    This function updates the userLibrary variable with the localStorage users.
+     */
+    let usernames = localStorage.getItem('userNames').split(',');
+    let passwords = localStorage.getItem('userPasswords').split(',');
+    let birthdays = localStorage.getItem('userBirthdays').split(',');
+    let scores = localStorage.getItem('userScores').split(',');
+    userLibrary = [];
+    for (let i = 0; i < usernames.length; i++){
+        let currentUser = new User(usernames[i], passwords[i], scores[i], birthdays[i], 0, 0, false);
+        userLibrary.push(currentUser);
+    }
+}
 
-// function setLocalStorageUsers(){
-//     //  This function updates the localStorage with the users in the userLibrary variable.
-//     let usernames = [];
-//     let passwords = [];
-//     let birthdays = [];
-//     let scores = [];
-//     for (let i = 0; i < userLibrary.length; i++) {
-//         usernames.push(userLibrary[i].name);
-//         passwords.push(userLibrary[i].password);
-//         birthdays.push(userLibrary[i].birth);
-//         scores.push(userLibrary[i].score);
-//     }
-//     localStorage.setItem('userNames', usernames.toString());
-//     localStorage.setItem('userPasswords', passwords.toString());
-//     localStorage.setItem('userBirthdays', birthdays.toString());
-//     localStorage.setItem('userScores', scores.toString());
-// }
+function setLocalStorageUsers(){
+    //  This function updates the localStorage with the users in the userLibrary variable.
+    let usernames = [];
+    let passwords = [];
+    let birthdays = [];
+    let scores = [];
+    for (let i = 0; i < userLibrary.length; i++) {
+        usernames.push(userLibrary[i].name);
+        passwords.push(userLibrary[i].password);
+        birthdays.push(userLibrary[i].birth);
+        scores.push(userLibrary[i].score);
+    }
+    localStorage.setItem('userNames', usernames.toString());
+    localStorage.setItem('userPasswords', passwords.toString());
+    localStorage.setItem('userBirthdays', birthdays.toString());
+    localStorage.setItem('userScores', scores.toString());
+}
 
 function uniqueUsername(userName) {
     // Checks if userName is unique and returns true if it is, false otherwise

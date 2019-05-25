@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Robot Turtles</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="script.js"></script>
-    <script src="game.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="gamegui.js"></script>
 </head>
 
 <body class="w3-animate-opacity">
@@ -80,10 +80,43 @@
     </button>
 </div>
 
-<!--
-    O conteúdo do site vai aqui
+<!-- CONTEUDO -->
 
--->
+<div class="w3-row">
+
+    <div id="boardContainer" class="w3-twothird w3-container">
+        <br>
+        <table class = "w3-display-middle" id="board">
+        </table>
+    </div>
+    <div id="buttonsplay" class="w3-container">
+        <button id="rotateLeft">Rotate Left</button>
+        <button id="rotateRight">Rotate Right</button>
+        <button id="forward">Forward</button>
+        <button id="bug">Bug</button>
+        <button id="endTurn">End Turn</button>
+        </div>
+
+    <br>
+
+
+    <div class="w3-third w3-container">
+        <br>
+        <table class="w3-table-all" id="scoretable">
+            <tr>
+                <th>Username</th>
+                <th>Points won</th>
+                <th>Time taken</th>
+            </tr>
+            <tr>
+                <td>EXAMPLE</td>
+                <td>EXAMPLE</td>
+                <td>EXAMPLE</td>
+            </tr>
+        </table>
+    </div>
+
+
 
 <!-- FOOTER: -->
 
