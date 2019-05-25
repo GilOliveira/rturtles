@@ -910,6 +910,23 @@ function closePlayModal() {
   playModal.style.display = "none";
 }
 
+function openLogin() {
+    loginModal.style.display = 'block';
+}
+
+function closeLogin() {
+    loginModal.style.display = 'none';
+}
+
+
+function openRegister() {
+    registerModal.style.display = 'block';
+}
+
+function closeRegister() {
+    registerModal.style.display = 'none';
+}
+
 function openRegisterPlay() {
   closePlayModal();
   openRegister();
