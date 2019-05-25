@@ -41,14 +41,14 @@
         <i class="material-icons menuIcon">share</i> <br>
         Community
     </a>
-    <div class=" w3-bar-item w3-button dropdown w3-right" id="loginContainer">
-        <p class="w3-hide-small w3-left">Hi, Guilherme!</p>
-        <div class="w3-dropdown-hover">
+        <div class="w3-dropdown-hover w3-right">
             <button class="w3-button" id="userButton">
                 <i class="material-icons w3-hide-small" id="userIcon">person</i>
             </button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <button id="openLogin" class="w3-button w3-bar-item">Login</button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4" id="dropdownContent">
+                <p class="w3-hide-small welcomeMessage">You're not logged in.</p>
+                <button id="openLogin" class="w3-button w3-bar-item">Log in</button>
+                <button id="logoutButton" class="w3-button w3-bar-item w3-hide">Log out</button>
                 <button id="openRegister" class="w3-button w3-bar-item">Register</button>
             </div>
         </div>
@@ -72,15 +72,22 @@
         About us
     </a>
     <hr>
+    <p class="welcomeMessage">You are not logged in.</p>
     <button id="openLoginMobile" class="w3-bar-item w3-button">
         <i class="material-icons">lock_open</i>
-        Login
+        Log in
+    </button>
+    <button id="logoutButtonMobile" class="w3-bar-item w3-button w3-hide">
+        <i class="material-icons">lock</i>
+        Log out
     </button>
     <button id="openRegisterMobile" class="w3-bar-item w3-button">
         <i class="material-icons">person_add</i>
         Register
     </button>
 </div>
+
+<!-- PAGE CONTENT STARTS HERE -->
 
 
     <div class="w3-container">
@@ -99,6 +106,8 @@
         </div>
     </div>
 
+
+<!-- PAGE CONTENT ENDS HERE -->
 
 <!-- FOOTER: -->
 
@@ -119,11 +128,13 @@
         <div class="w3-container">
             <form>
                 <div class="w3-section">
-                    <label>Username</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Email or Username">
-                    <label>Password</label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Password">
-                    <button class="w3-theme-l1 w3-btn-block w3-section w3-padding">Login</button>
+                    <label>Username
+                        <input id="loginUser" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Username">
+                    </label>
+                    <label> Password
+                        <input id="loginPassword" class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Password">
+                    </label>
+                    <button id="loginButton" class="w3-theme-l1 w3-btn-block w3-section w3-padding">Log in</button>
                 </div>
             </form>
         </div>
@@ -141,22 +152,44 @@
         <div class="w3-container">
             <form id="registerForm">
                 <div class="w3-section">
-                    <label>Name
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Name">
-                    </label>
                     <label>Username
-                        <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username">
+                        <input id="userName" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter your family username">
                     </label>
                     <label>Password
-                        <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
+                        <input id="password" class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
                     </label>
                     <label>Confirm Password
-                        <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
+                        <input id="confirmPassword" class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password">
                     </label>
-                    <label>Date of Birth
-                        <input class="w3-input w3-border w3-margin-bottom" type="date">
+                    <h5>Player 1</h5>
+                    <label> Name
+                        <input class="w3-input w3-border w3-margin-bottom" id="player1Name" type="text" placeholder="Enter username">
                     </label>
-                    <button class="w3-theme-l1 w3-btn-block w3-section w3-padding">Register</button>
+                    <label> Date of Birth
+                        <input class="w3-input w3-border w3-margin-bottom" id="player1Birth" class="w3-input w3-border w3-margin-bottom" type="date">
+                    </label>
+                    <h5>Player 2</h5>
+                    <label> Name
+                        <input class="w3-input w3-border w3-margin-bottom" id="player2Name" type="text" placeholder="Enter username">
+                    </label>
+                    <label> Date of Birth
+                        <input class="w3-input w3-border w3-margin-bottom" id="player2Birth" class="w3-input w3-border w3-margin-bottom" type="date">
+                    </label>
+                    <h5>Player 3</h5>
+                    <label> Name
+                        <input class="w3-input w3-border w3-margin-bottom" id="player3Name" type="text" placeholder="Enter username">
+                    </label>
+                    <label> Date of Birth
+                        <input class="w3-input w3-border w3-margin-bottom" id="player3Birth" class="w3-input w3-border w3-margin-bottom" type="date">
+                    </label>
+                    <h5>Player 4</h5>
+                    <label> Name
+                        <input class="w3-input w3-border w3-margin-bottom" id="player4Name" type="text" placeholder="Enter username">
+                    </label>
+                    <label> Date of Birth
+                        <input class="w3-input w3-border w3-margin-bottom" id="player4Birth" class="w3-input w3-border w3-margin-bottom" type="date">
+                    </label>
+                    <button id="registerButton" class="w3-theme-l1 w3-btn-block w3-section w3-padding">Register</button>
                 </div>
             </form>
         </div>
