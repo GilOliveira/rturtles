@@ -139,3 +139,7 @@ video {
 #endTurn {
   display: none;
 }
+
+#scoretable {
+    display: none;
+}

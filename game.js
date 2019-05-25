@@ -104,6 +104,7 @@ function events(){
 }
 
 function playStoneWalls(){
+  $("#scoretable").css("display","block");
   closePlayModeModal();
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
@@ -119,6 +120,7 @@ function playStoneWalls(){
 }
 
 function playIceWalls(){
+  $("#scoretable").css("display","block");
   closePlayModeModal();
   appendPlayersToBoard(board, player1, player2, player3, player4);
   appendJewelsToBoard(board);
@@ -953,10 +955,26 @@ function flowModalPlay() {
   console.log("estou aqui");
   if (sessionStorage.length == 0) {
     $('#playModal').css('display', 'block');
+
+    let u1Name = $('#u1name').val();
+    let u2Name = $("#u2name").val();
+    let u3Name = $("#u3name").val();
+    let u4Name = $("#u4name").val();
+
+    let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
+
+    sessionStorage.setItem('playerNames', currentPlayers);
+    sessionStorage.setItem('playerScores', [0,0,0,0]);
+    sessionStorage.setItem('playerAges', [1,1,1,1]);
+
+    console.log(currentPlayers)
   }
   else {
     playModal.style.display = "none";
     $("#playModeModal").css("display","block");
+
+
+
 
   }
 }
