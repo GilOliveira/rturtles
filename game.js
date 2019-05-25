@@ -57,18 +57,19 @@ function main() {
 
 window.onload = main;
 
-let player1 = new Player("player1", "9years", "down", 0, 0);
-let player2 = new Player("player2", "6years", "left", 0, 7);
-let player3 = new Player("player3", "11years", "right", 7, 0);
-let player4 = new Player("player4", "5years", "up", 7, 7);
-let births = [player1.birth, player2.birth, player3.birth, player4.birth];
+let player1;
+let player2;
+let player3;
+let player4;
+// let births = [player1.birth, player2.birth, player3.birth, player4.birth]; tem de ser pelo sessionstorage
 let board = (generateBoard(8));
-let currentPlayer = player1;
-let currentPlayerIndex = 0;
+let currentPlayer ;
+let currentPlayerIndex;
+let rowIndexCopy;
+let columnIndexCopy;
+let directionCopy;
 let boardCopy;
-let rowIndexCopy = currentPlayer.rowIndex;
-let columnIndexCopy = currentPlayer.columnIndex;
-let directionCopy = currentPlayer.direction;
+
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
 let playersScores = [0,0,0,0];
@@ -968,7 +969,9 @@ function laser(currentPlayer){
 
 function flowModalPlay() {
   console.log("estou aqui");
+
   if (sessionStorage.length == 0) {
+
     $('#playModal').css('display', 'block');
 
     let u1Name = $('#u1name').val();
@@ -977,18 +980,26 @@ function flowModalPlay() {
     let u4Name = $("#u4name").val();
 
     let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
+    console.log(currentPlayers);
 
     sessionStorage.setItem('playerNames', currentPlayers);
-    sessionStorage.setItem('playerScores', [0,0,0,0]);
-    sessionStorage.setItem('playerAges', [1,1,1,1]);
+    sessionStorage.setItem('playerScores', [0,0,0,0].toString());
+    sessionStorage.setItem('playerAges', [1,1,1,1].toString());
 
-    console.log(currentPlayers)
+    player1 = new Player(currentPlayers[0], 0, "down", 0, 0);
+    player2 = new Player(currentPlayers[1], 0, "left", 0, 7);
+    player3 = new Player(currentPlayers[2], 0, "right", 7, 0);
+    player4 = new Player(currentPlayers[3], 0, "up", 7, 7);
+
+    getfirstPlayer();
+    createscoretable();
+
   }
   else {
+
     playModal.style.display = "none";
     $("#playModeModal").css("display","block");
-
-
+    getLogedPlayer();
 
 
   }
@@ -1031,6 +1042,68 @@ function closePlayModeModal() {
 
 function goHome() {
   window.open('index.html');
+}
+
+function getLogedPlayer() {
+  console.log("!!!");
+  let activeUser = sessionStorage.getItem('activeUser');
+  if (activeUser !== null) {
+
+    let playersnames = sessionStorage.getItem('playerNames');
+    let playersbirth = sessionStorage.getItem('playerBirthdays');
+    console.log(playersnames,playersbirth);
+
+    console.log(playersnames);
+    playersnames = playersnames.split(",");
+    console.log(playersnames);
+    playersbirth = playersbirth.split(",");
+
+    player1 = new Player(playersnames[0], playersbirth[0], "down", 0, 0);
+    player2 = new Player(playersnames[1], playersbirth[1], "left", 0, 7);
+    player3 = new Player(playersnames[2], playersbirth[2], "right", 7, 0);
+    player4 = new Player(playersnames[3], playersbirth[3], "up", 7, 7);
+
+    getfirstPlayer();
+    createscoretable();
+
+
+  }
+}
+
+function updatescore() {
+
+}
+
+function createscoretable() {
+  let scoretable = $("#scoretable");
+  let players = [player1.name,player2.name,player3.name,player4];
+
+  let table = $('#scoretable table:last-child');
+  table.append("<tr>");
+  table.append("<th> Username </th>");
+  table.append("<th>Score</th>");
+  table.append("<th>Tame taken</th>");
+
+  for (let i=0; i < players.length; i++) {
+    table.append("<tr>");
+    table.append("<td>" + players[i] + "</td>");
+    table.append("<td>0</td>");
+    table.append("<td>0</td>");
+    table.append("</tr>")
+
+  }
+
+
+
+
+}
+
+function getfirstPlayer() {
+  currentPlayer = player1;
+  currentPlayerIndex = 0;
+  rowIndexCopy = currentPlayer.rowIndex;
+  columnIndexCopy = currentPlayer.columnIndex;
+  directionCopy = currentPlayer.direction;
 }
 
 // Window loading function
