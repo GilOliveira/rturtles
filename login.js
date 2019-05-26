@@ -106,4 +106,3 @@ function logout(){
 
 // Window loading function
 $(document).ready(main);
-
