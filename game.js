@@ -58,7 +58,6 @@ function main() {
 
 window.onload = main;
 
-let played;
 let player1;
 let player2;
 let player3;
@@ -81,8 +80,8 @@ let playersStillPlaying = [true, true, true, true];
 
 
 function events(){
-  let playStoneWallsButton = document.getElementById("playStoneWalls");
-  let playIceWallsButton = document.getElementById("playIceWalls");
+  let playStoneWallsButton = document.getElementById("playIceWalls");
+  let playIceWallsButton = document.getElementById("playStoneWalls");
   let playCratesButton = document.getElementById("playCrates");
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
@@ -105,8 +104,8 @@ function events(){
   $('#openPlayLogin').click(openLoginPlay);
   $('#openPlayRegister').click(openRegisterPlay);
   $('#goHome').click(goHome);
+  $("#nologbtn").click(playnologin);
 
-  played = false;
   flowModalPlay();
 
 }
@@ -465,7 +464,6 @@ function bug(){
   bugButton.disabled = true;
   endTurnButton.disabled = true;
 }
-
 function rotateLeft(currentPlayer){
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
@@ -1184,42 +1182,22 @@ function laser(currentPlayer){
 }
 
 function flowModalPlay() {
-  console.log("estou aqui");
+  console.log(sessionStorage);
 
   if (sessionStorage.length != 0) {
-      played = true;
-      console.log(sessionStorage[0]);
+    let activeUser = sessionStorage.getItem("activeUser");
+    if (activeUser !== null) {
+      sessionStorage.setItem("tempUser", activeUser);
+    }
 
-    playModal.style.display = "none";
-    $("#playModeModal").css("display","block");
-    getLogedPlayer();
+      $("#playModal").css("display", "none");
+      $("#playModeModal").css("display", "block");
+      getLogedPlayer();
 
-  } else if (played == false) {
+    } else if (sessionStorage.length == 0) {
+      $("#playModal").css('display', 'block');
+    }
 
-      $('#playModal').css('display', 'block');
-
-      console.log("idk");
-      let u1Name = $('#u1name').val();
-      let u2Name = $("#u2name").val();
-      let u3Name = $("#u3name").val();
-      let u4Name = $("#u4name").val();
-      console.log(u4Name);
-
-      let currentPlayers = [u1Name, u2Name, u3Name, u4Name];
-
-      player1 = new Player(currentPlayers[0], 0, 0, 0, "down", 0, 0);
-      player2 = new Player(currentPlayers[1], 0, 0, 0, "left", 0, 7);
-      player3 = new Player(currentPlayers[2], 0, 0, 0, "right", 7, 0);
-      player4 = new Player(currentPlayers[3], 0, 0, 0, "up", 7, 7);
-
-      allplayers =  [player1,player2,player3,player4];
-      console.log(allplayers);
-
-      getfirstPlayer();
-      createscoretable();
-      played = true;
-
-  }
 }
 
 function closePlayModal() {
@@ -1262,11 +1240,12 @@ function goHome() {
 }
 
 function getLogedPlayer() {
-  let activeUser = sessionStorage.getItem('activeUser');
-  if (activeUser !== null) {
+  let tempUser = sessionStorage.getItem('tempUser');
 
     let playersnames = sessionStorage.getItem('playerNames');
     let playersbirth = sessionStorage.getItem('playerBirthdays');
+    console.log(playersnames,playersbirth);
+
 
     playersnames = playersnames.split(",");
     playersbirth = playersbirth.split(",");
@@ -1282,7 +1261,24 @@ function getLogedPlayer() {
     createscoretable();
 
 
-  }
+
+}
+
+function nologsub() {
+
+  sessionStorage.setItem("tempUser","nolog");
+
+  let u1Name = $('#u1name').val();
+  let u2Name = $("#u2name").val();
+  let u3Name = $("#u3name").val();
+  let u4Name = $("#u4name").val();
+  console.log(u4Name);
+
+  let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
+
+  sessionStorage.setItem("playerNames",currentPlayers);
+  let bday = [0,0,0,0].toString();
+  sessionStorage.setItem("playerBirthdays",bday);
 
 }
 
@@ -1343,6 +1339,11 @@ function getfirstPlayer() {
   rowIndexCopy = currentPlayer.rowIndex;
   columnIndexCopy = currentPlayer.columnIndex;
   directionCopy = currentPlayer.direction;
+}
+
+function playnologin() {
+  nologsub();
+  closePlayModal();
 }
 
 // Window loading function

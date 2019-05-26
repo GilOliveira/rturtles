@@ -156,7 +156,6 @@
     Your browser does not support the audio element.
 </audio>
 
-
 <!-- PAGE CONTENT ENDS HERE -->
 
 
@@ -170,20 +169,27 @@
             <h2>Play without login</h2>
         </header>
         <div class="w3-container">
-            <form>
+            <form id="nologinForm">
                 <div class="w3-section">
-                    <label>Username 1</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
-                    <label>Username 2</label><br>
-                    <input type="text" name="user2" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
-                    <label>Username 3</label><br>
-                    <input type="text" name="user3" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
-                    <label>Username 4</label><br>
-                    <input type="text" name="user4" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
+                        <label>Username 1<br>
+                    <input type="text" name="u1name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
+                        </label>
+                        <label>Username 2<br>
+                    <input type="text" name="u2name" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
+                        </label>
+                        <label>Username 3<br>
+                    <input type="text" name="u3name" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
+                        </label>
+                    <label>Username 4<br>
+                    <input type="text" name="u4name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
+                        </label>
+                    <button id="nologbtn" class="w3-theme-l1 w3-btn-block w3-section w3-padding">PLAY!</button>
 
-                    <input type="submit" class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="closePlayModal" value="Play!">
+                    </button>
                 </div>
+
             </form>
+            </div>
 
             <div class="w3-row">
                 <div class="w3-container w3-half">
@@ -208,21 +214,41 @@
         </header>
             <div class="w3-row">
                 <div class="w3-container w3-half">
-                    <img id="playStoneWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
+                    <img id="playIceWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
                     <p>Stone walls mode!</p>
 
                 </div>
                 <div class="w3-container w3-half">
-                    <img id="playIceWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
+                    <img id="playStoneWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
 
                     <p>Ice walls mode!</p>
 
                 </div>
+                <button class="w3-button" id="playCrates">Play Crates Mode</button>
             </div>
-            <button class="w3-button" id="playCrates">Play Crates Mode</button>
         </div>
     </div>
 
+
+<!-- END GAME MODAL -->
+
+<div id="endGameModal" class="w3-modal">
+    <div class="w3-modal-content">
+        <header class="w3-container w3-theme-l1">
+        </header>
+
+            <div class="w3-container">
+                <button class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="playgain">PLAY AGAIN!</button>
+            </div>
+
+           <div class="w3-container">
+                <button class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="exitgame">EXIT GAME</button>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!-- FOOTER: -->
 
 <div class="w3-container w3-center w3-theme-l1 footer">

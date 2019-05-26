@@ -108,33 +108,33 @@ video {
 }
 
 .grass {
-    background-image: url("images/game/tiles/grass.png");
-    height: 50px;
-    width: 50px;
+  background-image: url("images/game/tiles/grass.png");
+  height: 50px;
+  width: 50px;
 }
 
 #rotateLeft {
-    display: none;
+  display: none;
 }
 
 #rotateRight {
-    display: none;
+  display: none;
 }
 
 #forward {
-    display: none;
+  display: none;
 }
 
 #laser {
-    display: none;
+  display: none;
 }
 
 #bug {
-    display: none;
+  display: none;
 }
 
 #endTurn {
-    display: none;
+  display: none;
 }
 
 #scoretable {
