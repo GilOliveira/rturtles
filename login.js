@@ -30,7 +30,6 @@ function uniqueUsername(userName) {
     }
     return unique
 }
-
 function register() {
     let userName = $('#userName').val();
     let password = $('#password').val();
@@ -50,9 +49,16 @@ function register() {
     if ((password === confirmPassword) && (uniqueUsername(userName))) {
         localStorage.setItem(userName, password);
         localStorage.setItem(userName + '_names', familyElements);
+
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
-        localStorage.setItem(userName + '_score', [0, 0, 0, 0].toString());
-        localStorage.setItem(userName + '_gameswon', [0, 0, 0, 0].toString());
+        localStorage.setItem(userName + '_score', [0,0,0,0].toString());
+        localStorage.setItem(userName + '_gameswon', [0,0,0,0].toString());
+        localStorage.setItem(userName + '_timeTaken', [0,0,0,0].toString());
+        localStorage.setItem(userName + "_playerGames", "0");
+
+
+
+
         startUserSession(userName);
     }
     else if (password !== confirmPassword) {
@@ -85,13 +91,21 @@ function startUserSession(username){
 
     let currentPlayers = localStorage.getItem(username + '_names');
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
-    let currentScores = localStorage.getItem(username + '_scores');
+
+
+    let currentScores = localStorage.getItem(username + '_score');
     let currentWins = localStorage.getItem(username + '_gameswon');
+    let currentPlays = localStorage.getItem(username + "_playerGames");
+    let currentTime = localStorage.getItem(username + '_timeTaken');
 
     sessionStorage.setItem('playerNames', currentPlayers);
     sessionStorage.setItem('playerBirthdays', currentBirthdays);
     sessionStorage.setItem('playerScores', currentScores);
     sessionStorage.setItem('playerWins', currentWins);
+    sessionStorage.setItem('playerGames', currentPlays);
+    sessionStorage.setItem('playerTime', currentTime);
+
+
 }
 
 function logout(){

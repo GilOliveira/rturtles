@@ -100,9 +100,9 @@
 <!-- PAGE CONTENT STARTS HERE -->
 <div id="gameMainContainer">
 <!--CURRENT PLAYER-->
-    <div class="w3-half">
-    <div class="w3-card w3-white" id="currentPlayerCard">
-        <div class="w3-container w3-hide" id="currentPlayerContainer">
+    <div>
+    <div class="w3-card w3-white w3-hide" id="currentPlayerCard">
+        <div class="w3-container" id="currentPlayerContainer">
             <h4>Current Player:</h4>
             <img src="" alt="Turtle" class="w3-left" id="currentPlayerImage" height="50px">
             <h2 id="currentPlayerLabel"></h2>
@@ -113,13 +113,14 @@
 
     <!-- BOARD-->
 
-    <div class="w3-card w3-white w3-center" id="boardCard">
+    <div class="w3-card w3-white w3-center w3-hide" id="boardCard">
         <div id="boardContainer">
             <table id="board">
             </table>
         </div>
     </div>
-    <div id="buttonContainer" class="w3-card w3-white w3-center">
+    <!-- BUTTONS-->
+    <div id="buttonContainer" class="w3-card w3-white w3-center w3-hide">
         <button id="rotateLeft" class="w3-btn w3-amber"><img width="70px" height="70px"
           src="images/buttons/left.jpg"></button>
         <button id="rotateRight" class="w3-btn w3-deep-purple"><img width="70px" height="70px"
@@ -132,15 +133,18 @@
         </button>
         <button id="endTurn" class="w3-btn w3-black" disabled><img width="70px" height="70px" src="images/buttons/endTurn.jpg">
         </button>
+        <!--  SCORE TABLE -->
     </div>
     <button class="w3-button w3-green" id="endGame"><a href="play.html">Click here to play again!</a></button>
     </div>
     <div class="w3-half">
-        <div id="scoretable" class="w3-card w3-white">
+        <div id="scoretable" class="w3-card w3-white w3-hide">
             <table class="w3-table w3-striped w3-border">
             </table>
         </div>
+
     </div>
+
 
 </div>
 
