@@ -1,6 +1,7 @@
 "use strict";
 
 function main() {
+
   let botaoHamburguer = document.getElementById("hamburger");
   let closeRegisterButton = document.getElementById("closeRegister");
   let registerModal = document.getElementById("registerModal");
@@ -70,6 +71,9 @@ let timeInSeconds = 0;
 
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
+
+
+
 
 function events(){
   let playStoneWallsButton = document.getElementById("playIceWalls");
@@ -1256,31 +1260,31 @@ function scorepointstable() {
     placed = "1º";
 
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
     console.log(scoresArray,winsArray,scoresArray);
 
     winsArray[currentPlayerIndex] = newWins;
-    sessionStorage.setItem("playerWins", winsArray);
+    sessionStorage.setItem("playerWins", winsArray.toString());
 
   } else if (playerswon == 2) {
     newScore += 5;
     placed = "2º";
 
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
 
   } else if (playerswon == 3) {
     newScore  += 3;
     placed = "3º";
-    scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    scoresArray[currentPlayerIndex] = newScore.toString();
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
   } else if (playerswon == 4) {
     currentScore += 1;
     placed = "4º";
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
     playerswon = 0
   }
@@ -1295,7 +1299,17 @@ function scorepointstable() {
       newScore + "</td><td>" +
       newTime + "</td><td>" +
       newWins + "</td><td>" +
-      placed + "</td>");}
+      placed + "</td>");
+
+  let activeUser = sessionStorage.getItem("activeUser");
+
+  if (activeUser !== null) {
+    localStorage.setItem(activeUser + '_score', scoresArray.toString());
+    localStorage.setItem(activeUser + '_gameswon', winsArray.toString());
+    // localStorage.setItem(activeUser + '_timeTaken', newGames.toString());
+    localStorage.setItem(activeUser + "_playerGames", newGames.toString());
+  }
+}
 
 
 function createscoretable() {
