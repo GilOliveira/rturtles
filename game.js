@@ -68,6 +68,7 @@ let columnIndexCopy;
 let directionCopy;
 let boardCopy;
 let playerswon = 0;
+let timeInSeconds = 0;
 
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
@@ -1280,6 +1281,15 @@ function laser(currentPlayer){
   bugButton.disabled = false;
   endTurnButton.disabled = false;
 }
+
+function pad(value){
+  return value > 9 ? value : "0" + value;
+}
+
+setInterval(function(){
+    document.getElementById("seconds").innerHTML=pad(++timeInSeconds % 60);
+    document.getElementById("minutes").innerHTML=pad(parseInt(timeInSeconds / 60, 10));
+}, 1000);
 
 function flowModalPlay() {
   console.log(sessionStorage);
