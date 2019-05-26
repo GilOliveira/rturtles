@@ -176,11 +176,17 @@ function copy(o){
 
 function displayBoard(){
     let boardTable = $('#board');
-    for (let row = 0; row < board.length; row++) {
+    for (let row = 0; row < board.length; row++){
         boardTable.append('<tr id="' + row + '">');
-        for (let column = 0; column < board.length; column++) {
-            $('#boardContainer table:last-child').append('<td class="grass" id="' +
+        for (let column = 0; column < board.length; column++){
+          if(board[row][column] === "iceWall"){
+            $('#boardContainer table:last-child').append('<td class="water" id="' +
                 row.toString() + "-" + column.toString() + '"></td>');
+          }
+          else{
+          $('#boardContainer table:last-child').append('<td class="grass" id="' +
+              row.toString() + "-" + column.toString() + '"></td>');
+          }
         }
         boardTable.append('</tr>');
     }
@@ -693,6 +699,22 @@ function forward(currentPlayer){
                 console.log(board);
               }
     }
+    else if(board[newRow][newColumn] === "water"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      console.log(board);
+      eraseBoard();
+      updateBoard();
+      $("#wateraudio").get(0).play();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
     else{
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
@@ -839,6 +861,22 @@ function forward(currentPlayer){
                 console.log(board);
               }
     }
+    else if(board[newRow][newColumn] === "water"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      console.log(board);
+      eraseBoard();
+      updateBoard();
+      $("#wateraudio").get(0).play();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
     else{
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
@@ -975,6 +1013,22 @@ function forward(currentPlayer){
                 console.log(board);
               }
     }
+    else if(board[newRow][newColumn] === "water"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      console.log(board);
+      eraseBoard();
+      updateBoard();
+      $("#wateraudio").get(0).play();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
+    }
     else{
       currentPlayer.rowIndex = newRow;
       currentPlayer.columnIndex = newColumn;
@@ -1109,6 +1163,22 @@ function forward(currentPlayer){
                 updateTurn();
                 console.log(board);
               }
+    }
+    else if(board[newRow][newColumn] === "water"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      console.log(board);
+      eraseBoard();
+      updateBoard();
+      $("#wateraudio").get(0).play();
+      rotateLeftButton.disabled = true;
+      rotateRightButton.disabled = true;
+      forwardButton.disabled = true;
+      laserButton.disabled = true;
+      bugButton.disabled = false;
+      endTurnButton.disabled = false;
     }
     else{
       currentPlayer.rowIndex = newRow;

@@ -13,7 +13,6 @@
     margin-top: 15px;
 }
 
-
 #userIcon {
     font-size: 50px;
     text-align: right;
@@ -30,17 +29,14 @@
     height: 30px;
 }
 
-
 video {
     display: block;
     margin: 0 auto;
     width: 90%;
 }
 
-
 .titleh2 {
     padding-left: 5%;
-
 }
 .downl {
     font-size: 20px;
@@ -54,6 +50,7 @@ video {
 .danphoto {
     width: 100%;
 }
+
 .foto_collection {
     padding-bottom: 60px;
 }
@@ -86,7 +83,6 @@ video {
     font-weight: bold;
 }
 
-
 #loginContainer p {
     padding-top: 2px;
 }
@@ -109,6 +105,12 @@ video {
 
 .grass {
   background-image: url("images/game/tiles/grass.png");
+  height: 50px;
+  width: 50px;
+}
+
+.water {
+  background-image: url("images/game/tiles/water.png");
   height: 50px;
   width: 50px;
 }
