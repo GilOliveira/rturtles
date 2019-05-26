@@ -47,10 +47,11 @@ function register() {
     let familyBirthdates = [player1Birth, player2Birth, player3Birth, player4Birth].toString();
 
     if ((password === confirmPassword) && (uniqueUsername(userName))) {
-        localStorage.setItem(userName,password);
+        localStorage.setItem(userName, password);
         localStorage.setItem(userName + '_names', familyElements);
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
         localStorage.setItem(userName + '_score', [0, 0, 0, 0].toString());
+        localStorage.setItem(userName + '_gameswon', [0, 0, 0, 0].toString());
         startUserSession(userName);
     }
     else if (password !== confirmPassword) {
@@ -85,10 +86,12 @@ function startUserSession(username){
     console.log(currentPlayers);
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
     let currentScores = localStorage.getItem(username + '_scores');
+    let currentWins = localStorage.getItem(username + '_scores');
 
     sessionStorage.setItem('playerNames', currentPlayers);
     sessionStorage.setItem('playerBirthdays', currentBirthdays);
     sessionStorage.setItem('playerScores', currentScores);
+    sessionStorage.setItem('playerWins', currentWins);
 }
 
 function logout(){
