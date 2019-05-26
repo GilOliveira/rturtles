@@ -989,6 +989,8 @@ function flowModalPlay() {
   console.log(sessionStorage);
 
   if (sessionStorage.length != 0) {
+      let activeUser = sessionStorage.getItem("activeUser");
+      sessionStorage.setItem("tempUser",activeUser);
       console.log(sessionStorage[0]);
       $("#playModal").css("display","none");
       $("#playModeModal").css("display","block");
@@ -1039,8 +1041,8 @@ function goHome() {
 }
 
 function getLogedPlayer() {
-  let activeUser = sessionStorage.getItem('activeUser');
-  if (activeUser !== null) {
+  let tempUser = sessionStorage.getItem('tempUser');
+  if (tempUser !== null) {
 
     let playersnames = sessionStorage.getItem('playerNames');
     let playersbirth = sessionStorage.getItem('playerBirthdays');
@@ -1067,7 +1069,7 @@ function getLogedPlayer() {
 
 function nologsub() {
 
-  sessionStorage.setItem("activeUser","nolog");
+  sessionStorage.setItem("tempUser","nolog");
 
   let u1Name = $('#u1name').val();
   let u2Name = $("#u2name").val();
