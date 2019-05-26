@@ -50,7 +50,7 @@ function register() {
         localStorage.setItem(userName,password);
         localStorage.setItem(userName + '_names', familyElements);
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
-        localStorage.setItem(userName + '_score', [0, 0, 0, 0]);
+        localStorage.setItem(userName + '_score', [0, 0, 0, 0].toString());
     }
     else if (password !== confirmPassword) {
         alert("Oops! The passwords you've entered do not match, please try again");
@@ -82,6 +82,7 @@ function startUserSession(username){
     $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
 
     let currentPlayers = localStorage.getItem(username + '_names');
+    console.log(currentPlayers);
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
     let currentScores = localStorage.getItem(username + '_scores');
 

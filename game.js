@@ -53,6 +53,7 @@ function main() {
 
 
 
+
 }
 
 window.onload = main;
@@ -61,6 +62,7 @@ let player1;
 let player2;
 let player3;
 let player4;
+let allplayers;
 // let births = [player1.birth, player2.birth, player3.birth, player4.birth]; tem de ser pelo sessionstorage
 let board = (generateBoard(8));
 let currentPlayer ;
@@ -69,10 +71,10 @@ let rowIndexCopy;
 let columnIndexCopy;
 let directionCopy;
 let boardCopy;
+let playerswon = 0;
 
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
-let playersScores = [0,0,0,0];
 
 
 
@@ -247,9 +249,11 @@ function eraseBoard(){
   }
 }
 
-function Player(name, birth, direction, rowIndex, columnIndex){
+function Player(name, birth, score, timetaken, direction, rowIndex, columnIndex){
   this.name = name;
   this.birth = birth;
+  this.score = score;
+  this.timetaken = timetaken;
   this.direction = direction;
   this.rowIndex = rowIndex;
   this.columnIndex = columnIndex;
@@ -510,7 +514,6 @@ function rotateRight(currentPlayer){
 }
 
 function forward(currentPlayer){
-  let playerswon = 0;
 
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
@@ -576,6 +579,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
             || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+
               currentPlayer.rowIndex = newRow;
               currentPlayer.columnIndex = newColumn;
               board[currentRow][currentColumn] = "";
@@ -583,17 +587,7 @@ function forward(currentPlayer){
               eraseBoard();
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
-              playerswon++;
-
-              if (playerswon == 1) {
-                playersScores[currentPlayerIndex] = 10
-              } else if (playerswon == 2) {
-                playersScores[currentPlayerIndex] = 5
-                } else if (playerswon == 3) {
-                 playersScores[currentPlayerIndex] = 3
-                  } else if (playerswon == 4) {
-                playersScores[currentPlayerIndex] = 1
-              }
+              scorepointstable();
 
               console.log(playersStillPlaying);
 
@@ -682,10 +676,13 @@ function forward(currentPlayer){
               eraseBoard();
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
+              scorepointstable();
+
               console.log(playersStillPlaying);
 
+
               if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
                 rotateLeftButton.disabled = true;
                 rotateRightButton.disabled = true;
                 forwardButton.disabled = true;
@@ -768,10 +765,13 @@ function forward(currentPlayer){
               eraseBoard();
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
+              scorepointstable();
+
+
               console.log(playersStillPlaying);
 
               if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
                 rotateLeftButton.disabled = true;
                 rotateRightButton.disabled = true;
                 forwardButton.disabled = true;
@@ -855,10 +855,12 @@ function forward(currentPlayer){
               eraseBoard();
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
+              scorepointstable();
+
               console.log(playersStillPlaying);
 
               if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!")
+                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
                 rotateLeftButton.disabled = true;
                 rotateRightButton.disabled = true;
                 forwardButton.disabled = true;
@@ -913,7 +915,7 @@ function laser(currentPlayer){
     newColumn = currentColumn;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!")
+      alert("Detected Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -925,7 +927,7 @@ function laser(currentPlayer){
     newColumn = currentColumn;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!")
+      alert("Detected Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -937,7 +939,7 @@ function laser(currentPlayer){
     newColumn = currentColumn + 1;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!")
+      alert("Detected Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -949,7 +951,7 @@ function laser(currentPlayer){
     newColumn = currentColumn - 1;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!")
+      alert("Detected Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -980,16 +982,16 @@ function flowModalPlay() {
     let u4Name = $("#u4name").val();
 
     let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
-    console.log(currentPlayers);
+
 
     sessionStorage.setItem('playerNames', currentPlayers);
     sessionStorage.setItem('playerScores', [0,0,0,0].toString());
     sessionStorage.setItem('playerAges', [1,1,1,1].toString());
 
-    player1 = new Player(currentPlayers[0], 0, "down", 0, 0);
-    player2 = new Player(currentPlayers[1], 0, "left", 0, 7);
-    player3 = new Player(currentPlayers[2], 0, "right", 7, 0);
-    player4 = new Player(currentPlayers[3], 0, "up", 7, 7);
+    player1 = new Player(currentPlayers[0], 0, 0, 0, "down", 0, 0);
+    player2 = new Player(currentPlayers[1], 0, 0, 0, "left", 0, 7);
+    player3 = new Player(currentPlayers[2], 0, 0, 0, "right", 7, 0);
+    player4 = new Player(currentPlayers[3], 0, 0, 0, "up", 7, 7);
 
     getfirstPlayer();
     createscoretable();
@@ -1045,56 +1047,78 @@ function goHome() {
 }
 
 function getLogedPlayer() {
-  console.log("!!!");
   let activeUser = sessionStorage.getItem('activeUser');
   if (activeUser !== null) {
 
     let playersnames = sessionStorage.getItem('playerNames');
     let playersbirth = sessionStorage.getItem('playerBirthdays');
-    console.log(playersnames,playersbirth);
 
-    console.log(playersnames);
     playersnames = playersnames.split(",");
-    console.log(playersnames);
     playersbirth = playersbirth.split(",");
 
-    player1 = new Player(playersnames[0], playersbirth[0], "down", 0, 0);
-    player2 = new Player(playersnames[1], playersbirth[1], "left", 0, 7);
-    player3 = new Player(playersnames[2], playersbirth[2], "right", 7, 0);
-    player4 = new Player(playersnames[3], playersbirth[3], "up", 7, 7);
+    player1 = new Player(playersnames[0], playersbirth[0], 0, 0, "down", 0, 0);
+    player2 = new Player(playersnames[1], playersbirth[1], 0, 0, "left", 0, 7);
+    player3 = new Player(playersnames[2], playersbirth[2], 0, 0, "right", 7, 0);
+    player4 = new Player(playersnames[3], playersbirth[3], 0, 0,  "up", 7, 7);
+
+    allplayers =  [player1,player2,player3,player4];
 
     getfirstPlayer();
     createscoretable();
 
 
   }
+
 }
 
-function updatescore() {
+function scorepointstable() {
+  playerswon++;
+  console.log(playerswon);
 
+  if (playerswon == 1) {
+    allplayers[currentPlayerIndex].score = 10;
+    console.log("!!")
+
+  } else if (playerswon == 2) {
+    allplayers[currentPlayerIndex].score = 5
+
+  } else if (playerswon == 3) {
+    allplayers[currentPlayerIndex].score = 3
+
+  } else if (playerswon == 4) {
+    allplayers[currentPlayerIndex].score = 1
+  }
+
+    let scoretable = $("#scoretable tr");
+    let playerscore = scoretable.eq(currentPlayerIndex + 1);
+    let playerobj = allplayers[currentPlayerIndex];
+    playerscore.html("<td> " +
+        playerobj.name + "</td><td>" +
+        playerobj.score + "</td><td>" +
+        playerobj.timetaken + "</td>")
 }
 
 function createscoretable() {
-  let scoretable = $("#scoretable");
-  let players = [player1.name,player2.name,player3.name,player4];
+  let players = [player1.name,player2.name,player3.name,player4.name];
 
   let table = $('#scoretable table:last-child');
   table.append("<tr>");
   table.append("<th> Username </th>");
   table.append("<th>Score</th>");
   table.append("<th>Tame taken</th>");
+  table.append("</tr>");
+
 
   for (let i=0; i < players.length; i++) {
-    table.append("<tr>");
-    table.append("<td>" + players[i] + "</td>");
-    table.append("<td>0</td>");
-    table.append("<td>0</td>");
-    table.append("</tr>")
+    let strtoappend = "<tr><td>" + players[i] + "</td> <td>0</td> <td>0</td></tr>";
+    table.append(strtoappend)
 
   }
-
-
-
+  function showEach(idx) {
+    console.log(idx + ": " +
+        $(this).text());
+  }
+  $("#scoretable tr").each(showEach);
 
 }
 
