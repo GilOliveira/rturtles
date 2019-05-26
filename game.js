@@ -1,7 +1,6 @@
 "use strict";
 
 function main() {
-
   let botaoHamburguer = document.getElementById("hamburger");
   let closeRegisterButton = document.getElementById("closeRegister");
   let registerModal = document.getElementById("registerModal");
@@ -11,10 +10,6 @@ function main() {
   let closeLoginButton = document.getElementById("closeLogin");
   let mobileLoginButton = document.getElementById("openLoginMobile");
   let mobileRegisterButton = document.getElementById("openRegisterMobile");
-  // let loginBeepButton = document.getElementById('loginBeep');
-  // let loginDotButton = document.getElementById('loginDot');
-  // let loginPangleButton = document.getElementById('loginPangle');
-  // let loginPiButton = document.getElementById('loginPi');
 
   botaoHamburguer.addEventListener("click", openMenu);
   closeRegisterButton.addEventListener("click", closeRegister);
@@ -50,10 +45,6 @@ function main() {
       document.getElementById("menuLateral").style.display = "block";
     }
   }
-
-
-
-
 }
 
 window.onload = main;
@@ -63,7 +54,6 @@ let player2;
 let player3;
 let player4;
 let allplayers;
-// let births = [player1.birth, player2.birth, player3.birth, player4.birth]; tem de ser pelo sessionstorage
 let board = (generateBoard(8));
 let currentPlayer ;
 let currentPlayerIndex;
@@ -76,9 +66,6 @@ let timeInSeconds = 0;
 
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
-
-
-
 
 function events(){
   let playStoneWallsButton = document.getElementById("playIceWalls");
@@ -108,7 +95,6 @@ function events(){
   $("#nologbtn").click(playnologin);
 
   flowModalPlay();
-
 }
 
 function playStoneWalls(){
@@ -119,7 +105,6 @@ function playStoneWalls(){
   appendStoneWallsToBoard(board);
   displayBoard();
   updateBoard();
-  console.log(board);
   document.getElementById("rotateLeft").style.display="inline";
   document.getElementById("rotateRight").style.display="inline";
   document.getElementById("forward").style.display="inline";
@@ -137,7 +122,6 @@ function playIceWalls(){
   appendIceWallsToBoard(board);
   displayBoard();
   updateBoard();
-  console.log(board);
   document.getElementById("rotateLeft").style.display="inline";
   document.getElementById("rotateRight").style.display="inline";
   document.getElementById("forward").style.display="inline";
@@ -156,7 +140,6 @@ function playCrates(){
   appendCratesToBoard(board);
   displayBoard();
   updateBoard();
-  console.log(board);
   document.getElementById("rotateLeft").style.display="inline";
   document.getElementById("rotateRight").style.display="inline";
   document.getElementById("forward").style.display="inline";
@@ -374,68 +357,56 @@ function updateTurn(){
     if(playersStillPlaying[1] === true){
       currentPlayer = player2;
       currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[2] === true){
       currentPlayer = player3;
       currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[3] === true){
       currentPlayer = player4;
       currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
     }
   }
   else if(currentPlayer === player2){
     if(playersStillPlaying[2] === true){
       currentPlayer = player3;
       currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[3] === true){
       currentPlayer = player4;
       currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[0] === true){
       currentPlayer = player1;
       currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
     }
   }
   else if(currentPlayer === player3){
     if(playersStillPlaying[3] === true){
       currentPlayer = player4;
       currentPlayerIndex = 3;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[0] === true){
       currentPlayer = player1;
       currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[1] === true){
       currentPlayer = player2;
       currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
     }
   }
   else{
     if(playersStillPlaying[0] === true){
       currentPlayer = player1;
       currentPlayerIndex = 0;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[1] === true){
       currentPlayer = player2;
       currentPlayerIndex = 1;
-      console.log(currentPlayerIndex);
     }
     else if(playersStillPlaying[2] === true){
       currentPlayer = player3;
       currentPlayerIndex = 2;
-      console.log(currentPlayerIndex);
     }
   }
   rotateLeftButton.disabled = false;
@@ -458,7 +429,6 @@ function bug(){
   currentPlayer.rowIndex = rowIndexCopy;
   currentPlayer.columnIndex = columnIndexCopy;
   currentPlayer.direction = directionCopy;
-  console.log(board);
   eraseBoard();
   updateBoard();
   $("#bugaudio").get(0).play();
@@ -500,7 +470,6 @@ function rotateLeft(currentPlayer){
   }
 
   currentPlayer.direction = newDirection;
-  console.log(board);
   eraseBoard();
   updateBoard();
   $("#rotateaudio").get(0).play();
@@ -543,7 +512,6 @@ function rotateRight(currentPlayer){
   }
 
   currentPlayer.direction = newDirection;
-  console.log(board);
   eraseBoard();
   updateBoard();
   $("#rotateaudio").get(0).play();
@@ -556,7 +524,6 @@ function rotateRight(currentPlayer){
 }
 
 function forward(currentPlayer){
-
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -580,7 +547,6 @@ function forward(currentPlayer){
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -590,7 +556,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -600,7 +565,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "iceWall"){
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -625,7 +589,6 @@ function forward(currentPlayer){
         board[currentRow][currentColumn] = "";
         board[newRow][newColumn] = currentPlayer;
         board[newRow - 1][newColumn] = "crate";
-        console.log(board);
         eraseBoard();
         updateBoard();
         rotateLeftButton.disabled = true;
@@ -644,12 +607,10 @@ function forward(currentPlayer){
         bugButton.disabled = false;
         endTurnButton.disabled = false;
       }
-      console.log(newRow - 1);
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
         || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
       alert("Oops! Seems like another turtle is already there!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -670,10 +631,6 @@ function forward(currentPlayer){
       playersStillPlaying[currentPlayerIndex] = false;
       scorepointstable();
 
-
-
-      console.log(playersStillPlaying);
-
       if(!(playersStillPlaying.includes(true))){
         alert("CONGRATULATIONS! YOU ENDED THE GAME!");
         rotateLeftButton.disabled = true;
@@ -686,7 +643,6 @@ function forward(currentPlayer){
       else{
         alert("CONGRATULATIONS! YOU WON!");
         updateTurn();
-        console.log(board);
       }
     }
     else{
@@ -694,7 +650,6 @@ function forward(currentPlayer){
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
-      console.log(board);
       eraseBoard();
       updateBoard();
       $("#forwardaudio").get(0).play();
@@ -712,7 +667,6 @@ function forward(currentPlayer){
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -722,7 +676,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -732,7 +685,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "iceWall"){
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -757,7 +709,6 @@ function forward(currentPlayer){
         board[currentRow][currentColumn] = "";
         board[newRow][newColumn] = currentPlayer;
         board[newRow + 1][newColumn] = "crate";
-        console.log(board);
         eraseBoard();
         updateBoard();
         rotateLeftButton.disabled = true;
@@ -789,7 +740,6 @@ function forward(currentPlayer){
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
         || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
       alert("Oops! Seems like another turtle is already there!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -809,10 +759,6 @@ function forward(currentPlayer){
       playersStillPlaying[currentPlayerIndex] = false;
       scorepointstable();
 
-
-      console.log(playersStillPlaying);
-
-
       if(!(playersStillPlaying.includes(true))){
         alert("CONGRATULATIONS! YOU ENDED THE GAME!");
         rotateLeftButton.disabled = true;
@@ -825,7 +771,6 @@ function forward(currentPlayer){
       else{
         alert("CONGRATULATIONS! YOU WON!");
         updateTurn();
-        console.log(board);
       }
     }
     else{
@@ -833,7 +778,6 @@ function forward(currentPlayer){
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
-      console.log(board);
       eraseBoard();
       updateBoard();
       $("#forwardaudio").get(0).play();
@@ -851,7 +795,6 @@ function forward(currentPlayer){
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -861,7 +804,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -870,7 +812,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "iceWall"){
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -895,7 +836,6 @@ function forward(currentPlayer){
         board[currentRow][currentColumn] = "";
         board[newRow][newColumn] = currentPlayer;
         board[newRow][newColumn + 1] = "crate";
-        console.log(board);
         eraseBoard();
         updateBoard();
         rotateLeftButton.disabled = true;
@@ -918,7 +858,6 @@ function forward(currentPlayer){
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
         || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
       alert("Oops! Seems like another turtle is already there!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -938,10 +877,6 @@ function forward(currentPlayer){
       playersStillPlaying[currentPlayerIndex] = false;
       scorepointstable();
 
-
-
-      console.log(playersStillPlaying);
-
       if(!(playersStillPlaying.includes(true))){
         alert("CONGRATULATIONS! YOU ENDED THE GAME!");
         rotateLeftButton.disabled = true;
@@ -954,7 +889,6 @@ function forward(currentPlayer){
       else{
         alert("CONGRATULATIONS! YOU WON!");
         updateTurn();
-        console.log(board);
       }
     }
     else{
@@ -962,7 +896,6 @@ function forward(currentPlayer){
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
-      console.log(board);
       eraseBoard();
       updateBoard();
       $("#forwardaudio").get(0).play();
@@ -980,7 +913,6 @@ function forward(currentPlayer){
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
       alert("Oops! Seems like your turtle is trying to run away!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -990,7 +922,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "stoneWall"){
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -1000,7 +931,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "iceWall"){
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -1025,7 +955,6 @@ function forward(currentPlayer){
         board[currentRow][currentColumn] = "";
         board[newRow][newColumn] = currentPlayer;
         board[newRow][newColumn - 1] = "crate";
-        console.log(board);
         eraseBoard();
         updateBoard();
         rotateLeftButton.disabled = true;
@@ -1048,7 +977,6 @@ function forward(currentPlayer){
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
         || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
       alert("Oops! Seems like another turtle is already there!");
-      console.log(board);
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -1068,8 +996,6 @@ function forward(currentPlayer){
       playersStillPlaying[currentPlayerIndex] = false;
       scorepointstable();
 
-      console.log(playersStillPlaying);
-
       if(!(playersStillPlaying.includes(true))){
         alert("CONGRATULATIONS! YOU ENDED THE GAME!");
         rotateLeftButton.disabled = true;
@@ -1082,7 +1008,6 @@ function forward(currentPlayer){
       else{
         alert("CONGRATULATIONS! YOU WON!");
         updateTurn();
-        console.log(board);
       }
     }
     else{
@@ -1090,7 +1015,6 @@ function forward(currentPlayer){
       currentPlayer.columnIndex = newColumn;
       board[currentRow][currentColumn] = "";
       board[newRow][newColumn] = currentPlayer;
-      console.log(board);
       eraseBoard();
       updateBoard();
       $("#forwardaudio").get(0).play();
@@ -1175,7 +1099,6 @@ function laser(currentPlayer){
       alert("Oops! Seems like there is no Ice Wall in front of your turtle!")
     }
   }
-  console.log(board);
   eraseBoard();
   updateBoard();
   rotateLeftButton.disabled = true;
@@ -1196,8 +1119,6 @@ setInterval(function(){
 }, 1000);
 
 function flowModalPlay() {
-  console.log(sessionStorage);
-
   if (sessionStorage.length != 0) {
     let activeUser = sessionStorage.getItem("activeUser");
     if (activeUser !== null) {
@@ -1211,7 +1132,6 @@ function flowModalPlay() {
   } else if (sessionStorage.length == 0) {
     $("#playModal").css('display', 'block');
   }
-
 }
 
 function closePlayModal() {
@@ -1225,7 +1145,6 @@ function openLogin() {
 function closeLogin() {
   loginModal.style.display = 'none';
 }
-
 
 function openRegister() {
   registerModal.style.display = 'block';

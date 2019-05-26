@@ -52,7 +52,6 @@ function main() {
     }
 
     function openProfile(){
-        console.log('estou aqui');
         window.open("Profile.html", "_self");
     }
 }

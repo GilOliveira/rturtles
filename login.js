@@ -30,6 +30,7 @@ function uniqueUsername(userName) {
     }
     return unique
 }
+
 function register() {
     let userName = $('#userName').val();
     let password = $('#password').val();
@@ -83,7 +84,6 @@ function startUserSession(username){
     $('#logoutButtonMobile').prop('class','w3-button w3-bar-item');
 
     let currentPlayers = localStorage.getItem(username + '_names');
-    console.log(currentPlayers);
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
     let currentScores = localStorage.getItem(username + '_scores');
     let currentWins = localStorage.getItem(username + '_gameswon');
