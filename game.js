@@ -588,8 +588,10 @@ function forward(currentPlayer){
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
+              $("#borataudio").get(0).play();
 
-              console.log(playersStillPlaying);
+
+      console.log(playersStillPlaying);
 
               if(!(playersStillPlaying.includes(true))){
                 alert("CONGRATULATIONS! YOU ENDED THE GAME!");
@@ -677,8 +679,10 @@ function forward(currentPlayer){
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
+              $("#borataudio").get(0).play();
 
-              console.log(playersStillPlaying);
+
+      console.log(playersStillPlaying);
 
 
               if(!(playersStillPlaying.includes(true))){
@@ -766,6 +770,8 @@ function forward(currentPlayer){
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
+              $("#borataudio").get(0).play();
+
 
 
               console.log(playersStillPlaying);
@@ -856,6 +862,7 @@ function forward(currentPlayer){
               updateBoard();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
+              $("#borataudio").get(0).play();
 
               console.log(playersStillPlaying);
 
