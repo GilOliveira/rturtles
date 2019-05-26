@@ -1416,7 +1416,7 @@ function createscoretable() {
   table.append("<tr>");
   table.append("<th> Username </th>");
   table.append("<th>Score</th>");
-  table.append("<th>Tame taken</th>");
+  table.append("<th>Time taken</th>");
   table.append("</tr>");
 
 
