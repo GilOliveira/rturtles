@@ -104,12 +104,16 @@
 </div>
 
 <br>
-<button id="rotateLeft" class="w3-btn w3-amber">Rotate Left</button>
-<button id="rotateRight" class="w3-btn w3-deep-purple">Rotate Right</button>
-<button id="forward" class="w3-btn w3-indigo">Forward</button>
-<button id="laser" class="w3-btn w3-red">Laser</button>
-<button id="bug" class="w3-btn w3-brown" disabled>Bug</button>
-<button id="endTurn" class="w3-btn w3-black" disabled>End Turn</button>
+<button id="rotateLeft" class="w3-btn w3-amber"><img width="70px" height="70px"
+  src="images/buttons/left.jpg"></button>
+<button id="rotateRight" class="w3-btn w3-deep-purple"><img width="70px" height="70px"
+  src="images/buttons/right.jpg"></button>
+<button id="forward" class="w3-btn w3-indigo"><img width="70px" height="70px"
+  src="images/buttons/forward.jpg"></button>
+<button id="laser" class="w3-btn w3-red"><img width="70px" height="70px"
+  src="images/buttons/laser.jpg"></button>
+<button id="bug" class="w3-btn w3-brown" disabled><img width="70px" height="70px" src="images/buttons/bug.jpg"></button>
+<button id="endTurn" class="w3-btn w3-black" disabled><img width="70px" height="70px" src="images/buttons/endTurn.jpg"></button>
 </div>
 
 <div id="scoretable" class="w3-container w3-third">
@@ -118,14 +122,36 @@
     </div>
 </div>
 
-<audio id="borataudio">
-    <source src="audio/Borat.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+<audio id="rotateaudio">
+  <source src="audio/rotate.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 
-</audio><audio id="laseraudio">
+<audio id="forwardaudio">
+  <source src="audio/forward.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="bugaudio">
+  <source src="audio/bug.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="wateraudio">
+  <source src="audio/water.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="laseraudio">
     <source src="audio/laser.mp3" type="audio/mp3">
     Your browser does not support the audio element.
 </audio>
+
+<audio id="borataudio">
+    <source src="audio/borat.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+</audio>
+
 
 <!-- PAGE CONTENT ENDS HERE -->
 
@@ -140,27 +166,20 @@
             <h2>Play without login</h2>
         </header>
         <div class="w3-container">
-            <form id="nologinForm">
+            <form>
                 <div class="w3-section">
-                        <label>Username 1<br>
-                    <input type="text" name="u1name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
-                        </label>
-                        <label>Username 2<br>
-                    <input type="text" name="u2name" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
-                        </label>
-                        <label>Username 3<br>
-                    <input type="text" name="u3name" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
-                        </label>
-                    <label>Username 4<br>
-                    <input type="text" name="u4name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
-                        </label>
-                    <button id="nologbtn" class="w3-theme-l1 w3-btn-block w3-section w3-padding">PLAY!</button>
+                    <label>Username 1</label><br>
+                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
+                    <label>Username 2</label><br>
+                    <input type="text" name="user2" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
+                    <label>Username 3</label><br>
+                    <input type="text" name="user3" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
+                    <label>Username 4</label><br>
+                    <input type="text" name="user4" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
 
-                    </button>
+                    <input type="submit" class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="closePlayModal" value="Play!">
                 </div>
-
             </form>
-            </div>
 
             <div class="w3-row">
                 <div class="w3-container w3-half">
@@ -185,43 +204,24 @@
         </header>
             <div class="w3-row">
                 <div class="w3-container w3-half">
-                    <img id="playIceWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
+                    <img id="playStoneWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
                     <p>Stone walls mode!</p>
 
                 </div>
                 <div class="w3-container w3-half">
-                    <img id="playStoneWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
+                    <img id="playIceWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
 
                     <p>Ice walls mode!</p>
 
                 </div>
             </div>
+            <button class="w3-button" id="playCrates">Play Crates Mode</button>
         </div>
     </div>
 
-
-<!-- END GAME MODAL -->
-
-<div id="endGameModal" class="w3-modal">
-    <div class="w3-modal-content">
-        <header class="w3-container w3-theme-l1">
-        </header>
-
-            <div class="w3-container">
-                <button class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="playgain">PLAY AGAIN!</button>
-            </div>
-
-           <div class="w3-container">
-                <button class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="exitgame">EXIT GAME</button>
-            </div>
-
-            </div>
-        </div>
-    </div>
-</div>
 <!-- FOOTER: -->
 
-<div class="w3-container w3-theme-l1 footer">
+<div class="w3-container w3-center w3-theme-l1 footer">
     © 2019 - Robot Turtles
 </div>
 

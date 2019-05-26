@@ -58,6 +58,7 @@ function main() {
 
 window.onload = main;
 
+let played;
 let player1;
 let player2;
 let player3;
@@ -80,8 +81,9 @@ let playersStillPlaying = [true, true, true, true];
 
 
 function events(){
-  let playStoneWallsButton = document.getElementById("playIceWalls");
-  let playIceWallsButton = document.getElementById("playStoneWalls");
+  let playStoneWallsButton = document.getElementById("playStoneWalls");
+  let playIceWallsButton = document.getElementById("playIceWalls");
+  let playCratesButton = document.getElementById("playCrates");
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -91,6 +93,7 @@ function events(){
 
   playStoneWallsButton.addEventListener("click", playStoneWalls);
   playIceWallsButton.addEventListener("click", playIceWalls);
+  playCratesButton.addEventListener("click", playCrates);
   rotateLeftButton.addEventListener("click", function(){ rotateLeft(currentPlayer);});
   rotateRightButton.addEventListener("click", function(){ rotateRight(currentPlayer);});
   forwardButton.addEventListener("click", function(){ forward(currentPlayer);});
@@ -102,8 +105,8 @@ function events(){
   $('#openPlayLogin').click(openLoginPlay);
   $('#openPlayRegister').click(openRegisterPlay);
   $('#goHome').click(goHome);
-  $("#nologbtn").click(playnologin);
 
+  played = false;
   flowModalPlay();
 
 }
@@ -141,6 +144,22 @@ function playIceWalls(){
   document.getElementById("endTurn").style.display="inline";
 }
 
+function playCrates(){
+  $("#scoretable").css("display","block");
+  closePlayModeModal();
+  appendPlayersToBoard(board, player1, player2, player3, player4);
+  appendJewelsToBoard(board);
+  appendCratesToBoard(board);
+  displayBoard();
+  updateBoard();
+  console.log(board);
+  document.getElementById("rotateLeft").style.display="inline";
+  document.getElementById("rotateRight").style.display="inline";
+  document.getElementById("forward").style.display="inline";
+  document.getElementById("bug").style.display="inline";
+  document.getElementById("endTurn").style.display="inline";
+}
+
 // Função que faz deepcopy de um array.
 function copy(o){
   var output, v, key;
@@ -174,6 +193,9 @@ function updateBoard(){
       }
       else if(board[i][j] === "iceWall"){
         $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/ice-wall.png'>");
+      }
+      else if(board[i][j] === "crate"){
+        $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/crate.png'>");
       }
       else if(board[i][j] === "water"){
         $("#" + i + "-" + j).html("<img width='50px' height='50px' src='images/game/tiles/water.png'>");
@@ -321,6 +343,21 @@ function appendIceWallsToBoard(board){
   }
 }
 
+function appendCratesToBoard(board){
+  let numCrates = Math.floor(Math.random() * 8) + 2;
+
+  while(numCrates > 0){
+    let rowIndex = Math.floor(Math.random() * board.length);
+    let columnIndex = Math.floor(Math.random() * board.length);
+
+    if(board[rowIndex][columnIndex] === ""){
+      board[rowIndex][columnIndex] = "crate";
+    }
+
+    numCrates--;
+  }
+}
+
 function updateTurn(){
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
@@ -420,6 +457,7 @@ function bug(){
   console.log(board);
   eraseBoard();
   updateBoard();
+  $("#bugaudio").get(0).play();
   rotateLeftButton.disabled = false;
   rotateRightButton.disabled = false;
   forwardButton.disabled = false;
@@ -445,7 +483,6 @@ function rotateLeft(currentPlayer){
   columnIndexCopy = currentColumn;
   directionCopy = currentDirection;
 
-  // Trocar para switch.
   if(currentDirection === "up"){
     newDirection = "left";
   }
@@ -463,6 +500,7 @@ function rotateLeft(currentPlayer){
   console.log(board);
   eraseBoard();
   updateBoard();
+  $("#rotateaudio").get(0).play();
   rotateLeftButton.disabled = true;
   rotateRightButton.disabled = true;
   forwardButton.disabled = true;
@@ -488,7 +526,6 @@ function rotateRight(currentPlayer){
   columnIndexCopy = currentColumn;
   directionCopy = currentDirection;
 
-  // Trocar para switch.
   if(currentDirection === "up"){
     newDirection = "right";
   }
@@ -506,6 +543,7 @@ function rotateRight(currentPlayer){
   console.log(board);
   eraseBoard();
   updateBoard();
+  $("#rotateaudio").get(0).play();
   rotateLeftButton.disabled = true;
   rotateRightButton.disabled = true;
   forwardButton.disabled = true;
@@ -567,6 +605,44 @@ function forward(currentPlayer){
       bugButton.disabled = false;
       endTurnButton.disabled = false;
     }
+    else if(board[newRow][newColumn] === "crate"){
+      if((newRow - 1) < 0){
+        alert("Unable to move crate outside of board!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else if(board[newRow - 1][newColumn] === ""){
+        alert("Moving Crate!")
+        currentPlayer.rowIndex = newRow;
+        currentPlayer.columnIndex = newColumn;
+        board[currentRow][currentColumn] = "";
+        board[newRow][newColumn] = currentPlayer;
+        board[newRow - 1][newColumn] = "crate";
+        console.log(board);
+        eraseBoard();
+        updateBoard();
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else{
+        alert("Unable to move crate!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      console.log(newRow - 1);
+    }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
@@ -587,9 +663,9 @@ function forward(currentPlayer){
               board[newRow][newColumn] = currentPlayer;
               eraseBoard();
               updateBoard();
+              $("#borataudio").get(0).play();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
-              $("#borataudio").get(0).play();
 
 
 
@@ -603,7 +679,6 @@ function forward(currentPlayer){
                 laserButton.disabled = true;
                 bugButton.disabled = true;
                 endTurnButton.disabled = true;
-
               }
               else{
                 alert("CONGRATULATIONS! YOU WON!");
@@ -619,6 +694,7 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      $("#forwardaudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -661,6 +737,52 @@ function forward(currentPlayer){
       bugButton.disabled = false;
       endTurnButton.disabled = false;
     }
+    else if(board[newRow][newColumn] === "crate"){
+      if((newRow + 1) > 7){
+        alert("Unable to move crate outside of board!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else if(board[newRow + 1][newColumn] === ""){
+        alert("Moving Crate!")
+        currentPlayer.rowIndex = newRow;
+        currentPlayer.columnIndex = newColumn;
+        board[currentRow][currentColumn] = "";
+        board[newRow][newColumn] = currentPlayer;
+        board[newRow + 1][newColumn] = "crate";
+        console.log(board);
+        eraseBoard();
+        updateBoard();
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else if((newRow + 1) > 7){
+        alert("Unable to move crate outside of board!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else{
+        alert("Unable to move crate!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+    }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
@@ -680,9 +802,9 @@ function forward(currentPlayer){
               board[newRow][newColumn] = currentPlayer;
               eraseBoard();
               updateBoard();
+              $("#borataudio").get(0).play();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
-              $("#borataudio").get(0).play();
 
 
       console.log(playersStillPlaying);
@@ -696,8 +818,6 @@ function forward(currentPlayer){
                 laserButton.disabled = true;
                 bugButton.disabled = true;
                 endTurnButton.disabled = true;
-
-
               }
               else{
                 alert("CONGRATULATIONS! YOU WON!");
@@ -713,6 +833,7 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      $("#forwardaudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -754,6 +875,43 @@ function forward(currentPlayer){
       bugButton.disabled = false;
       endTurnButton.disabled = false;
     }
+    else if(board[newRow][newColumn] === "crate"){
+      if((newColumn + 1) > 7){
+        alert("Unable to move crate outside of board!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else if(board[newRow][newColumn + 1] === ""){
+        alert("Moving Crate!")
+        currentPlayer.rowIndex = newRow;
+        currentPlayer.columnIndex = newColumn;
+        board[currentRow][currentColumn] = "";
+        board[newRow][newColumn] = currentPlayer;
+        board[newRow][newColumn + 1] = "crate";
+        console.log(board);
+        eraseBoard();
+        updateBoard();
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else{
+        alert("Unable to move crate!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+    }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
@@ -773,9 +931,9 @@ function forward(currentPlayer){
               board[newRow][newColumn] = currentPlayer;
               eraseBoard();
               updateBoard();
+              $("#borataudio").get(0).play();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
-              $("#borataudio").get(0).play();
 
 
 
@@ -789,7 +947,6 @@ function forward(currentPlayer){
                 laserButton.disabled = true;
                 bugButton.disabled = true;
                 endTurnButton.disabled = true;
-
               }
               else{
                 alert("CONGRATULATIONS! YOU WON!");
@@ -805,6 +962,7 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      $("#forwardaudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -847,6 +1005,43 @@ function forward(currentPlayer){
       bugButton.disabled = false;
       endTurnButton.disabled = false;
     }
+    else if(board[newRow][newColumn] === "crate"){
+      if((newColumn - 1) < 0){
+        alert("Unable to move crate outside of board!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else if(board[newRow][newColumn - 1] === ""){
+        alert("Moving Crate!")
+        currentPlayer.rowIndex = newRow;
+        currentPlayer.columnIndex = newColumn;
+        board[currentRow][currentColumn] = "";
+        board[newRow][newColumn] = currentPlayer;
+        board[newRow][newColumn - 1] = "crate";
+        console.log(board);
+        eraseBoard();
+        updateBoard();
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+      else{
+        alert("Unable to move crate!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = false;
+        endTurnButton.disabled = false;
+      }
+    }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
@@ -866,9 +1061,9 @@ function forward(currentPlayer){
               board[newRow][newColumn] = currentPlayer;
               eraseBoard();
               updateBoard();
+              $("#borataudio").get(0).play();
               playersStillPlaying[currentPlayerIndex] = false;
               scorepointstable();
-              $("#borataudio").get(0).play();
 
               console.log(playersStillPlaying);
 
@@ -880,7 +1075,6 @@ function forward(currentPlayer){
                 laserButton.disabled = true;
                 bugButton.disabled = true;
                 endTurnButton.disabled = true;
-
               }
               else{
                 alert("CONGRATULATIONS! YOU WON!");
@@ -896,6 +1090,7 @@ function forward(currentPlayer){
       console.log(board);
       eraseBoard();
       updateBoard();
+      $("#forwardaudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
@@ -919,19 +1114,19 @@ function laser(currentPlayer){
   let currentColumn = currentPlayer.columnIndex;
   let newRow;
   let newColumn;
-  $("#laseraudio").get(0).play();
   boardCopy = copy(board);
   rowIndexCopy = currentRow;
   columnIndexCopy = currentColumn;
   directionCopy = currentDirection;
-
+  $("#laseraudio").get(0).play();
 
   if(currentDirection === "up"){
     newRow = currentRow - 1;
     newColumn = currentColumn;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!");
+      $("#laseraudio").get(0).play();
+      alert("Melting Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -943,7 +1138,8 @@ function laser(currentPlayer){
     newColumn = currentColumn;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!");
+      $("#laseraudio").get(0).play();
+      alert("Melting Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -955,7 +1151,8 @@ function laser(currentPlayer){
     newColumn = currentColumn + 1;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!");
+      $("#laseraudio").get(0).play();
+      alert("Melting Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -967,7 +1164,8 @@ function laser(currentPlayer){
     newColumn = currentColumn - 1;
 
     if(board[newRow][newColumn] === "iceWall"){
-      alert("Detected Ice Wall!");
+      $("#laseraudio").get(0).play();
+      alert("Melting Ice Wall!");
       board[newRow][newColumn] = "water";
     }
     else{
@@ -986,22 +1184,42 @@ function laser(currentPlayer){
 }
 
 function flowModalPlay() {
-  console.log(sessionStorage);
+  console.log("estou aqui");
 
   if (sessionStorage.length != 0) {
-    let activeUser = sessionStorage.getItem("activeUser");
-    if (activeUser !== null) {
-      sessionStorage.setItem("tempUser", activeUser);
-    }
+      played = true;
+      console.log(sessionStorage[0]);
 
-      $("#playModal").css("display", "none");
-      $("#playModeModal").css("display", "block");
-      getLogedPlayer();
+    playModal.style.display = "none";
+    $("#playModeModal").css("display","block");
+    getLogedPlayer();
 
-    } else if (sessionStorage.length == 0) {
-      $("#playModal").css('display', 'block');
-    }
+  } else if (played == false) {
 
+      $('#playModal').css('display', 'block');
+
+      console.log("idk");
+      let u1Name = $('#u1name').val();
+      let u2Name = $("#u2name").val();
+      let u3Name = $("#u3name").val();
+      let u4Name = $("#u4name").val();
+      console.log(u4Name);
+
+      let currentPlayers = [u1Name, u2Name, u3Name, u4Name];
+
+      player1 = new Player(currentPlayers[0], 0, 0, 0, "down", 0, 0);
+      player2 = new Player(currentPlayers[1], 0, 0, 0, "left", 0, 7);
+      player3 = new Player(currentPlayers[2], 0, 0, 0, "right", 7, 0);
+      player4 = new Player(currentPlayers[3], 0, 0, 0, "up", 7, 7);
+
+      allplayers =  [player1,player2,player3,player4];
+      console.log(allplayers);
+
+      getfirstPlayer();
+      createscoretable();
+      played = true;
+
+  }
 }
 
 function closePlayModal() {
@@ -1044,12 +1262,11 @@ function goHome() {
 }
 
 function getLogedPlayer() {
-  let tempUser = sessionStorage.getItem('tempUser');
+  let activeUser = sessionStorage.getItem('activeUser');
+  if (activeUser !== null) {
 
     let playersnames = sessionStorage.getItem('playerNames');
     let playersbirth = sessionStorage.getItem('playerBirthdays');
-    console.log(playersnames,playersbirth);
-
 
     playersnames = playersnames.split(",");
     playersbirth = playersbirth.split(",");
@@ -1065,24 +1282,7 @@ function getLogedPlayer() {
     createscoretable();
 
 
-
-}
-
-function nologsub() {
-
-  sessionStorage.setItem("tempUser","nolog");
-
-  let u1Name = $('#u1name').val();
-  let u2Name = $("#u2name").val();
-  let u3Name = $("#u3name").val();
-  let u4Name = $("#u4name").val();
-  console.log(u4Name);
-
-  let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
-
-  sessionStorage.setItem("playerNames",currentPlayers);
-  let bday = [0,0,0,0].toString();
-  sessionStorage.setItem("playerBirthdays",bday);
+  }
 
 }
 
@@ -1143,11 +1343,6 @@ function getfirstPlayer() {
   rowIndexCopy = currentPlayer.rowIndex;
   columnIndexCopy = currentPlayer.columnIndex;
   directionCopy = currentPlayer.direction;
-}
-
-function playnologin() {
-  nologsub();
-  closePlayModal();
 }
 
 // Window loading function

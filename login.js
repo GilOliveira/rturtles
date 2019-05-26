@@ -47,12 +47,10 @@ function register() {
     let familyBirthdates = [player1Birth, player2Birth, player3Birth, player4Birth].toString();
 
     if ((password === confirmPassword) && (uniqueUsername(userName))) {
-        localStorage.setItem(userName, password);
+        localStorage.setItem(userName,password);
         localStorage.setItem(userName + '_names', familyElements);
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
         localStorage.setItem(userName + '_score', [0, 0, 0, 0].toString());
-        localStorage.setItem(userName + '_gameswon', [0, 0, 0, 0].toString());
-        startUserSession(userName);
     }
     else if (password !== confirmPassword) {
         alert("Oops! The passwords you've entered do not match, please try again");
@@ -60,6 +58,8 @@ function register() {
     else {
         alert("Oops! That username already exists! Please try a different one.")
     }
+
+    startUserSession(userName);
 }
 
 function login(){
@@ -75,7 +75,6 @@ function login(){
 }
 
 function startUserSession(username){
-    sessionStorage.clear();
     sessionStorage.setItem('activeUser', username);
     $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
     $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
@@ -86,12 +85,10 @@ function startUserSession(username){
     console.log(currentPlayers);
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
     let currentScores = localStorage.getItem(username + '_scores');
-    let currentWins = localStorage.getItem(username + '_gameswon');
 
     sessionStorage.setItem('playerNames', currentPlayers);
     sessionStorage.setItem('playerBirthdays', currentBirthdays);
     sessionStorage.setItem('playerScores', currentScores);
-    sessionStorage.setItem('playerWins', currentWins);
 }
 
 function logout(){
