@@ -58,6 +58,7 @@ function main() {
 
 window.onload = main;
 
+let played;
 let player1;
 let player2;
 let player3;
@@ -103,6 +104,7 @@ function events(){
   $('#openPlayRegister').click(openRegisterPlay);
   $('#goHome').click(goHome);
 
+  played = false;
   flowModalPlay();
 
 }
@@ -591,6 +593,7 @@ function forward(currentPlayer){
               $("#borataudio").get(0).play();
 
 
+
       console.log(playersStillPlaying);
 
               if(!(playersStillPlaying.includes(true))){
@@ -912,10 +915,12 @@ function laser(currentPlayer){
   let currentColumn = currentPlayer.columnIndex;
   let newRow;
   let newColumn;
+  $("#laseraudio").get(0).play();
   boardCopy = copy(board);
   rowIndexCopy = currentRow;
   columnIndexCopy = currentColumn;
   directionCopy = currentDirection;
+
 
   if(currentDirection === "up"){
     newRow = currentRow - 1;
@@ -979,37 +984,38 @@ function laser(currentPlayer){
 function flowModalPlay() {
   console.log("estou aqui");
 
-  if (sessionStorage.length == 0) {
-
-    $('#playModal').css('display', 'block');
-
-    let u1Name = $('#u1name').val();
-    let u2Name = $("#u2name").val();
-    let u3Name = $("#u3name").val();
-    let u4Name = $("#u4name").val();
-
-    let currentPlayers = [u1Name, u2Name, u3Name, u4Name].toString();
-
-
-    sessionStorage.setItem('playerNames', currentPlayers);
-    sessionStorage.setItem('playerScores', [0,0,0,0].toString());
-    sessionStorage.setItem('playerAges', [1,1,1,1].toString());
-
-    player1 = new Player(currentPlayers[0], 0, 0, 0, "down", 0, 0);
-    player2 = new Player(currentPlayers[1], 0, 0, 0, "left", 0, 7);
-    player3 = new Player(currentPlayers[2], 0, 0, 0, "right", 7, 0);
-    player4 = new Player(currentPlayers[3], 0, 0, 0, "up", 7, 7);
-
-    getfirstPlayer();
-    createscoretable();
-
-  }
-  else {
+  if (sessionStorage.length != 0) {
+      played = true;
+      console.log(sessionStorage[0]);
 
     playModal.style.display = "none";
     $("#playModeModal").css("display","block");
     getLogedPlayer();
 
+  } else if (played == false) {
+
+      $('#playModal').css('display', 'block');
+
+      console.log("idk");
+      let u1Name = $('#u1name').val();
+      let u2Name = $("#u2name").val();
+      let u3Name = $("#u3name").val();
+      let u4Name = $("#u4name").val();
+      console.log(u4Name);
+
+      let currentPlayers = [u1Name, u2Name, u3Name, u4Name];
+
+      player1 = new Player(currentPlayers[0], 0, 0, 0, "down", 0, 0);
+      player2 = new Player(currentPlayers[1], 0, 0, 0, "left", 0, 7);
+      player3 = new Player(currentPlayers[2], 0, 0, 0, "right", 7, 0);
+      player4 = new Player(currentPlayers[3], 0, 0, 0, "up", 7, 7);
+
+      allplayers =  [player1,player2,player3,player4];
+      console.log(allplayers);
+
+      getfirstPlayer();
+      createscoretable();
+      played = true;
 
   }
 }
