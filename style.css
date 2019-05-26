@@ -148,10 +148,30 @@ body, html {
     height: 100%;
 }
 
-#mainContainer {
+.mainContainer {
     background-image: url("images/content/rtboard.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#aboutUsMainContainer {
+    background-image: url("images/content/dan.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mainAboutUsCard {
+    width: 85%;
+    margin: 10px auto;
+    padding: 4px;
+}
+
+#mainPageCard {
+    width: 50%;
+    margin: 10% auto;
+    padding: 4px;
 }
