@@ -97,6 +97,10 @@ function events(){
   $('#openPlayRegister').click(openRegisterPlay);
   $('#goHome').click(goHome);
   $("#nologbtn").click(playnologin);
+  $('#currentPlayerCard').prop('class', 'w3-card w3-white');
+  $('#boardCard').prop('class', 'w3-card w3-white w3-center');
+  $('#buttonContainer').prop('class', 'w3-card w3-white w3-card w3-white w3-center');
+  $('#scoretable').prop('class', 'w3-card w3-white');
 
   flowModalPlay();
 }
@@ -116,6 +120,10 @@ function playStoneWalls(){
   document.getElementById("endTurn").style.display="inline";
   $('#currentPlayerContainer').prop('class', 'w3-container');
   updateCurrentPlayerDisplay();
+  $('#currentPlayerCard').prop('class', 'w3-card w3-white');
+  $('#boardCard').prop('class', 'w3-card w3-white w3-center');
+  $('#buttonContainer').prop('class', 'w3-card w3-white w3-card w3-white w3-center');
+  $('#scoretable').prop('class', 'w3-card w3-white');
 }
 
 function playIceWalls(){
@@ -134,6 +142,10 @@ function playIceWalls(){
   document.getElementById("endTurn").style.display="inline";
   $('#currentPlayerContainer').prop('class', 'w3-container');
   updateCurrentPlayerDisplay();
+  $('#currentPlayerCard').prop('class', 'w3-card w3-white');
+  $('#boardCard').prop('class', 'w3-card w3-white w3-center');
+  $('#buttonContainer').prop('class', 'w3-card w3-white w3-card w3-white w3-center');
+  $('#scoretable').prop('class', 'w3-card w3-white');
 }
 
 function playCrates(){
@@ -151,6 +163,10 @@ function playCrates(){
   document.getElementById("endTurn").style.display="inline";
   $('#currentPlayerContainer').prop('class', 'w3-container');
   updateCurrentPlayerDisplay();
+  $('#currentPlayerCard').prop('class', 'w3-card w3-white');
+  $('#boardCard').prop('class', 'w3-card w3-white w3-center');
+  $('#buttonContainer').prop('class', 'w3-card w3-white w3-card w3-white w3-center');
+  $('#scoretable').prop('class', 'w3-card w3-white');
 }
 
 // Função que faz deepcopy de um array.
