@@ -530,6 +530,7 @@ function forward(currentPlayer){
   let laserButton = document.getElementById("laser");
   let bugButton = document.getElementById("bug");
   let endTurnButton = document.getElementById("endTurn");
+  let endGameButton = document.getElementById("endGame");
 
   let currentDirection = currentPlayer.direction;
   let currentRow = currentPlayer.rowIndex;
@@ -639,6 +640,7 @@ function forward(currentPlayer){
         laserButton.disabled = true;
         bugButton.disabled = true;
         endTurnButton.disabled = true;
+        endGameButton.style.display="block";
       }
       else{
         alert("CONGRATULATIONS! YOU WON!");
@@ -767,6 +769,7 @@ function forward(currentPlayer){
         laserButton.disabled = true;
         bugButton.disabled = true;
         endTurnButton.disabled = true;
+        endGameButton.style.display="block";
       }
       else{
         alert("CONGRATULATIONS! YOU WON!");
@@ -885,6 +888,7 @@ function forward(currentPlayer){
         laserButton.disabled = true;
         bugButton.disabled = true;
         endTurnButton.disabled = true;
+        endGameButton.style.display="block";
       }
       else{
         alert("CONGRATULATIONS! YOU WON!");
@@ -1004,6 +1008,7 @@ function forward(currentPlayer){
         laserButton.disabled = true;
         bugButton.disabled = true;
         endTurnButton.disabled = true;
+        endGameButton.style.display="block";
       }
       else{
         alert("CONGRATULATIONS! YOU WON!");

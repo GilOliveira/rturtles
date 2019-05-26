@@ -1,7 +1,6 @@
 "use strict";
 
 function main() {
-
     let botaoHamburguer = document.getElementById("hamburger");
     let closeRegisterButton = document.getElementById("closeRegister");
     let registerModal = document.getElementById("registerModal");

@@ -138,7 +138,15 @@ video {
 }
 
 #scoretable {
-    display: none;
+  display: none;
+}
+
+#endGame {
+  /* display: none; */
+}
+
+#endGame a {
+  text-decoration: none;
 }
 
 body, html {
