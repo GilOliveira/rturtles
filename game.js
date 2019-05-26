@@ -11,6 +11,10 @@ function main() {
   let closeLoginButton = document.getElementById("closeLogin");
   let mobileLoginButton = document.getElementById("openLoginMobile");
   let mobileRegisterButton = document.getElementById("openRegisterMobile");
+  // let loginBeepButton = document.getElementById('loginBeep');
+  // let loginDotButton = document.getElementById('loginDot');
+  // let loginPangleButton = document.getElementById('loginPangle');
+  // let loginPiButton = document.getElementById('loginPi');
 
   botaoHamburguer.addEventListener("click", openMenu);
   closeRegisterButton.addEventListener("click", closeRegister);
@@ -121,8 +125,6 @@ function playStoneWalls(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
-  $('#currentPlayerContainer').prop('class', 'w3-container');
-  updateCurrentPlayerDisplay();
 }
 
 function playIceWalls(){
@@ -140,8 +142,6 @@ function playIceWalls(){
   document.getElementById("laser").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
-  $('#currentPlayerContainer').prop('class', 'w3-container');
-  updateCurrentPlayerDisplay();
 }
 
 function playCrates(){
@@ -158,8 +158,6 @@ function playCrates(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
-  $('#currentPlayerContainer').prop('class', 'w3-container');
-  updateCurrentPlayerDisplay();
 }
 
 // Função que faz deepcopy de um array.
@@ -172,25 +170,19 @@ function copy(o){
     output[key] = (typeof v === "object") ? copy(v) : v;
   }
 
-   return output;
+  return output;
 }
 
 function displayBoard(){
-    let boardTable = $('#board');
-    for (let row = 0; row < board.length; row++){
-        boardTable.append('<tr id="' + row + '">');
-        for (let column = 0; column < board.length; column++){
-          if(board[row][column] === "iceWall"){
-            $('#boardContainer table:last-child').append('<td class="water" id="' +
-                row.toString() + "-" + column.toString() + '"></td>');
-          }
-          else{
-          $('#boardContainer table:last-child').append('<td class="grass" id="' +
-              row.toString() + "-" + column.toString() + '"></td>');
-          }
-        }
-        boardTable.append('</tr>');
+  let boardTable = $('#board');
+  for (let row = 0; row < board.length; row++) {
+    boardTable.append('<tr id="' + row + '">');
+    for (let column = 0; column < board.length; column++) {
+      $('#boardContainer table:last-child').append('<td class="grass" id="' +
+          row.toString() + "-" + column.toString() + '"></td>');
     }
+    boardTable.append('</tr>');
+  }
 }
 
 function updateBoard(){
@@ -280,11 +272,9 @@ function eraseBoard(){
   }
 }
 
-function Player(name, birth, score, timetaken, direction, rowIndex, columnIndex){
+function Player(name, birth, direction, rowIndex, columnIndex){
   this.name = name;
   this.birth = birth;
-  this.score = score;
-  this.timetaken = timetaken;
   this.direction = direction;
   this.rowIndex = rowIndex;
   this.columnIndex = columnIndex;
@@ -295,13 +285,13 @@ function generateBoard(n){
   let tempRow;
 
   for(let i = 0; i < n; i++){
-      tempRow = [];
+    tempRow = [];
 
-      for(let j = 0; j < n; j++){
-          tempRow.push("");
-      }
+    for(let j = 0; j < n; j++){
+      tempRow.push("");
+    }
 
-      board.push(tempRow);
+    board.push(tempRow);
   }
 
   return board;
@@ -448,7 +438,6 @@ function updateTurn(){
   laserButton.disabled = false;
   bugButton.disabled = true;
   endTurnButton.disabled = true;
-  updateCurrentPlayerDisplay();
 }
 
 function bug(){
@@ -561,6 +550,7 @@ function rotateRight(currentPlayer){
 }
 
 function forward(currentPlayer){
+
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -583,7 +573,6 @@ function forward(currentPlayer){
     newColumn = currentColumn;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
-      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -594,7 +583,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
-      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -605,7 +593,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
-      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -617,7 +604,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newRow - 1) < 0){
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -627,7 +613,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow - 1][newColumn] === ""){
-        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -645,7 +630,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -657,64 +641,47 @@ function forward(currentPlayer){
       console.log(newRow - 1);
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
-            || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
-              $("#turtleaudio").get(0).play();
-              alert("Oops! Seems like another turtle is already there!");
-              console.log(board);
-              rotateLeftButton.disabled = true;
-              rotateRightButton.disabled = true;
-              forwardButton.disabled = true;
-              laserButton.disabled = true;
-              bugButton.disabled = false;
-              endTurnButton.disabled = false;
-    }
-    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
-            || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
-
-              currentPlayer.rowIndex = newRow;
-              currentPlayer.columnIndex = newColumn;
-              board[currentRow][currentColumn] = "";
-              board[newRow][newColumn] = currentPlayer;
-              eraseBoard();
-              updateBoard();
-              $("#borataudio").get(0).play();
-              playersStillPlaying[currentPlayerIndex] = false;
-              scorepointstable();
-
-
-
-      console.log(playersStillPlaying);
-
-              if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
-                rotateLeftButton.disabled = true;
-                rotateRightButton.disabled = true;
-                forwardButton.disabled = true;
-                laserButton.disabled = true;
-                bugButton.disabled = true;
-                endTurnButton.disabled = true;
-              }
-              else{
-                alert("CONGRATULATIONS! YOU WON!");
-                updateTurn();
-                console.log(board);
-              }
-    }
-    else if(board[newRow][newColumn] === "water"){
-      currentPlayer.rowIndex = newRow;
-      currentPlayer.columnIndex = newColumn;
-      board[currentRow][currentColumn] = "";
-      board[newRow][newColumn] = currentPlayer;
+        || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+      alert("Oops! Seems like another turtle is already there!");
       console.log(board);
-      eraseBoard();
-      updateBoard();
-      $("#wateraudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
       laserButton.disabled = true;
       bugButton.disabled = false;
       endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
+        || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      eraseBoard();
+      updateBoard();
+      $("#borataudio").get(0).play();
+      playersStillPlaying[currentPlayerIndex] = false;
+      scorepointstable();
+
+
+
+      console.log(playersStillPlaying);
+
+      if(!(playersStillPlaying.includes(true))){
+        alert("CONGRATULATIONS! YOU ENDED THE GAME!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = true;
+        endTurnButton.disabled = true;
+      }
+      else{
+        alert("CONGRATULATIONS! YOU WON!");
+        updateTurn();
+        console.log(board);
+      }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -738,7 +705,6 @@ function forward(currentPlayer){
     newColumn = currentColumn;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
-      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -749,7 +715,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
-      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -760,7 +725,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
-      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -772,7 +736,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newRow + 1) > 7){
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -782,7 +745,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow + 1][newColumn] === ""){
-        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -800,7 +762,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if((newRow + 1) > 7){
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -820,63 +781,46 @@ function forward(currentPlayer){
       }
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
-            || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
-              $("#turtleaudio").get(0).play();
-              alert("Oops! Seems like another turtle is already there!");
-              console.log(board);
-              rotateLeftButton.disabled = true;
-              rotateRightButton.disabled = true;
-              forwardButton.disabled = true;
-              laserButton.disabled = true;
-              bugButton.disabled = false;
-              endTurnButton.disabled = false;
-    }
-    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
-            || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
-              currentPlayer.rowIndex = newRow;
-              currentPlayer.columnIndex = newColumn;
-              board[currentRow][currentColumn] = "";
-              board[newRow][newColumn] = currentPlayer;
-              eraseBoard();
-              updateBoard();
-              $("#borataudio").get(0).play();
-              playersStillPlaying[currentPlayerIndex] = false;
-              scorepointstable();
-
-
-      console.log(playersStillPlaying);
-
-
-              if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
-                rotateLeftButton.disabled = true;
-                rotateRightButton.disabled = true;
-                forwardButton.disabled = true;
-                laserButton.disabled = true;
-                bugButton.disabled = true;
-                endTurnButton.disabled = true;
-              }
-              else{
-                alert("CONGRATULATIONS! YOU WON!");
-                updateTurn();
-                console.log(board);
-              }
-    }
-    else if(board[newRow][newColumn] === "water"){
-      currentPlayer.rowIndex = newRow;
-      currentPlayer.columnIndex = newColumn;
-      board[currentRow][currentColumn] = "";
-      board[newRow][newColumn] = currentPlayer;
+        || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+      alert("Oops! Seems like another turtle is already there!");
       console.log(board);
-      eraseBoard();
-      updateBoard();
-      $("#wateraudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
       laserButton.disabled = true;
       bugButton.disabled = false;
       endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
+        || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      eraseBoard();
+      updateBoard();
+      $("#borataudio").get(0).play();
+      playersStillPlaying[currentPlayerIndex] = false;
+      scorepointstable();
+
+
+      console.log(playersStillPlaying);
+
+
+      if(!(playersStillPlaying.includes(true))){
+        alert("CONGRATULATIONS! YOU ENDED THE GAME!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = true;
+        endTurnButton.disabled = true;
+      }
+      else{
+        alert("CONGRATULATIONS! YOU WON!");
+        updateTurn();
+        console.log(board);
+      }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -900,7 +844,6 @@ function forward(currentPlayer){
     newColumn = currentColumn + 1;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
-      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -911,7 +854,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
-      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -921,7 +863,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
-      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -933,7 +874,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newColumn + 1) > 7){
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -943,7 +883,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow][newColumn + 1] === ""){
-        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -961,7 +900,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -972,63 +910,46 @@ function forward(currentPlayer){
       }
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
-            || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
-              alert("Oops! Seems like another turtle is already there!");
-              $("#turtleaudio").get(0).play();
-              console.log(board);
-              rotateLeftButton.disabled = true;
-              rotateRightButton.disabled = true;
-              forwardButton.disabled = true;
-              laserButton.disabled = true;
-              bugButton.disabled = false;
-              endTurnButton.disabled = false;
-    }
-    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
-            || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
-              currentPlayer.rowIndex = newRow;
-              currentPlayer.columnIndex = newColumn;
-              board[currentRow][currentColumn] = "";
-              board[newRow][newColumn] = currentPlayer;
-              eraseBoard();
-              updateBoard();
-              $("#borataudio").get(0).play();
-              playersStillPlaying[currentPlayerIndex] = false;
-              scorepointstable();
-
-
-
-              console.log(playersStillPlaying);
-
-              if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
-                rotateLeftButton.disabled = true;
-                rotateRightButton.disabled = true;
-                forwardButton.disabled = true;
-                laserButton.disabled = true;
-                bugButton.disabled = true;
-                endTurnButton.disabled = true;
-              }
-              else{
-                alert("CONGRATULATIONS! YOU WON!");
-                updateTurn();
-                console.log(board);
-              }
-    }
-    else if(board[newRow][newColumn] === "water"){
-      currentPlayer.rowIndex = newRow;
-      currentPlayer.columnIndex = newColumn;
-      board[currentRow][currentColumn] = "";
-      board[newRow][newColumn] = currentPlayer;
+        || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+      alert("Oops! Seems like another turtle is already there!");
       console.log(board);
-      eraseBoard();
-      updateBoard();
-      $("#wateraudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
       laserButton.disabled = true;
       bugButton.disabled = false;
       endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
+        || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      eraseBoard();
+      updateBoard();
+      $("#borataudio").get(0).play();
+      playersStillPlaying[currentPlayerIndex] = false;
+      scorepointstable();
+
+
+
+      console.log(playersStillPlaying);
+
+      if(!(playersStillPlaying.includes(true))){
+        alert("CONGRATULATIONS! YOU ENDED THE GAME!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = true;
+        endTurnButton.disabled = true;
+      }
+      else{
+        alert("CONGRATULATIONS! YOU WON!");
+        updateTurn();
+        console.log(board);
+      }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -1052,7 +973,6 @@ function forward(currentPlayer){
     newColumn = currentColumn - 1;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
-      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -1063,7 +983,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
-      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -1074,7 +993,6 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
-      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -1086,7 +1004,6 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newColumn - 1) < 0){
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -1096,7 +1013,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow][newColumn - 1] === ""){
-        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -1114,7 +1030,6 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
-        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -1125,61 +1040,44 @@ function forward(currentPlayer){
       }
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
-            || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
-              $("#turtleaudio").get(0).play();
-              alert("Oops! Seems like another turtle is already there!");
-              console.log(board);
-              rotateLeftButton.disabled = true;
-              rotateRightButton.disabled = true;
-              forwardButton.disabled = true;
-              laserButton.disabled = true;
-              bugButton.disabled = false;
-              endTurnButton.disabled = false;
-    }
-    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
-            || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
-              currentPlayer.rowIndex = newRow;
-              currentPlayer.columnIndex = newColumn;
-              board[currentRow][currentColumn] = "";
-              board[newRow][newColumn] = currentPlayer;
-              eraseBoard();
-              updateBoard();
-              $("#borataudio").get(0).play();
-              playersStillPlaying[currentPlayerIndex] = false;
-              scorepointstable();
-
-              console.log(playersStillPlaying);
-
-              if(!(playersStillPlaying.includes(true))){
-                alert("CONGRATULATIONS! YOU ENDED THE GAME!");
-                rotateLeftButton.disabled = true;
-                rotateRightButton.disabled = true;
-                forwardButton.disabled = true;
-                laserButton.disabled = true;
-                bugButton.disabled = true;
-                endTurnButton.disabled = true;
-              }
-              else{
-                alert("CONGRATULATIONS! YOU WON!");
-                updateTurn();
-                console.log(board);
-              }
-    }
-    else if(board[newRow][newColumn] === "water"){
-      currentPlayer.rowIndex = newRow;
-      currentPlayer.columnIndex = newColumn;
-      board[currentRow][currentColumn] = "";
-      board[newRow][newColumn] = currentPlayer;
+        || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+      alert("Oops! Seems like another turtle is already there!");
       console.log(board);
-      eraseBoard();
-      updateBoard();
-      $("#wateraudio").get(0).play();
       rotateLeftButton.disabled = true;
       rotateRightButton.disabled = true;
       forwardButton.disabled = true;
       laserButton.disabled = true;
       bugButton.disabled = false;
       endTurnButton.disabled = false;
+    }
+    else if(board[newRow][newColumn] === "jewel1" || board[newRow][newColumn] === "jewel2"
+        || board[newRow][newColumn] === "jewel3" || board[newRow][newColumn] === "jewel4"){
+      currentPlayer.rowIndex = newRow;
+      currentPlayer.columnIndex = newColumn;
+      board[currentRow][currentColumn] = "";
+      board[newRow][newColumn] = currentPlayer;
+      eraseBoard();
+      updateBoard();
+      $("#borataudio").get(0).play();
+      playersStillPlaying[currentPlayerIndex] = false;
+      scorepointstable();
+
+      console.log(playersStillPlaying);
+
+      if(!(playersStillPlaying.includes(true))){
+        alert("CONGRATULATIONS! YOU ENDED THE GAME!");
+        rotateLeftButton.disabled = true;
+        rotateRightButton.disabled = true;
+        forwardButton.disabled = true;
+        laserButton.disabled = true;
+        bugButton.disabled = true;
+        endTurnButton.disabled = true;
+      }
+      else{
+        alert("CONGRATULATIONS! YOU WON!");
+        updateTurn();
+        console.log(board);
+      }
     }
     else{
       currentPlayer.rowIndex = newRow;
@@ -1300,13 +1198,13 @@ function flowModalPlay() {
       sessionStorage.setItem("tempUser", activeUser);
     }
 
-      $("#playModal").css("display", "none");
-      $("#playModeModal").css("display", "block");
-      getLogedPlayer();
+    $("#playModal").css("display", "none");
+    $("#playModeModal").css("display", "block");
+    getLogedPlayer();
 
-    } else if (sessionStorage.length == 0) {
-      $("#playModal").css('display', 'block');
-    }
+  } else if (sessionStorage.length == 0) {
+    $("#playModal").css('display', 'block');
+  }
 
 }
 
@@ -1315,20 +1213,20 @@ function closePlayModal() {
 }
 
 function openLogin() {
-    loginModal.style.display = 'block';
+  loginModal.style.display = 'block';
 }
 
 function closeLogin() {
-    loginModal.style.display = 'none';
+  loginModal.style.display = 'none';
 }
 
 
 function openRegister() {
-    registerModal.style.display = 'block';
+  registerModal.style.display = 'block';
 }
 
 function closeRegister() {
-    registerModal.style.display = 'none';
+  registerModal.style.display = 'none';
 }
 
 function openRegisterPlay() {
@@ -1352,23 +1250,23 @@ function goHome() {
 function getLogedPlayer() {
   let tempUser = sessionStorage.getItem('tempUser');
 
-    let playersnames = sessionStorage.getItem('playerNames');
-    let playersbirth = sessionStorage.getItem('playerBirthdays');
-    console.log(playersnames,playersbirth);
+  let playersnames = sessionStorage.getItem('playerNames');
+  let playersbirth = sessionStorage.getItem('playerBirthdays');
+  console.log(playersnames,playersbirth);
 
 
-    playersnames = playersnames.split(",");
-    playersbirth = playersbirth.split(",");
+  playersnames = playersnames.split(",");
+  playersbirth = playersbirth.split(",");
 
-    player1 = new Player(playersnames[0], playersbirth[0], 0, 0, "down", 0, 0);
-    player2 = new Player(playersnames[1], playersbirth[1], 0, 0, "left", 0, 7);
-    player3 = new Player(playersnames[2], playersbirth[2], 0, 0, "right", 7, 0);
-    player4 = new Player(playersnames[3], playersbirth[3], 0, 0,  "up", 7, 7);
+  player1 = new Player(playersnames[0], playersbirth[0], "down", 0, 0);
+  player2 = new Player(playersnames[1], playersbirth[1], "left", 0, 7);
+  player3 = new Player(playersnames[2], playersbirth[2], "right", 7, 0);
+  player4 = new Player(playersnames[3], playersbirth[3], "up", 7, 7);
 
-    allplayers =  [player1,player2,player3,player4];
+  allplayers =  [player1,player2,player3,player4];
 
-    getfirstPlayer();
-    createscoretable();
+  getfirstPlayer();
+  createscoretable();
 
 
 
@@ -1388,36 +1286,91 @@ function nologsub() {
 
   sessionStorage.setItem("playerNames",currentPlayers);
   let bday = [0,0,0,0].toString();
+
   sessionStorage.setItem("playerBirthdays",bday);
+  sessionStorage.setItem("playerGames","0");
+  sessionStorage.setItem("playerScores",[0,0,0,0].toString());
+  sessionStorage.setItem("playerWins",[0,0,0,0].toString());
+  sessionStorage.setItem("playerTime",[0,0,0,0].toString());
+  console.log(sessionStorage.getItem("playerTime"))
+
 
 }
+
 
 function scorepointstable() {
   playerswon++;
-  console.log(playerswon);
+  let placed;
+  let time;
+
+  let currentGames = sessionStorage.getItem('playerGames');
+  let newGames = parseInt(currentGames);
+  newGames += 1;
+  sessionStorage.setItem('playerGames',newGames.toString());
+
+
+  let currentScore = sessionStorage.getItem('playerScores');
+  let scoresArray = currentScore.split(",");
+  let newScore = parseInt(scoresArray[currentPlayerIndex]);
+
+  let currentTime = sessionStorage.getItem('playerTime');
+  let timeArray = currentTime.split(",");
+  let newTime = parseInt(timeArray[currentPlayerIndex]);
+
+  let currentWins =sessionStorage.getItem('playerWins');
+  let winsArray = currentWins.split(",");
+  let newWins = parseInt(winsArray[currentPlayerIndex]);
+
 
   if (playerswon == 1) {
-    allplayers[currentPlayerIndex].score = 10;
-    console.log("!!")
+    console.log(newWins);
+    newScore += 10;
+    newWins += 1;
+    placed = "1º";
+
+    scoresArray[currentPlayerIndex] = newScore;
+    sessionStorage.setItem("playerScores",scoresArray);
+    console.log(scoresArray,winsArray,scoresArray);
+
+    winsArray[currentPlayerIndex] = newWins;
+    sessionStorage.setItem("playerWins", winsArray);
 
   } else if (playerswon == 2) {
-    allplayers[currentPlayerIndex].score = 5
+    newScore += 5;
+    placed = "2º";
+
+    scoresArray[currentPlayerIndex] = newScore;
+    sessionStorage.setItem("playerScores",scoresArray);
+
 
   } else if (playerswon == 3) {
-    allplayers[currentPlayerIndex].score = 3
+    newScore  += 3;
+    placed = "3º";
+    scoresArray[currentPlayerIndex] = newScore;
+    sessionStorage.setItem("playerScores",scoresArray);
 
   } else if (playerswon == 4) {
-    allplayers[currentPlayerIndex].score = 1
+    currentScore += 1;
+    placed = "4º";
+    scoresArray[currentPlayerIndex] = newScore;
+    sessionStorage.setItem("playerScores",scoresArray);
+
+    playerswon = 0
   }
 
-    let scoretable = $("#scoretable tr");
-    let playerscore = scoretable.eq(currentPlayerIndex + 1);
-    let playerobj = allplayers[currentPlayerIndex];
-    playerscore.html("<td> " +
-        playerobj.name + "</td><td>" +
-        playerobj.score + "</td><td>" +
-        playerobj.timetaken + "</td>")
-}
+  let scoretable = $("#scoretable tr");
+
+  let playerscore = scoretable.eq(currentPlayerIndex + 1);
+
+  let playerobj = allplayers[currentPlayerIndex];
+
+  playerscore.html("<td> " +
+      playerobj.name + "</td><td>" +
+      newScore + "</td><td>" +
+      newTime + "</td><td>" +
+      newWins + "</td><td>" +
+      placed + "</td>");}
+
 
 function createscoretable() {
   let players = [player1.name,player2.name,player3.name,player4.name];
@@ -1426,7 +1379,9 @@ function createscoretable() {
   table.append("<tr>");
   table.append("<th> Username </th>");
   table.append("<th>Score</th>");
-  table.append("<th>Time taken</th>");
+  table.append("<th>Tame taken</th>");
+  table.append("<th>Games won</th>");
+  table.append("<th>Placed</th>");
   table.append("</tr>");
 
 
@@ -1454,27 +1409,6 @@ function getfirstPlayer() {
 function playnologin() {
   nologsub();
   closePlayModal();
-}
-
-function updateCurrentPlayerDisplay() {
-  switch (currentPlayer) {
-    case player1:
-      $('#currentPlayerLabel').text(player1.name);
-      $('#currentPlayerImage').prop('src', 'images/game/characters/beep.png');
-      break;
-    case player2:
-      $('#currentPlayerLabel').text(player2.name);
-      $('#currentPlayerImage').prop('src', 'images/game/characters/dot.png');
-      break;
-    case player3:
-      $('#currentPlayerLabel').text(player3.name);
-      $('#currentPlayerImage').prop('src', 'images/game/characters/pangle.png');
-      break;
-    case player4:
-      $('#currentPlayerLabel').text(player4.name);
-      $('#currentPlayerImage').prop('src', 'images/game/characters/pi.png');
-      break;
-  }
 }
 
 // Window loading function
