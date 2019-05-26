@@ -19,6 +19,10 @@ function main() {
   mobileLoginButton.addEventListener("click", openLogin);
   mobileRegisterButton.addEventListener("click", openRegister);
 
+  $('#openProfile').click(function(){
+    window.open("Profile.html", "_self");
+  });
+
 
   function openLogin() {
     loginModal.style.display = 'block';
@@ -1321,12 +1325,14 @@ function createscoretable() {
 }
 
 function getfirstPlayer() {
-  currentPlayer = player1;
-  currentPlayerIndex = 0;
+  let youngindex = sortage(allplayers);
+  currentPlayer = allplayers[youngindex];
+  currentPlayerIndex = youngindex;
   rowIndexCopy = currentPlayer.rowIndex;
   columnIndexCopy = currentPlayer.columnIndex;
   directionCopy = currentPlayer.direction;
 }
+
 
 function playnologin() {
   nologsub();
@@ -1352,6 +1358,20 @@ function updateCurrentPlayerDisplay() {
       $('#currentPlayerImage').prop('src', 'images/game/characters/pi.png');
       break;
   }
+}
+
+function sortage(arrayplayersobj) {
+  let youngest = null;
+  let youngestindex;
+
+  for (let i = 0; i < arrayplayersobj.length; i++) {
+    let bday = parseInt(arrayplayersobj[i].birth.replace("-","").replace("-", ""));
+    if (bday > youngest || youngest == null) {
+      youngest = bday;
+      youngestindex = i;
+    }
+  }
+  return youngestindex
 }
 
 // Window loading function
