@@ -125,6 +125,8 @@ function playStoneWalls(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
+  updateCurrentPlayerDisplay();
 }
 
 function playIceWalls(){
@@ -142,6 +144,8 @@ function playIceWalls(){
   document.getElementById("laser").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
+  updateCurrentPlayerDisplay();
 }
 
 function playCrates(){
@@ -158,6 +162,8 @@ function playCrates(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
+  updateCurrentPlayerDisplay();
 }
 
 // Função que faz deepcopy de um array.
@@ -1409,6 +1415,27 @@ function getfirstPlayer() {
 function playnologin() {
   nologsub();
   closePlayModal();
+}
+
+function updateCurrentPlayerDisplay() {
+  switch (currentPlayer) {
+    case player1:
+      $('#currentPlayerLabel').text(player1.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/beep.png');
+      break;
+    case player2:
+      $('#currentPlayerLabel').text(player2.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/dot.png');
+      break;
+    case player3:
+      $('#currentPlayerLabel').text(player3.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/pangle.png');
+      break;
+    case player4:
+      $('#currentPlayerLabel').text(player4.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/pi.png');
+      break;
+  }
 }
 
 // Window loading function
