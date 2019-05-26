@@ -51,6 +51,7 @@ function register() {
         localStorage.setItem(userName + '_names', familyElements);
         localStorage.setItem(userName + '_birthdates', familyBirthdates);
         localStorage.setItem(userName + '_score', [0, 0, 0, 0].toString());
+        startUserSession(userName);
     }
     else if (password !== confirmPassword) {
         alert("Oops! The passwords you've entered do not match, please try again");
@@ -58,8 +59,6 @@ function register() {
     else {
         alert("Oops! That username already exists! Please try a different one.")
     }
-
-    startUserSession(userName);
 }
 
 function login(){
