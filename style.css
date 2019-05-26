@@ -37,9 +37,6 @@ video {
     width: 90%;
 }
 
-.title_text {
-    text-align: center;
-}
 
 .titleh2 {
     padding-left: 5%;
@@ -111,35 +108,67 @@ video {
 }
 
 .grass {
-  background-image: url("images/game/tiles/grass.png");
-  height: 50px;
-  width: 50px;
+    background-image: url("images/game/tiles/grass.png");
+    height: 50px;
+    width: 50px;
 }
 
 #rotateLeft {
-  display: none;
+    display: none;
 }
 
 #rotateRight {
-  display: none;
+    display: none;
 }
 
 #forward {
-  display: none;
+    display: none;
 }
 
 #laser {
-  display: none;
+    display: none;
 }
 
 #bug {
-  display: none;
+    display: none;
 }
 
 #endTurn {
-  display: none;
+    display: none;
 }
 
 #scoretable {
     display: none;
+}
+
+body, html {
+    height: 100%;
+}
+
+.mainContainer {
+    background-image: url("images/content/rtboard.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#aboutUsMainContainer {
+    background-image: url("images/content/dan.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#mainAboutUsCard {
+    width: 85%;
+    margin: 10px auto;
+    padding: 4px;
+}
+
+#mainPageCard {
+    width: 50%;
+    margin: 10% auto;
+    padding: 4px;
 }

@@ -12,7 +12,7 @@
     <script src="login.js"></script>
 </head>
 
-<body class="w3-animate-opacity">
+<body class="w3-animate-opacity" id="mainPageBody">
 
 <div id="logoBar" class="w3-container w3-theme-l1">
     <button class="w3-button w3-hide-medium w3-hide-large" id="hamburger">
@@ -41,19 +41,19 @@
         <i class="material-icons menuIcon">share</i> <br>
         Community
     </a>
-        <div class="w3-dropdown-hover w3-right">
-            <button class="w3-button" id="userButton">
-                <i class="material-icons w3-hide-small" id="userIcon">person</i>
-            </button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4" id="dropdownContent">
-                <p class="w3-hide-small welcomeMessage">You're not logged in.</p>
-                <button id="openLogin" class="w3-button w3-bar-item">Log in</button>
-                <button id="openProfile" class="w3-button w3-bar-item w3-hide">Profile</button>
-                <button id="logoutButton" class="w3-button w3-bar-item w3-hide">Log out</button>
-                <button id="openRegister" class="w3-button w3-bar-item">Register</button>
-            </div>
+    <div class="w3-dropdown-hover w3-right">
+        <button class="w3-button" id="userButton">
+            <i class="material-icons w3-hide-small" id="userIcon">person</i>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-card-4" id="dropdownContent">
+            <p class="w3-hide-small welcomeMessage">You're not logged in.</p>
+            <button id="openLogin" class="w3-button w3-bar-item">Log in</button>
+            <button id="openProfile" class="w3-button w3-bar-item w3-hide">Profile</button>
+            <button id="logoutButton" class="w3-button w3-bar-item w3-hide">Log out</button>
+            <button id="openRegister" class="w3-button w3-bar-item">Register</button>
         </div>
     </div>
+</div>
 
 </div>
 
@@ -93,9 +93,8 @@
 </div>
 
 <!-- PAGE CONTENT STARTS HERE -->
-<div class="w3-container" id="mainContainer">
-    <img src="images/content/rtboard.jpg" class="featuredImage" alt="Robot Turtles board">
-    <div class="w3-card w3-white w3-display-middle" id="mainCard">
+<div class="w3-container mainContainer">
+    <div class="w3-card w3-white" id="mainPageCard">
         <div class="w3-panel" id="cardContent">
             <h3>Lean code in a fun way!</h3>
             <p>Robot Turtles teaches you the basics of programming in a fun and colorful game.</p>
@@ -107,7 +106,7 @@
 
 <!-- FOOTER: -->
 
-<div class="w3-container w3-center w3-theme-l1 footer">
+<div class="w3-container w3-theme-l1 footer">
     © 2019 - Robot Turtles
 </div>
 
