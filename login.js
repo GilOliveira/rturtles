@@ -74,6 +74,7 @@ function login(){
 }
 
 function startUserSession(username){
+    sessionStorage.clear();
     sessionStorage.setItem('activeUser', username);
     $('#openLogin').prop('class','w3-button w3-bar-item w3-hide');
     $('#openLoginMobile').prop('class','w3-button w3-bar-item w3-hide');
