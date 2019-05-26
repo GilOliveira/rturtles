@@ -139,6 +139,7 @@ function playIceWalls(){
   document.getElementById("laser").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
   updateCurrentPlayerDisplay();
 }
 
@@ -156,6 +157,7 @@ function playCrates(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
   updateCurrentPlayerDisplay();
 }
 
