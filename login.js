@@ -86,7 +86,7 @@ function startUserSession(username){
     console.log(currentPlayers);
     let currentBirthdays = localStorage.getItem(username + '_birthdates');
     let currentScores = localStorage.getItem(username + '_scores');
-    let currentWins = localStorage.getItem(username + '_scores');
+    let currentWins = localStorage.getItem(username + '_gameswon');
 
     sessionStorage.setItem('playerNames', currentPlayers);
     sessionStorage.setItem('playerBirthdays', currentBirthdays);
