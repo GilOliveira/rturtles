@@ -142,7 +142,7 @@ video {
 }
 
 #endGame {
-  /* display: none; */
+  display: none;
 }
 
 #endGame a {
