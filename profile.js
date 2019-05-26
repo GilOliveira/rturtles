@@ -1,7 +1,7 @@
 function main(){
     let names = sessionStorage.getItem('playerNames').split(",");
     let birthdays = sessionStorage.getItem('playerBirthdays').split(',');
-    let scores = sessionStorage.getItem('playerScores').split(',');
+    let scores = sessionStorage.getItem('playerScore').split(',');
     console.log(names);
     $('#user1name').text(names[0]);
     $('#user2name').text(names[1]);

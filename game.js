@@ -1274,8 +1274,6 @@ function getLogedPlayer() {
   getfirstPlayer();
   createscoretable();
 
-
-
 }
 
 function nologsub() {
@@ -1367,7 +1365,6 @@ function scorepointstable() {
   let scoretable = $("#scoretable tr");
 
   let playerscore = scoretable.eq(currentPlayerIndex + 1);
-
   let playerobj = allplayers[currentPlayerIndex];
 
   playerscore.html("<td> " +
