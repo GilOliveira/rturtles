@@ -196,3 +196,23 @@ body, html {
     margin-right: auto;
     margin-bottom: 20px;
 }
+
+#gameMainContainer {
+    background-image: url("images/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#buttonContainer {
+    width: 425px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    background-image: url("images/wood.jpg");
+    background-size: 100px 100px;
+    background-repeat: repeat;
+}
