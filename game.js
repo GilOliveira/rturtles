@@ -1,6 +1,7 @@
 "use strict";
 
 function main() {
+
   let botaoHamburguer = document.getElementById("hamburger");
   let closeRegisterButton = document.getElementById("closeRegister");
   let registerModal = document.getElementById("registerModal");
@@ -70,6 +71,9 @@ let timeInSeconds = 0;
 
 // Assume que a lista já está ordenada consoante a vez de jogar.
 let playersStillPlaying = [true, true, true, true];
+
+
+
 
 function events(){
   let playStoneWallsButton = document.getElementById("playIceWalls");
@@ -1244,7 +1248,6 @@ function nologsub() {
 function scorepointstable() {
   playerswon++;
   let placed;
-  let time;
 
   let currentGames = sessionStorage.getItem('playerGames');
   let newGames = parseInt(currentGames);
@@ -1270,33 +1273,48 @@ function scorepointstable() {
     newScore += 10;
     newWins += 1;
     placed = "1º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
 
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
-    console.log(scoresArray,winsArray,scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
     winsArray[currentPlayerIndex] = newWins;
-    sessionStorage.setItem("playerWins", winsArray);
+    sessionStorage.setItem("playerWins", winsArray.toString());
 
   } else if (playerswon == 2) {
     newScore += 5;
     placed = "2º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
 
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
 
   } else if (playerswon == 3) {
     newScore  += 3;
     placed = "3º";
-    scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
+    scoresArray[currentPlayerIndex] = newScore.toString();
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
   } else if (playerswon == 4) {
-    currentScore += 1;
+    newScore += 1;
     placed = "4º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
     scoresArray[currentPlayerIndex] = newScore;
-    sessionStorage.setItem("playerScores",scoresArray);
+    sessionStorage.setItem("playerScores",scoresArray.toString());
 
     playerswon = 0
   }
@@ -1311,7 +1329,16 @@ function scorepointstable() {
       newScore + "</td><td>" +
       newTime + "</td><td>" +
       newWins + "</td><td>" +
-      placed + "</td>");}
+      placed + "</td>");
+
+  let activeUser = sessionStorage.getItem("activeUser");
+
+  if (activeUser !== null) {
+    localStorage.setItem(activeUser + '_score', scoresArray.toString());
+    localStorage.setItem(activeUser + '_gameswon', winsArray.toString());
+    localStorage.setItem(activeUser + "_playerGames", newGames.toString());
+  }
+}
 
 
 function createscoretable() {
@@ -1321,14 +1348,36 @@ function createscoretable() {
   table.append("<tr>");
   table.append("<th> Username </th>");
   table.append("<th>Score</th>");
-  table.append("<th>Tame taken</th>");
+  table.append("<th>Time taken</th>");
   table.append("<th>Games won</th>");
   table.append("<th>Placed</th>");
   table.append("</tr>");
 
 
+
+
   for (let i=0; i < players.length; i++) {
-    let strtoappend = "<tr><td>" + players[i] + "</td> <td>0</td> <td>0</td></tr>";
+
+    let currentScore = sessionStorage.getItem('playerScores');
+    let scoresArray = currentScore.split(",");
+    let newScore = scoresArray[i];
+
+    let currentTime = sessionStorage.getItem('playerTime');
+    let timeArray = currentTime.split(",");
+    let newTime = timeArray[i];
+
+    let currentWins =sessionStorage.getItem('playerWins');
+    let winsArray = currentWins.split(",");
+    let newWins = winsArray[i];
+
+
+
+    let strtoappend = "<tr><td>" + players[i] + "</td>" +
+        "<td>" + newScore +"</td>" +
+        "<td>" + newTime + "</td>" +
+        "<td>" + newWins + "</td>" +
+        "<td>0</td>" +
+        "</tr>";
     table.append(strtoappend)
 
   }
