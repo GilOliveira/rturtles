@@ -1232,7 +1232,6 @@ function nologsub() {
 function scorepointstable() {
   playerswon++;
   let placed;
-  let time;
 
   let currentGames = sessionStorage.getItem('playerGames');
   let newGames = parseInt(currentGames);
@@ -1258,10 +1257,13 @@ function scorepointstable() {
     newScore += 10;
     newWins += 1;
     placed = "1º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
 
     scoresArray[currentPlayerIndex] = newScore;
     sessionStorage.setItem("playerScores",scoresArray.toString());
-    console.log(scoresArray,winsArray,scoresArray);
 
     winsArray[currentPlayerIndex] = newWins;
     sessionStorage.setItem("playerWins", winsArray.toString());
@@ -1269,6 +1271,10 @@ function scorepointstable() {
   } else if (playerswon == 2) {
     newScore += 5;
     placed = "2º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
 
     scoresArray[currentPlayerIndex] = newScore;
     sessionStorage.setItem("playerScores",scoresArray.toString());
@@ -1277,12 +1283,20 @@ function scorepointstable() {
   } else if (playerswon == 3) {
     newScore  += 3;
     placed = "3º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
     scoresArray[currentPlayerIndex] = newScore.toString();
     sessionStorage.setItem("playerScores",scoresArray.toString());
 
   } else if (playerswon == 4) {
-    currentScore += 1;
+    newScore += 1;
     placed = "4º";
+    newTime =  timeInSeconds.toString();
+
+    timeArray[currentPlayerIndex] = newTime;
+    sessionStorage.setItem("playerTime",timeArray.toString());
     scoresArray[currentPlayerIndex] = newScore;
     sessionStorage.setItem("playerScores",scoresArray.toString());
 
@@ -1306,7 +1320,6 @@ function scorepointstable() {
   if (activeUser !== null) {
     localStorage.setItem(activeUser + '_score', scoresArray.toString());
     localStorage.setItem(activeUser + '_gameswon', winsArray.toString());
-    // localStorage.setItem(activeUser + '_timeTaken', newGames.toString());
     localStorage.setItem(activeUser + "_playerGames", newGames.toString());
   }
 }
@@ -1319,14 +1332,36 @@ function createscoretable() {
   table.append("<tr>");
   table.append("<th> Username </th>");
   table.append("<th>Score</th>");
-  table.append("<th>Tame taken</th>");
+  table.append("<th>Time taken</th>");
   table.append("<th>Games won</th>");
   table.append("<th>Placed</th>");
   table.append("</tr>");
 
 
+
+
   for (let i=0; i < players.length; i++) {
-    let strtoappend = "<tr><td>" + players[i] + "</td> <td>0</td> <td>0</td></tr>";
+
+    let currentScore = sessionStorage.getItem('playerScores');
+    let scoresArray = currentScore.split(",");
+    let newScore = scoresArray[i];
+
+    let currentTime = sessionStorage.getItem('playerTime');
+    let timeArray = currentTime.split(",");
+    let newTime = timeArray[i];
+
+    let currentWins =sessionStorage.getItem('playerWins');
+    let winsArray = currentWins.split(",");
+    let newWins = winsArray[i];
+
+
+
+    let strtoappend = "<tr><td>" + players[i] + "</td>" +
+        "<td>" + newScore +"</td>" +
+        "<td>" + newTime + "</td>" +
+        "<td>" + newWins + "</td>" +
+        "<td>0</td>" +
+        "</tr>";
     table.append(strtoappend)
 
   }
