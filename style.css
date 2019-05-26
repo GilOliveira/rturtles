@@ -23,9 +23,6 @@
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     height: 30px;
 }
 
@@ -188,14 +185,13 @@ body, html {
 
 #currentPlayerCard {
     width: 425px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    margin: 10px auto 20px auto;
+    padding-bottom: 10px;
 }
 
 #gameMainContainer {
     background-image: url("images/background.jpg");
-    height: 100%;
+    height: 1100px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -211,4 +207,9 @@ body, html {
     background-image: url("images/wood.jpg");
     background-size: 100px 100px;
     background-repeat: repeat;
+}
+
+#scoretable {
+    width: 500px;
+    margin: 10px auto 20px auto;
 }
