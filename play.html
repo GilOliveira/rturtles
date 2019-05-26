@@ -119,11 +119,11 @@
 </div>
 
 <audio id="borataudio">
-    <source src="images/game/audio/Borat.mp3" type="audio/mp3">
+    <source src="audio/Borat.mp3" type="audio/mp3">
     Your browser does not support the audio element.
 
 </audio><audio id="laseraudio">
-    <source src="images/game/audio/laser.mp3" type="audio/mp3">
+    <source src="audio/laser.mp3" type="audio/mp3">
     Your browser does not support the audio element.
 </audio>
 
@@ -140,20 +140,27 @@
             <h2>Play without login</h2>
         </header>
         <div class="w3-container">
-            <form>
+            <form id="nologinForm">
                 <div class="w3-section">
-                    <label>Username 1</label><br>
-                    <input type="text" name="user1" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
-                    <label>Username 2</label><br>
-                    <input type="text" name="user2" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
-                    <label>Username 3</label><br>
-                    <input type="text" name="user3" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
-                    <label>Username 4</label><br>
-                    <input type="text" name="user4" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
+                        <label>Username 1<br>
+                    <input type="text" name="u1name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u1name" required>
+                        </label>
+                        <label>Username 2<br>
+                    <input type="text" name="u2name" class="w3-input w3-border w3-margin-bottom" placeholder="User2" id="u2name" required>
+                        </label>
+                        <label>Username 3<br>
+                    <input type="text" name="u3name" class="w3-input w3-border w3-margin-bottom" placeholder="User3" id="u3name" required>
+                        </label>
+                    <label>Username 4<br>
+                    <input type="text" name="u4name" class="w3-input w3-border w3-margin-bottom" placeholder="User1" id="u4name" required>
+                        </label>
+                    <button id="nologbtn" class="w3-theme-l1 w3-btn-block w3-section w3-padding">PLAY!</button>
 
-                    <input type="submit" class="w3-theme-l1 w3-btn-block w3-section w3-padding" id="closePlayModal" value="Play!">
+                    </button>
                 </div>
+
             </form>
+            </div>
 
             <div class="w3-row">
                 <div class="w3-container w3-half">
