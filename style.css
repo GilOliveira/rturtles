@@ -13,6 +13,7 @@
     margin-top: 15px;
 }
 
+
 #userIcon {
     font-size: 50px;
     text-align: right;
@@ -29,14 +30,17 @@
     height: 30px;
 }
 
+
 video {
     display: block;
     margin: 0 auto;
     width: 90%;
 }
 
+
 .titleh2 {
     padding-left: 5%;
+
 }
 .downl {
     font-size: 20px;
@@ -82,6 +86,7 @@ video {
     padding-left: 10px;
     font-weight: bold;
 }
+
 
 #loginContainer p {
     padding-top: 2px;
@@ -173,4 +178,21 @@ body, html {
     width: 50%;
     margin: 10% auto;
     padding: 4px;
+}
+
+#board {
+    table-layout: fixed;
+    height: 50px;
+}
+
+#boardCard {
+    width: 425px;
+    margin: auto;
+}
+
+#currentPlayerCard {
+    width: 425px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
 }

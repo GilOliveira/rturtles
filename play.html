@@ -96,23 +96,23 @@
 <!-- PAGE CONTENT STARTS HERE -->
 
 <!--CURRENT PLAYER-->
-<div class="w3-container w3-hide" id="currentPlayerContainer">
-    <h4>Current Player:</h4>
-    <img src="" alt="Turtle" class="w3-left" id="currentPlayerImage" height="50px">
-    <h2 id="currentPlayerLabel"></h2>
+<div class="w3-card w3-white w3-center" id="currentPlayerCard">
+    <div class="w3-container w3-hide" id="currentPlayerContainer">
+        <h4>Current Player:</h4>
+        <img src="" alt="Turtle" class="w3-left" id="currentPlayerImage" height="50px">
+        <h2 id="currentPlayerLabel"></h2>
+    </div>
 </div>
 
 <!-- BOARD-->
 
-<div class="w3-row">
-
-    <div id="boardContainer" class=" w3-card w3-white w3-container w3-third">
-        <table id="board">
-        </table>
+    <div class="w3-card w3-white w3-center" id="boardCard">
+        <div id="boardContainer">
+            <table id="board">
+            </table>
+        </div>
     </div>
-    <br>
-
-    <div id="buttonContainer" class="w3-card w3-white w3-container w3-third">
+    <div id="buttonContainer" class="w3-card w3-white w3-center">
         <button id="rotateLeft" class="w3-btn w3-amber"><img width="70px" height="70px"
           src="images/buttons/left.jpg"></button>
         <button id="rotateRight" class="w3-btn w3-deep-purple"><img width="70px" height="70px"
@@ -125,7 +125,8 @@
         <button id="endTurn" class="w3-btn w3-black" disabled><img width="70px" height="70px" src="images/buttons/endTurn.jpg"></button>
     </div>
 
-    <div id="scoretable" class="w3-card w3-white w3-container w3-third">
+
+    <div id="scoretable" class="w3-card w3-white w3-panel w3-third">
         <table class="w3-table w3-striped w3-border">
         </table>
     </div>
