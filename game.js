@@ -551,7 +551,6 @@ function rotateRight(currentPlayer){
 }
 
 function forward(currentPlayer){
-
   let rotateLeftButton = document.getElementById("rotateLeft");
   let rotateRightButton = document.getElementById("rotateRight");
   let forwardButton = document.getElementById("forward");
@@ -574,6 +573,7 @@ function forward(currentPlayer){
     newColumn = currentColumn;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
+      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -584,6 +584,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
+      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -594,6 +595,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
+      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -605,6 +607,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newRow - 1) < 0){
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -614,6 +617,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow - 1][newColumn] === ""){
+        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -631,6 +635,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -643,6 +648,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+              $("#turtleaudio").get(0).play();
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
               rotateLeftButton.disabled = true;
@@ -706,6 +712,7 @@ function forward(currentPlayer){
     newColumn = currentColumn;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
+      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -716,6 +723,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
+      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -726,6 +734,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
+      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -737,6 +746,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newRow + 1) > 7){
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -746,6 +756,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow + 1][newColumn] === ""){
+        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -763,6 +774,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if((newRow + 1) > 7){
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -783,6 +795,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+              $("#turtleaudio").get(0).play();
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
               rotateLeftButton.disabled = true;
@@ -845,6 +858,7 @@ function forward(currentPlayer){
     newColumn = currentColumn + 1;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
+      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -855,6 +869,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
+      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -864,6 +879,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
+      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -875,6 +891,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newColumn + 1) > 7){
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -884,6 +901,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow][newColumn + 1] === ""){
+        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -901,6 +919,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -913,6 +932,7 @@ function forward(currentPlayer){
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
               alert("Oops! Seems like another turtle is already there!");
+              $("#turtleaudio").get(0).play();
               console.log(board);
               rotateLeftButton.disabled = true;
               rotateRightButton.disabled = true;
@@ -974,6 +994,7 @@ function forward(currentPlayer){
     newColumn = currentColumn - 1;
 
     if(newRow < 0 || newRow > 7 || newColumn < 0 || newColumn > 7){
+      $("#erroraudio").get(0).play();
       alert("Oops! Seems like your turtle is trying to run away!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -984,6 +1005,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "stoneWall"){
+      $("#stonewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Stone Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -994,6 +1016,7 @@ function forward(currentPlayer){
       endTurnButton.disabled = false;
     }
     else if(board[newRow][newColumn] === "iceWall"){
+      $("#icewallaudio").get(0).play();
       alert("Oops! Seems like your turtle bumped against a Ice Wall!");
       console.log(board);
       rotateLeftButton.disabled = true;
@@ -1005,6 +1028,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === "crate"){
       if((newColumn - 1) < 0){
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate outside of board!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -1014,6 +1038,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else if(board[newRow][newColumn - 1] === ""){
+        $("#crateaudio").get(0).play();
         alert("Moving Crate!")
         currentPlayer.rowIndex = newRow;
         currentPlayer.columnIndex = newColumn;
@@ -1031,6 +1056,7 @@ function forward(currentPlayer){
         endTurnButton.disabled = false;
       }
       else{
+        $("#erroraudio").get(0).play();
         alert("Unable to move crate!");
         rotateLeftButton.disabled = true;
         rotateRightButton.disabled = true;
@@ -1042,6 +1068,7 @@ function forward(currentPlayer){
     }
     else if(board[newRow][newColumn] === player1 || board[newRow][newColumn] === player2
             || board[newRow][newColumn] === player3 || board[newRow][newColumn] === player4){
+              $("#turtleaudio").get(0).play();
               alert("Oops! Seems like another turtle is already there!");
               console.log(board);
               rotateLeftButton.disabled = true;
