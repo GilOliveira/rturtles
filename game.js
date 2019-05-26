@@ -11,10 +11,6 @@ function main() {
   let closeLoginButton = document.getElementById("closeLogin");
   let mobileLoginButton = document.getElementById("openLoginMobile");
   let mobileRegisterButton = document.getElementById("openRegisterMobile");
-  // let loginBeepButton = document.getElementById('loginBeep');
-  // let loginDotButton = document.getElementById('loginDot');
-  // let loginPangleButton = document.getElementById('loginPangle');
-  // let loginPiButton = document.getElementById('loginPi');
 
   botaoHamburguer.addEventListener("click", openMenu);
   closeRegisterButton.addEventListener("click", closeRegister);
@@ -124,6 +120,8 @@ function playStoneWalls(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  $('#currentPlayerContainer').prop('class', 'w3-container');
+  updateCurrentPlayerDisplay();
 }
 
 function playIceWalls(){
@@ -141,6 +139,7 @@ function playIceWalls(){
   document.getElementById("laser").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  updateCurrentPlayerDisplay();
 }
 
 function playCrates(){
@@ -157,6 +156,7 @@ function playCrates(){
   document.getElementById("forward").style.display="inline";
   document.getElementById("bug").style.display="inline";
   document.getElementById("endTurn").style.display="inline";
+  updateCurrentPlayerDisplay();
 }
 
 // Função que faz deepcopy de um array.
@@ -439,6 +439,7 @@ function updateTurn(){
   laserButton.disabled = false;
   bugButton.disabled = true;
   endTurnButton.disabled = true;
+  updateCurrentPlayerDisplay();
 }
 
 function bug(){
@@ -1371,6 +1372,27 @@ function getfirstPlayer() {
 function playnologin() {
   nologsub();
   closePlayModal();
+}
+
+function updateCurrentPlayerDisplay() {
+  switch (currentPlayer) {
+    case player1:
+      $('#currentPlayerLabel').text(player1.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/beep.png');
+      break;
+    case player2:
+      $('#currentPlayerLabel').text(player2.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/dot.png');
+      break;
+    case player3:
+      $('#currentPlayerLabel').text(player3.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/pangle.png');
+      break;
+    case player4:
+      $('#currentPlayerLabel').text(player4.name);
+      $('#currentPlayerImage').prop('src', 'images/game/characters/pi.png');
+      break;
+  }
 }
 
 // Window loading function

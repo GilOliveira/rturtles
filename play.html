@@ -94,6 +94,14 @@
 </div>
 
 <!-- PAGE CONTENT STARTS HERE -->
+
+<!--CURRENT PLAYER-->
+<div class="w3-container w3-hide" id="currentPlayerContainer">
+    <h4>Current Player:</h4>
+    <img src="" alt="Turtle" class="w3-left" id="currentPlayerImage" height="50px">
+    <h2 id="currentPlayerLabel"></h2>
+</div>
+
 <!-- BOARD-->
 
 <div class="w3-row">
@@ -238,18 +246,27 @@
             <h2>Choose your play mode!</h2>
         </header>
             <div class="w3-row">
-                <div class="w3-container w3-half">
-                    <img id="playIceWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
-                    <p>Stone walls mode!</p>
-
+                <div class="w3-container w3-third">
+                    <button class="w3-button">
+                        <img id="playIceWalls" alt="ice walls" src="images/game/modeplay/stonewall.png">
+                        <br>
+                        Stone Walls
+                    </button>
                 </div>
-                <div class="w3-container w3-half">
-                    <img id="playStoneWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
-
-                    <p>Ice walls mode!</p>
-
+                <div class="w3-container w3-third">
+                    <button class="w3-button w3-center">
+                        <img id="playStoneWalls" alt="stone walls" src="images/game/modeplay/icewall.png">
+                        <br>
+                        Ice Walls
+                    </button>
                 </div>
-                <button class="w3-button" id="playCrates">Play Crates Mode</button>
+                <div class="w3-container w3-third">
+                    <button class="w3-button w3-center" id="playCrates">
+                        <img src="images/content/crate.png" alt="Crates Mode">
+                        <br>
+                        Crates
+                    </button>
+                </div>
             </div>
         </div>
     </div>
